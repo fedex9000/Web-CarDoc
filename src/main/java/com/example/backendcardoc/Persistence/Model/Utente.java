@@ -3,7 +3,7 @@ package com.example.backendcardoc.Persistence.Model;
 public class Utente {
     private String cf, nome, cognome, email, tipologia, password;
     private Long telefono;
-    public Utente(String cf, String nome, String cognome, String email, Long telefono, String tipologia, String password, Boolean bannato) {
+    public Utente(String cf, String nome, String cognome, String email, Long telefono, String tipologia, String password) {
         this.cf = cf;
         this.nome = nome;
         this.cognome = cognome;
