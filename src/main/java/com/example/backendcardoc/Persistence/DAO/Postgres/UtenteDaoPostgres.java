@@ -17,7 +17,7 @@ public class UtenteDaoPostgres implements UtenteDao {
 
     public Utente createNewEntity(ResultSet rs) throws SQLException {
         Utente u = new Utente();
-        u.setId(rs.getString("id"));
+        u.setId(rs.getString("cf"));
         u.setNome(rs.getString("nome"));
         u.setCognome(rs.getString("cognome"));
         u.setEmail(rs.getString("email"));
@@ -43,9 +43,10 @@ public class UtenteDaoPostgres implements UtenteDao {
 
     @Override
     public Utente findByPrimaryKey(String cf) {
-        String query = "select * from utenti where id=?";
+        String query = "select * from utenti where cf=?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
+            System.out.println("ciaoo");
             st.setString(1, cf);
             ResultSet rs = st.executeQuery();
             if (rs.next()) { return createNewEntity(rs); }
