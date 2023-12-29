@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ServletUtil {
 
     @GetMapping(value = "/login")
-    public String templateHandlerLogin(Model model) {
-        return "login";
+    public String templateHandlerLogin(Model model) {return "login";
     }
 
-    @GetMapping(value = "/registrazione")
+    @GetMapping(value = "/registration")
     public String templateHandlerRegistrazione(Model model) {
-        return "registrazione";
+        return "registration";
     }
 
     @GetMapping(value = "/*/.html")

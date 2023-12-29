@@ -16,15 +16,7 @@ public class BackEndCarDocApplication {
 
 	public static void main(String[] args) {
 
-		//SpringApplication.run(BackEndCarDocApplication.class, args);
-
-		UtenteDao utenteDao =  DBManager.getInstance().getUtenteDAO();
-		Utente utente = utenteDao.findByEmail("fedex46@outlook.it");
-		System.out.println(utente.getCf());
-
-
-
-
+		SpringApplication.run(BackEndCarDocApplication.class, args);
 	}
 
 }
