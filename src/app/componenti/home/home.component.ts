@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
-import {MatGridListModule} from "@angular/material/grid-list";
-import {MatCardModule} from "@angular/material/card";
+import {AuthService} from "../../auth/auth.service";
 
 
 @Component({
@@ -12,5 +8,4 @@ import {MatCardModule} from "@angular/material/card";
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-
 }
