@@ -9,7 +9,7 @@
   padding: 0px;
 }
 #logo {
-  width: 15%;
+  width: 10%;
 }
 
 .initialText {
@@ -22,8 +22,9 @@
 }
 
 .category-container img{
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
+
 }
 
 .image-with-text img {
@@ -34,6 +35,70 @@
 .text{
   margin-right: 50px;
   color: white;
+}
+
+
+
+
+
+/*     PARTE CARDS      */
+.mat-grid-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cards {
+  width: 100%;
+  border-radius: 20px;
+  border: lightgray 1px solid !important;
+}
+
+.cards:hover {
+  cursor: pointer;
+  border: #ff9900 2px solid !important;
+}
+
+.gridList {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 50px;
+}
+
+.matCardImg {
+  width: 80%;
+  height: 80%;
+  padding: 10px;
+  object-fit: contain;
+}
+
+.imageContainer{
+  width: 300px;
+  height: 300px;
+  display: flex;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+mat-card-title,
+mat-card-subtitle {
+  margin-left: 20px;
+}
+
+mat-card-footer {
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+
+  .imageContainer {
+    width: 370px;
+    margin: 2px auto;
+    height: 380px;
+  }
+
 }
 
 

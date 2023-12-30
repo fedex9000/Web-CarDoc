@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { ServiceService } from "../Service/service";
-import { ActivatedRoute, Router } from "@angular/router";
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {ServiceService} from "../Service/service";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Utente} from "../Model/Utente";
 
 @Injectable({
@@ -18,9 +18,9 @@ export class AuthService {
 
 
   checkLogin(): boolean {
-    /**
+    /*
      * Ritorna true se l'utente è già loggato e le informazioni sono già caricate
-     */
+    */
     if (this.utenteCorrente != null) return true;
     this.sessionId = this.route.snapshot.queryParams['sessionId'];
     this.service.getUserDetails(this.sessionId).subscribe({
@@ -59,6 +59,10 @@ export class AuthService {
     return false;
   }
 
+  isAdmin(): boolean {
+    return this.utenteCorrente.tipologia == "admin";
+  }
+
   logout(): void {
     this.utenteCorrente = null;
     this.isLoggedIn = false;
@@ -66,9 +70,9 @@ export class AuthService {
     localStorage.removeItem("nome");
     localStorage.removeItem("cognome");
     localStorage.removeItem("telefono");
-    localStorage.removeItem("tipologia");
     localStorage.removeItem("email");
     localStorage.removeItem("password");
-    localStorage.removeItem("");
+    localStorage.removeItem("cf");
+    localStorage.removeItem("tipologia");
   }
 }

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AuthService } from "src/app/auth/auth.service";
-import { Utente } from "src/app/Model/Utente";
-import { ServiceService } from 'src/app/Service/service.service';
+
 import { MatDialog } from '@angular/material/dialog';
-import { ErrordialogComponent } from 'src/app/componenti/errordialog/errordialog.component';
-import { SuccessdialogComponent } from 'src/app/componenti/successdialog/successdialog.component';
+import {ServiceService} from "../../Service/service";
+import {AuthService} from "../../auth/auth.service";
+import {Utente} from "../../Model/Utente";
+import {ErrordialogComponent} from "../errordialog/errordialog.component";
+import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 
 @Component({
   selector: 'app-admin-cpl',

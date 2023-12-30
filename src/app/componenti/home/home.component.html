@@ -1,7 +1,8 @@
 <body>
 
 <div class="logo-container">
-  <img id="logo" src='.\assets\CarDocLogo.png' alt="Foto logo" onClick="window.open('http://localhost:4200/home','_self')">
+  <img id="logo" src='.\assets\CarDocLogo.png' alt="Foto logo"
+       onClick="window.open('http://localhost:4200/home','_self')">
 </div>
 
 
@@ -49,6 +50,33 @@
 
 </div>
 
+
+<!--PRODOTTI-->
+<ng-template *ngIf="!Mobile(); then desktopView else mobileView"></ng-template>
+
+<ng-template #desktopView>
+  <mat-grid-list [cols]="this.smallDevice ? 2 : 5" gutterSize="25px" rowHeight="470px" class="gridList">
+    <mat-grid-tile *ngFor="let prod of prodotti">
+      <a style="text-decoration: none; color: black;">
+        <mat-card class="cards">
+          <div class="imageContainer">
+            <img mat-card-image [src]="'assets/immagini/prodotti/' + prod.id +  '.jpg'" class="matCardImg"
+                 onerror="this.src='assets/no_images_found.png'">
+          </div>
+          <mat-card-footer>
+            <mat-card-title>{{prod.nome}}</mat-card-title>
+            <mat-card-subtitle>{{prod.venditore}}</mat-card-subtitle>
+            <mat-card-title>{{prod.prezzo}}€</mat-card-title>
+          </mat-card-footer>
+        </mat-card>
+      </a>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-template>
+
+<ng-template #mobileView>
+
+</ng-template>
 
 
 </body>

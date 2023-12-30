@@ -1,21 +1,25 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {AuthService} from "../../auth/auth.service";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {ServiceService} from "../../Service/service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
   styleUrl: './authentication.component.css',
 })
-export class AuthenticationComponent implements AfterViewInit{
+export class AuthenticationComponent implements OnInit{
+
   constructor(
     private breakpointObserver: BreakpointObserver,
-    //public auth: AuthService
+    public auth: AuthService
   ){}
 
   ngAfterViewInit(): void {
-    this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.TabletPortrait]).subscribe(result => {
 
-    });
+  }
+
+  ngOnInit(): void {
   }
 }
