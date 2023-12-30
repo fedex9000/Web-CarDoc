@@ -42,11 +42,15 @@ public class UtenteService {
             utente1.setCognome(utente.getCognome());
             utente1.setEmail(utente.getEmail());
             utente1.setTelefono(utente.getTelefono());
-            utente1.setTipologia(utente.getTipologia());
             utente1.setPassword(utente.getPassword());
+            utente1.setTipologia(utente.getTipologia());
             if(DBManager.getInstance().getUtenteDAO().saveOrUpdate(utente1))
                 return ResponseEntity.ok(utente1);
             else return ResponseEntity.internalServerError().build();
         }
+    }
+
+    public void print(){
+        System.out.println("cazzo");
     }
 }

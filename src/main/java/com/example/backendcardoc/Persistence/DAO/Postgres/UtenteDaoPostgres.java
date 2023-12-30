@@ -21,9 +21,9 @@ public class UtenteDaoPostgres implements UtenteDao {
         u.setNome(rs.getString("nome"));
         u.setCognome(rs.getString("cognome"));
         u.setEmail(rs.getString("email"));
-        u.setTelefono(rs.getLong("telefono"));
-        u.setTipologia(rs.getString("tipologia"));
+        u.setTelefono(rs.getString("telefono"));
         u.setPassword(rs.getString("password"));
+        u.setTipologia(rs.getString("tipologia"));
         return u;
     }
     @Override
@@ -77,23 +77,23 @@ public class UtenteDaoPostgres implements UtenteDao {
             Utente u = findByPrimaryKey(utente.getCf());
             if (u == null) {
                 // User doesn't exist in the database, creating one
-                String insertQuery = "insert into utenti(nome, cognome, email, telefono, tipologia, password, id) values(?,?,?,?,?,?,?,?)";
+                String insertQuery = "insert into utenti(nome, cognome, email, telefono, password, tipologia, cf) values(?,?,?,?,?,?,?)";
                 st = connection.prepareStatement(insertQuery);
             } else {
                 // User exists in the database, updating its infos
-                String updateQuery = "update utenti set nome = ?, cognome = ?, email = ?, telefono = ?, tipologia = ?, password = ?, where id = ?";
+                String updateQuery = "update utenti set nome = ?, cognome = ?, email = ?, telefono = ?, password = ?, tipologia = ? where cf = ?";
                 st = connection.prepareStatement(updateQuery);
             }
 
             st.setString(1, utente.getNome().substring(0, 1).toUpperCase() + utente.getNome().substring(1).toLowerCase());
             st.setString(2, utente.getCognome().substring(0, 1).toUpperCase() + utente.getCognome().substring(1).toLowerCase());
             st.setString(3, utente.getEmail().toLowerCase());
-            st.setLong(4, utente.getTelefono());
-            st.setString(5, utente.getTipologia().toLowerCase());
-            st.setString(6, utente.getPassword());
+            st.setString(4, utente.getTelefono());
+            st.setString(5, utente.getPassword());
+            st.setString(6, utente.getTipologia().toLowerCase());
             st.setString(7, utente.getCf().toUpperCase());
 
-            st.executeUpdate();
+            st.execute();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,16 +1,15 @@
 package com.example.backendcardoc.Persistence.Model;
 
 public class Utente {
-    private String cf, nome, cognome, email, tipologia, password;
-    private Long telefono;
-    public Utente(String cf, String nome, String cognome, String email, Long telefono, String tipologia, String password) {
+    private String cf, nome, cognome, email, tipologia, telefono, password;
+    public Utente(String cf, String nome, String cognome, String email, String telefono, String password, String tipologia) {
         this.cf = cf;
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
         this.telefono = telefono;
-        this.tipologia = tipologia;
         this.password = password;
+        this.tipologia = tipologia;
     }
 
     public Utente() {
@@ -48,11 +47,11 @@ public class Utente {
         this.email = email;
     }
 
-    public Long getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Long telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
