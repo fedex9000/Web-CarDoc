@@ -16,7 +16,7 @@ import {CategoryComponent} from "../category/category.component";
 export class HomeComponent implements OnInit{
 
   prodotti: Prodotto[] = [];
-  images: string[] = [];
+  images: { [key: string]: string } = {};
   smallDevice: boolean = false;
   selectedCategory: any = "";
   searchedWord: any = "";
@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
     this.setCategoryProduct();
     this.getSearchedWord();
+    this.getAllImage();
 
     if (this.selectedCategory != null) {
       this.service.getCategoryProduct(this.selectedCategory).subscribe({
@@ -78,6 +79,26 @@ export class HomeComponent implements OnInit{
 
   getSearchedWord(){
     this.searchedWord = localStorage.getItem("searchedWord");
+  }
+
+  getAllImage() {
+    if (Object.keys(this.images).length != 0) {
+      return;
+    }
+    this.service.getProdotti().subscribe({
+      next: (prodotti) => {
+        prodotti.forEach(prod => {
+          this.service.findImageByProductID(prod.id).subscribe({
+            next: (img) => {
+              if (img != null) {
+                const base64String = img.img;
+                this.images[prod.id] = base64String;
+              }
+            }
+          });
+        });
+      }
+    });
   }
 
 }

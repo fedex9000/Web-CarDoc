@@ -1,10 +1,11 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import {ActivatedRoute} from "@angular/router";
 import {ServiceService} from "../../Service/service";
 import {Prodotto} from "../../Model/Prodotto";
-import {concatAll} from "rxjs";
+import {Recensione} from "../../Model/Recensione";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-prodotto',
@@ -19,8 +20,15 @@ export class ProdottoComponent implements OnInit{
   prezzo: number = 0;
   venditore: string = "";
   categoria: string = "";
+  imagesSingleProduct: string = "";
+
+  relatedProductimages: { [key: string]: string } = {};
 
   prodottiCorrelati: Prodotto[] = [];
+  recensioni: Recensione[] = []
+
+
+
 
   menuOpen = false;
   faFacebook = faFacebook;
@@ -28,7 +36,7 @@ export class ProdottoComponent implements OnInit{
   faEnvelope = faEnvelope;
 
 
-  constructor(private route: ActivatedRoute, private service: ServiceService) {
+  constructor(private route: ActivatedRoute, private service: ServiceService, public auth: AuthService) {
   }
 
   ngOnInit(): void {
@@ -64,8 +72,17 @@ export class ProdottoComponent implements OnInit{
         this.venditore = prodotto.venditore;
         this.categoria = prodotto.categoria;
         this.getRelatedProducts();
+        this.service.findImageByProductID(prodotto.id).subscribe({
+          next: (img) => {
+            if (img != null) {
+              const base64String = img.img;
+              this.imagesSingleProduct = base64String;
+            }
+          }
+        });
       }
     });
+
 
   }
 
@@ -74,9 +91,26 @@ export class ProdottoComponent implements OnInit{
       next: (prodotti) =>{
         prodotti = prodotti.filter(prod => prod.id !== this.stringID)
         this.prodottiCorrelati = prodotti;
+        this.prodottiCorrelati.forEach(prod =>{
+          this.service.findImageByProductID(prod.id).subscribe({
+            next: (img) => {
+              if (img != null) {
+                const base64String = img.img;
+                this.relatedProductimages[prod.id] = base64String;
+              }
+            }
+          });
+        })
     }
     })
   }
 
+  deleteRecensione(id: number){
+
+  }
+
+  checkIfSameReviewOwner(recensione: Recensione){
+
+  }
 
 }

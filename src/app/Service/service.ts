@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import {Utente} from "../Model/Utente";
 import {Observable} from "rxjs";
 import {Prodotto} from "../Model/Prodotto";
-import {Image} from "../Model/immagini";
+import {Image} from "../Model/Image";
 
 
 @Injectable({
@@ -31,7 +31,7 @@ export class ServiceService {
   }
 
   findImageByProductID(id: string): Observable<Image> {
-    return this.http.get<Image>('http://localhost:8080/api/images/findByProdotto/' + id);
+    return this.http.get<Image>('http://localhost:8080/api/images/findByProductID/' + id);
   }
 
   getCategoryProduct(category: string): Observable<Prodotto[]>{
