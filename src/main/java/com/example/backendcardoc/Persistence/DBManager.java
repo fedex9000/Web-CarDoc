@@ -44,5 +44,4 @@ public class DBManager {
     public ProdottoDao getProdottoDAO(){
         return new ProdottoDaoPostgres(getConnection());
     }
-
 }

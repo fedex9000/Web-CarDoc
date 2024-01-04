@@ -4,10 +4,7 @@ import com.example.backendcardoc.Persistence.Model.Prodotto;
 import com.example.backendcardoc.Service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,12 @@ public class ProductController {
     }
 
 
+    @GetMapping("findCategoryProduct/{category}")
+    public ResponseEntity<List<Prodotto>> findCategoryProduct(@PathVariable String category) { return i.getCategoryProduct(category);}
 
+    @GetMapping("findSearchedProduct/{searchedWord}")
+    public ResponseEntity<List<Prodotto>> findSearchedProduct(@PathVariable String searchedWord){return i.getSearchedProduct(searchedWord);}
+
+    @GetMapping("getProduct/{id}")
+    ResponseEntity<Prodotto> getProduct(@PathVariable String id){return i.getProduct(id);}
 }

@@ -58,4 +58,42 @@ public class ProdottoDaoPostgres implements ProdottoDao {
         }
         return null;
     }
+
+    @Override
+    public List<Prodotto> findCategoryProduct(String category) {
+        ArrayList<Prodotto> prodotti = new ArrayList<>();
+        String query = "select * from prodotti where categoria=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1,category);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()) { prodotti.add(createNewProduct(rs)); }
+            return prodotti;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Prodotto> findSearchedProduct(String searchedWord) {
+        ArrayList<Prodotto> prodotti = new ArrayList<>();
+        String query = "select * from prodotti where lower(nome) like lower(?) or lower(venditore) like lower(?) or lower(descrizione) like lower(?) or lower(categoria) like lower(?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, "%" + searchedWord.toLowerCase() + "%");
+            st.setString(2, "%" + searchedWord.toLowerCase() + "%");
+            st.setString(3, "%" + searchedWord.toLowerCase() + "%");
+            st.setString(4, "%" + searchedWord.toLowerCase() + "%");
+
+            ResultSet rs = st.executeQuery();
+            while(rs.next()) { prodotti.add(createNewProduct(rs)); }
+            return prodotti;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }

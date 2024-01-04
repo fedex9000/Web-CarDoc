@@ -8,4 +8,8 @@ public interface ProdottoDao {
     List<Prodotto> findAll(); //restituisce una lista di tutti i prodotti
 
     Prodotto findByPrimaryKey(String id); //restituisce un prodotto dato id
+
+    List<Prodotto> findCategoryProduct(String category);
+
+    List<Prodotto> findSearchedProduct(String searchedWord);
 }
