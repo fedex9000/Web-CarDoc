@@ -22,4 +22,8 @@ export class AuthenticationComponent implements OnInit{
 
   ngOnInit(): void {
   }
+
+  resetLocalStorage(){
+    localStorage.removeItem("categoria");
+  }
 }

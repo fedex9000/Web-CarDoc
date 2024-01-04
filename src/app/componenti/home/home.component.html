@@ -1,63 +1,15 @@
 <body>
 
-<div class="logo-container">
-  <img id="logo" src='.\assets\CarDocLogo.png' alt="Foto logo"
-       onClick="window.open('http://localhost:4200/home','_self')">
-</div>
-
-
-<div class="category-container">
-
-  <span class="image-with-text">
-    <img src='.\assets\immagini\icone\ammortizzatori.png'>
-    <span class="text">Ammortizzatori</span>
-  </span>
-
-  <span class="image-with-text">
-    <img src='.\assets\immagini\icone\freni.png'>
-    <span class="text">Freni</span>
-  </span>
-
-  <span class="image-with-text">
-    <img src='.\assets\immagini\icone\filtro.png'>
-    <span class="text">Filtri</span>
-  </span>
-
-  <span class="image-with-text">
-    <img src='.\assets\immagini\icone\illuminazione.png'>
-    <span class="text">Illuminazioni</span>
-  </span>
-
-  <span class="image-with-text">
-    <img src='.\assets\immagini\icone\olieliquidi.png'>
-    <span class="text">Oli e liquidi</span>
-  </span>
-
-  <span class="image-with-text">
-    <img src='.\assets\immagini\icone\pneumatici.png'>
-    <span class="text">Pneumatici</span>
-  </span>
-
-  <span class="image-with-text">
-    <img src='.\assets\immagini\icone\pulizia.png'>
-    <span class="text">Pulizia auto</span>
-  </span>
-
-  <span class="image-with-text">
-    <img src='.\assets\immagini\icone\scarico.png'>
-    <span class="text">Sistema di scarico</span>
-  </span>
-
-</div>
+<app-category></app-category>
 
 
 <!--PRODOTTI-->
 <ng-template *ngIf="!Mobile(); then desktopView else mobileView"></ng-template>
 
 <ng-template #desktopView>
-  <mat-grid-list [cols]="this.smallDevice ? 2 : 5" gutterSize="25px" rowHeight="470px" class="gridList">
+  <mat-grid-list [cols]="this.smallDevice ? 2 : 4" gutterSize="25px" rowHeight="470px" class="gridList">
     <mat-grid-tile *ngFor="let prod of prodotti">
-      <a style="text-decoration: none; color: black;">
+      <a href="http://localhost:4200/prodotto/{{prod.id}}" style="text-decoration: none; color: black;">
         <mat-card class="cards">
           <div class="imageContainer">
             <img mat-card-image [src]="'assets/immagini/prodotti/' + prod.id +  '.jpg'" class="matCardImg"
@@ -80,6 +32,8 @@
 
 
 </body>
+
+
 
 
 

@@ -39,3 +39,21 @@ section {
   color: white;
 }
 
+
+
+/*  PARTE DASHBOARD  */
+.home {
+  align-items: center;
+}
+
+.logo-container {
+  width: auto;
+  text-align: center;
+  background-color: #132530;
+  padding: 0px;
+}
+
+#logo {
+  width: 10%;
+  cursor: pointer;
+}

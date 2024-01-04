@@ -4,6 +4,7 @@ import {AuthenticationComponent} from "./componenti/authentication/authenticatio
 import {HomeComponent} from "./componenti/home/home.component";
 import {ProfiloComponent} from "./componenti/profilo/profilo.component";
 import {AdminCplComponent} from "./componenti/admin_panel/admin-cpl.component";
+import {ProdottoComponent} from "./componenti/prodotto/prodotto.component";
 
 const routes: Routes = [
   {path: '', component: AuthenticationComponent, children: [
@@ -11,8 +12,8 @@ const routes: Routes = [
       {path: 'home', component:  HomeComponent},
       {path: 'profilo', component:  ProfiloComponent},
       {path: 'admin-panel', component:  AdminCplComponent},
-    ]}
-
+      {path: 'prodotto/:id', component:  ProdottoComponent},
+    ]},
 ];
 
 @NgModule({

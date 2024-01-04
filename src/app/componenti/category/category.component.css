@@ -1,0 +1,70 @@
+.home {
+  align-items: center;
+}
+
+.logo-container {
+  width: auto;
+  text-align: center;
+  background-color: #132530;
+  padding: 0px;
+}
+
+#logo {
+  width: 10%;
+}
+
+.category-container{
+  text-align: center;
+  background-color: #132530;
+}
+
+.category-container img{
+  width: 50px;
+  height: 50px;
+
+}
+
+.image-with-text img {
+  vertical-align: middle; /* Centra verticalmente l'immagine rispetto al testo */
+  margin-right: 0px; /* Aggiunge spaziatura tra l'immagine e il testo */
+}
+
+.text{
+  margin-right: 50px;
+  color: white;
+}
+
+.text:hover{
+  color: #ff9900;
+  cursor: pointer;
+}
+
+/* BARRA DI RICERCA */
+
+.searchBar {
+  width: 30%;
+  margin-left: 11.5%;
+  height: 10%;
+}
+
+.searchButton {
+  z-index: 1;
+  display: block;
+  cursor: pointer;
+  margin-right: 11.5%;
+  margin-bottom: 22px;
+  margin-left: 5px;
+  height: 56px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff9900;
+  color: white;
+  width: 80px;
+}
+
+.ricercaContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #132530;
+}

@@ -2,7 +2,7 @@ import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {Utente} from "../Model/Utente";
 import {Observable} from "rxjs";
-import {Prodotti} from "../Model/Prodotti";
+import {Prodotto} from "../Model/Prodotto";
 import {Image} from "../Model/immagini";
 
 
@@ -13,7 +13,6 @@ export class ServiceService {
 
   constructor(private http: HttpClient) {
   }
-
 
   getUserDetails(sessionId: string | null | undefined) {
     return this.http.get<Utente>(`http://localhost:8080/api/utenti/user-details?sessionId=` + sessionId);
@@ -27,13 +26,26 @@ export class ServiceService {
     return this.http.get<Utente>('http://localhost:8080/api/utenti/' + cf );
   }
 
-  getProdotti(): Observable<Prodotti[]>{
-    return this.http.get<Prodotti[]>('http://localhost:8080/api/prodotti/findAll');
+  getProdotti(): Observable<Prodotto[]>{
+    return this.http.get<Prodotto[]>('http://localhost:8080/api/prodotti/findAll');
   }
 
   findImageByProductID(id: string): Observable<Image> {
     return this.http.get<Image>('http://localhost:8080/api/images/findByProdotto/' + id);
   }
 
+  getCategoryProduct(category: string): Observable<Prodotto[]>{
+    return this.http.get<Prodotto[]>('http://localhost:8080/api/prodotti/findCategoryProduct/' + category);
+  }
+
+  getSearchedProduct(searchedWord: string): Observable<Prodotto[]>{
+    return this.http.get<Prodotto[]>('http://localhost:8080/api/prodotti/findSearchedProduct/' + searchedWord);
+
+  }
+
+  getProduct(id: string): Observable<Prodotto>{
+    return this.http.get<Prodotto>('http://localhost:8080/api/prodotti/getProduct/' + id);
+
+  }
 
 }

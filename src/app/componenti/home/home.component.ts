@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "../../auth/auth.service";
 import {ServiceService} from "../../Service/service";
 import {BreakpointObserver, BreakpointState, MediaMatcher} from "@angular/cdk/layout";
 import {Router} from "@angular/router";
-import {Prodotti} from "../../Model/Prodotti";
+import {Prodotto} from "../../Model/Prodotto";
+import {CategoryComponent} from "../category/category.component";
+
 
 
 @Component({
@@ -13,18 +15,43 @@ import {Prodotti} from "../../Model/Prodotti";
 })
 export class HomeComponent implements OnInit{
 
-  prodotti: Prodotti[] = [];
+  prodotti: Prodotto[] = [];
   images: string[] = [];
   smallDevice: boolean = false;
+  selectedCategory: any = "";
+  searchedWord: any = "";
 
   ngOnInit(): void {
+    this.setCategoryProduct();
+    this.getSearchedWord();
 
-    this.service.getProdotti().subscribe({
-      next: (prodotti) => {
-        this.prodotti = prodotti;
-      },
-    });
-
+    if (this.selectedCategory != null) {
+      this.service.getCategoryProduct(this.selectedCategory).subscribe({
+        next: (prodotti) => {
+          console.log("categoria selezionata");
+          this.prodotti = prodotti;
+        },
+      });
+    } else if (this.searchedWord != null) {
+      this.service.getSearchedProduct(this.searchedWord).subscribe({
+        next: (prodotti) => {
+          console.log("parola cercata");
+          this.prodotti = prodotti;
+          if (this.prodotti.length == 0){
+            console.log("Nessun prodotto trovato");
+          }
+        },
+      });
+    } else {
+      this.service.getProdotti().subscribe({
+        next: (prodotti) => {
+          console.log("prodotti normali");
+          this.prodotti = prodotti;
+        },
+      });
+    }
+    localStorage.removeItem("categoria");
+    localStorage.removeItem("searchedWord");
   }
 
   private mobileQuery: MediaQueryList;
@@ -45,13 +72,12 @@ export class HomeComponent implements OnInit{
     return this.mobileQuery.matches;
   }
 
+  setCategoryProduct(){
+    this.selectedCategory = localStorage.getItem("categoria");
+  }
 
-
-
-
-
-
-
-
+  getSearchedWord(){
+    this.searchedWord = localStorage.getItem("searchedWord");
+  }
 
 }

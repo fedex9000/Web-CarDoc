@@ -25,7 +25,14 @@
     </button>
   </mat-menu>
 </div>
+
+<div class="logo-container">
+  <img id="logo" src='.\assets\CarDocLogo.png' alt="Foto logo"
+       onClick="window.open('http://localhost:4200/home','_self')"
+       (click)="resetLocalStorage()">
+</div>
 <router-outlet></router-outlet>
+
 
 
 
