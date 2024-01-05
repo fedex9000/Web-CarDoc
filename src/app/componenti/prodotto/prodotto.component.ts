@@ -6,6 +6,9 @@ import {ServiceService} from "../../Service/service";
 import {Prodotto} from "../../Model/Prodotto";
 import {Recensione} from "../../Model/Recensione";
 import {AuthService} from "../../auth/auth.service";
+import {ErrordialogComponent} from "../errordialog/errordialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {AddReviewComponent} from "../add-review/add-review.component";
 
 @Component({
   selector: 'app-prodotto',
@@ -36,7 +39,7 @@ export class ProdottoComponent implements OnInit{
   faEnvelope = faEnvelope;
 
 
-  constructor(private route: ActivatedRoute, private service: ServiceService, public auth: AuthService) {
+  constructor(private route: ActivatedRoute, private service: ServiceService, public auth: AuthService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -80,6 +83,21 @@ export class ProdottoComponent implements OnInit{
             }
           }
         });
+
+        this.service.getRecensioniByProdottoID(prodotto.id).subscribe({
+          next: (recensioni) => {
+            if(recensioni.length > 0) {
+              this.recensioni = recensioni;
+              this.recensioni.forEach(recensione => {
+                this.service.getUtente(recensione.utente).subscribe({
+                  next: (utente) => {
+                    recensione.utente = utente.email;
+                  }
+                })
+              })
+            }
+          }
+        })
       }
     });
 
@@ -106,11 +124,52 @@ export class ProdottoComponent implements OnInit{
   }
 
   deleteRecensione(id: number){
-
+    this.service.deleteRecensione(id).subscribe({
+      next: () => window.location.reload(),
+      error: () => this.dialog.open(ErrordialogComponent),
+    })
   }
 
-  checkIfSameReviewOwner(recensione: Recensione){
+  checkIfSameReviewOwner(recensione: Recensione): Boolean {
+    return recensione.utente == localStorage.getItem('email');
+  }
 
+  shareAction(){
+    this.menuOpen = !this.menuOpen;
+  }
+
+  shareTo(social: string): void {
+    const shareUrl = `localhost:4200/prodotto/${this.stringID}`;
+    const shareText = `Guarda questo prodotto: ${this.nome}\nDescrizione: ${this.descrizione}\nPrezzo: ${this.prezzo}€`;
+
+    switch (social) {
+      case 'facebook':
+        const facebookUrl = `https://www.facebook.com/sharer/sharer.php?quote=${encodeURIComponent(shareText)}`;
+        window.open(facebookUrl, '_blank');
+        break;
+
+      case 'whatsapp':
+        const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + '\n' + shareUrl)}`;
+        window.open(whatsappUrl, '_blank');
+        break;
+
+      case 'mail':
+        const subject = encodeURIComponent(`Check out this property: ${this.nome}`);
+        const body = encodeURIComponent(`${this.descrizione}\nPrice: ${this.prezzo}€\n\n${shareUrl}`);
+        const mailtoUrl = `mailto:?subject=${subject}&body=${body}`;
+        window.location.href = mailtoUrl;
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  addReview(): void {
+    this.auth.selectedProduct = this.stringID;
+    this.dialog.open(AddReviewComponent).afterClosed().subscribe({
+      next: () => window.location.reload()
+    })
   }
 
 }

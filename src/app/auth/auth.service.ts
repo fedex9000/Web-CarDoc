@@ -11,6 +11,7 @@ export class AuthService {
   sessionId: string | null | undefined;
   utenteCorrente: any;
   isLoggedIn: Boolean = false;
+  selectedProduct: string = "";
 
   constructor(private http: HttpClient, private service: ServiceService, private route: ActivatedRoute, private router: Router) {
     this.checkLogin();

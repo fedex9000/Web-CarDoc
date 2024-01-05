@@ -9,6 +9,8 @@ import { ProfiloComponent } from './componenti/profilo/profilo.component';
 import {AdminCplComponent} from "./componenti/admin_panel/admin-cpl.component";
 import { ProdottoComponent } from './componenti/prodotto/prodotto.component';
 import { CategoryComponent } from './componenti/category/category.component';
+import { AddReviewComponent } from './componenti/add-review/add-review.component';
+
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,6 +31,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 import {AppRoutingModule} from "./app-routing.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FooterComponent } from './componenti/footer/footer.component';
 
 
 @NgModule({
@@ -40,6 +43,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     AdminCplComponent,
     ProdottoComponent,
     CategoryComponent,
+    AddReviewComponent,
+    FooterComponent,
 
   ],
   imports: [

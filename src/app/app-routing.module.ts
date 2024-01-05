@@ -5,6 +5,7 @@ import {HomeComponent} from "./componenti/home/home.component";
 import {ProfiloComponent} from "./componenti/profilo/profilo.component";
 import {AdminCplComponent} from "./componenti/admin_panel/admin-cpl.component";
 import {ProdottoComponent} from "./componenti/prodotto/prodotto.component";
+import {FooterComponent} from "./componenti/footer/footer.component";
 
 const routes: Routes = [
   {path: '', component: AuthenticationComponent, children: [
@@ -13,6 +14,7 @@ const routes: Routes = [
       {path: 'profilo', component:  ProfiloComponent},
       {path: 'admin-panel', component:  AdminCplComponent},
       {path: 'prodotto/:id', component:  ProdottoComponent},
+
     ]},
 ];
 

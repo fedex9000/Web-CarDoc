@@ -1,0 +1,10 @@
+.moreinfo-container {
+  width: auto;
+  min-height: 50px;
+  text-align: center;
+  display: flex; /* rende il tutto piu flessibile */
+  align-items: center; /* Allineamento verticale di tutto ciò che c'è dentro */
+  justify-content: center; /* Allineamento orizzontale di tutto ciò che c'è dentro */
+  background-color: #132530;
+  padding: 0;
+}

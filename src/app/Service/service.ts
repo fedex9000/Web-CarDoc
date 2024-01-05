@@ -4,6 +4,7 @@ import {Utente} from "../Model/Utente";
 import {Observable} from "rxjs";
 import {Prodotto} from "../Model/Prodotto";
 import {Image} from "../Model/Image";
+import {Recensione} from "../Model/Recensione";
 
 
 @Injectable({
@@ -45,7 +46,23 @@ export class ServiceService {
 
   getProduct(id: string): Observable<Prodotto>{
     return this.http.get<Prodotto>('http://localhost:8080/api/prodotti/getProduct/' + id);
+  }
 
+  getRecensioniByProdottoID(id: string): Observable<Recensione[]>{
+    return this.http.get<Recensione[]>('http://localhost:8080/api/recensioni/findByProduct/' + id);
+  }
+
+  deleteRecensione(id: Number) {
+    return this.http.delete('http://localhost:8080/api/recensioni/' + id);
+  }
+
+  setRecensione(body: {}){
+    return this.http.post('http://localhost:8080/api/recensioni', body);
+  }
+
+
+  saveOrUpdateProduct(body: {}) {
+    return this.http.post<Prodotto>('http://localhost:8080/api/prodotti', body);
   }
 
 }

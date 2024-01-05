@@ -1,7 +1,7 @@
 export class Recensione{
   id!: number;
-  titolo!: string;
-  rating!: number;
-  autore!: string;
+  utente!: string;
+  contenuto!: string;
   prodotto!: string;
+  rating!: number;
 }

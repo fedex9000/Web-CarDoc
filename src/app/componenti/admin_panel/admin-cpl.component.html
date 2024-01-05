@@ -1,32 +1,38 @@
 <body>
-    <div class="background">
-        <div class="blur-overlay"></div>
-        <div class="container">
-            <div style="text-align: center;">
-                <h2>Pannello di controllo</h2>
-            </div>
-            <hr class="horizontalrow">
-            <h2 style="text-align: center;">Cambia ruolo utente</h2>
-            <div class="changeUserTypeContainer">
-                <form class="changeUserTypeForm" [formGroup]="changeUserTypeForm" (ngSubmit)="onUserTypeFormSubmit()">
-                    <input type="text" formControlName="user_id_1" id="user_id" placeholder="ID User" required>
-                    <select formControlName="user_type" id="user_type" required [(ngModel)]="selectedValueUserType" (change)="onValueUserTypeSelected($event)">
-                        <option value="" selected disabled>-- Seleziona ruolo --</option>
-                        <option value="buyer">Acquirente</option>
-                        <option value="seller">Venditore</option>
-                        <option value="admin">Amministratore</option>
-                    </select>
-                    <button type="submit">Applica</button>
-                </form>
-            </div>
-            <hr class="horizontalrow2">
-            <h2 style="text-align: center;">Banna utente</h2>
-            <div class="banUserContainer">
-                <form class="banUserForm" [formGroup]="banUserForm" (ngSubmit)="onBanUserFormSubmit()">
-                    <input type="text" formControlName="user_id_2" id="user_id" placeholder="ID User" required>
-                    <button type="submit">Applica</button>
-                </form>
-            </div>
-        </div>
+<div class="background">
+  <div class="blur-overlay"></div>
+  <div class="container">
+    <div style="text-align:center;">
+      <h2>Aggiungi/Modifica prodotto</h2>
+      <hr flex style="margin-bottom: 25px;"/>
     </div>
+
+    <form class="AddImmobileForm" [formGroup]="formAggiungiProdotto">
+      <input type="text" formControlName="id" id="id" placeholder="ID prodotto" required (change)="productExist()">
+      <select id="type" formControlName="tipo" required [(ngModel)]="selectedCategory" (change)="onValueTypeSelected($event)">
+        <option value="" selected disabled>-- Seleziona categoria --</option>
+        <option value="ammortizzatori" selected>Ammortizzatori</option>
+        <option value="freni">Freni</option>
+        <option value="filtri">Filtri</option>
+        <option value="illuminazioni">Illuminazioni</option>
+        <option value="oli">Oli e liquidi</option>
+        <option value="pneumatici">Pneumatici</option>
+        <option value="pulizia">Pulizia auto</option>
+        <option value="scarico">Sistema di scarico</option>
+      </select>
+
+      <div class="name-fields">
+        <input type="text" id="name" formControlName="nome" placeholder="Nome" required>
+      </div>
+      <textarea id="description" formControlName="descrizione" placeholder="Descrizione" required></textarea>
+      <input type="text" id="seller" formControlName="venditore" placeholder="Venditore" required>
+      <input type="number" id="price" formControlName="prezzo" placeholder="Prezzo (con la virgola)" required>
+      <input type="file" id="image" formControlName="foto" accept="image/*" single (change)="onFileChange($event)" required>
+      <button type="submit" *ngIf="myproductSelection == false" (click)="onSubmit()">Aggiungi prodotto</button>
+      <button type="submit" *ngIf="myproductSelection == true" (click)="onSubmit()">Modifica prodotto</button>
+    </form>
+    <button class="openNewPageButton" *ngIf="myproductSelection == true" (click)="openNewProductPage()" >Apri pagina prodotto</button>
+    <button class="deleteImmobileButton" *ngIf="myproductSelection == true" (click)="onSubmit()">Rimuovi prodotto</button>
+  </div>
+</div>
 </body>

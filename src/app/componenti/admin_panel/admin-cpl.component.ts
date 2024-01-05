@@ -6,89 +6,98 @@ import {ServiceService} from "../../Service/service";
 import {AuthService} from "../../auth/auth.service";
 import {Utente} from "../../Model/Utente";
 import {ErrordialogComponent} from "../errordialog/errordialog.component";
-import {SuccessdialogComponent} from "../successdialog/successdialog.component";
-
+import { NgxImageCompressService } from 'ngx-image-compress';
 @Component({
   selector: 'app-admin-cpl',
   templateUrl: './admin-cpl.component.html',
   styleUrls: ['./admin-cpl.component.css']
 })
 export class AdminCplComponent implements OnInit {
-  public changeUserTypeForm: FormGroup = new FormGroup({});
-  public banUserForm: FormGroup = new FormGroup({});
-  selectedValueUserType: String = "";
-  public utente: any;
+  public formAggiungiProdotto: FormGroup = new FormGroup({});
 
-  constructor(private service: ServiceService, private auth: AuthService, public dialog: MatDialog) {}
+  selectedProduct: String = "";
+  selectedCategory: String = "";
+  image: string = "";
+
+  myproductSelection: boolean = false;
+
+  constructor(private service: ServiceService, private auth: AuthService, public dialog: MatDialog, private compressImage: NgxImageCompressService) {}
 
   ngOnInit(): void {
-    if(!this.auth.isLoggedIn || !this.auth.isAdmin()) window.open("http://localhost:4200/home", "_self")
-    this.changeUserTypeForm = new FormGroup({
-      user_id_1: new FormControl(),
-      user_type: new FormControl()
+
+    this.formAggiungiProdotto = new FormGroup({
+      id: new FormControl(),
+      nome: new FormControl(),
+      venditore: new FormControl(),
+      descrizione: new FormControl(),
+      prezzo: new FormControl(),
     });
-
-    this.banUserForm = new FormGroup({
-      user_id_2: new FormControl()
-    });
-  }
-
-  onUserTypeFormSubmit() {
-      this.service.getUtente(this.changeUserTypeForm.value.user_id_1).subscribe({
-        next: (data) => {
-          this.utente = new Utente();
-          this.utente = data;
-
-          this.utente.tipologia = this.changeUserTypeForm.value.user_type;
-
-          this.service.updateUtente(this.utente.id, {
-            nome: this.utente.nome,
-            cognome: this.utente.cognome,
-            id: this.utente.id,
-            telefono: this.utente.telefono,
-            email: this.utente.email,
-            password: this.utente.password,
-            tipologia: this.utente.tipologia,
-            bannato: this.utente.bannato,
-          }).subscribe({
-            error: () => this.dialog.open(ErrordialogComponent),
-          })
-        },
-        error: () => this.dialog.open(ErrordialogComponent),
-        complete: () => this.dialog.open(SuccessdialogComponent),
-      });
-    return true;
-  }
-
-  onBanUserFormSubmit() {
-      this.service.getUtente(this.banUserForm.value.user_id_2).subscribe({
-        next: (data) => {
-          this.utente = new Utente();
-          this.utente = data;
-
-          this.utente.bannato = true;
-
-          this.service.updateUtente(this.utente.id, {
-            nome: this.utente.nome,
-            cognome: this.utente.cognome,
-            id: this.utente.id,
-            telefono: this.utente.telefono,
-            email: this.utente.email,
-            password: this.utente.password,
-            tipologia: this.utente.tipologia,
-            bannato: this.utente.bannato,
-          }).subscribe({
-            error: () => this.dialog.open(ErrordialogComponent),
-          })
-        },
-        error: () => this.dialog.open(ErrordialogComponent),
-        complete: () => this.dialog.open(SuccessdialogComponent),
-      });
   }
 
 
-  onValueUserTypeSelected(event: any) {
-    const selectedValue = event.target.value;
-    this.selectedValueUserType = selectedValue;
+  onSubmit(){
+    this.saveOrUpdateProduct();
   }
+
+
+  onValueTypeSelected(event: any) {
+    this.selectedCategory = event.target.value;
+
+  }
+
+  onFileChange(event: any) {
+    this.image;
+    const files = event.target.files;
+    if (files.length > 0) {
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          const image = e.target.result;
+
+          this.compressImage
+            .compressFile(image, -1, 50, 50) // 50% ratio, 50% quality
+            .then(compressedImage => {
+              this.image = compressedImage;
+            })
+            .catch(error => {
+              this.dialog.open(ErrordialogComponent);
+            });
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  }
+
+  productExist(): void{
+    this.service.getProduct(this.formAggiungiProdotto.value.id).subscribe({
+      next:() =>{
+        this.myproductSelection = true;
+        this.selectedProduct = this.formAggiungiProdotto.value.id;
+      },
+      error:() => {
+        this.myproductSelection = false;
+        this.selectedProduct = this.formAggiungiProdotto.value.id;
+    }
+    })
+  }
+
+  openNewProductPage() {
+    window.open('http://localhost:4200/prodotto/'+this.selectedProduct, '_blank');
+  }
+
+
+  saveOrUpdateProduct(): void {
+
+    this.service.saveOrUpdateProduct({
+      id: this.selectedProduct,
+      nome: this.formAggiungiProdotto.value.nome,
+      venditore: this.formAggiungiProdotto.value.venditore,
+      descrizione: this.formAggiungiProdotto.value.descrizione,
+      categoria: this.selectedCategory,
+      prezzo: this.formAggiungiProdotto.value.prezzo,
+    }).subscribe();
+
+  }
+
 }
