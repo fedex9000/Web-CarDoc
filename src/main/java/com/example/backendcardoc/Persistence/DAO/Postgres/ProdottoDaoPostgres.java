@@ -2,6 +2,7 @@ package com.example.backendcardoc.Persistence.DAO.Postgres;
 
 import com.example.backendcardoc.Persistence.DAO.ProdottoDao;
 import com.example.backendcardoc.Persistence.Model.Prodotto;
+import com.example.backendcardoc.Persistence.Model.Recensione;
 import com.example.backendcardoc.Persistence.Model.Utente;
 
 import java.sql.Connection;
@@ -93,6 +94,46 @@ public class ProdottoDaoPostgres implements ProdottoDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean saveOrUpdate(Prodotto prodotto) {
+        Prodotto existingProduct = findByPrimaryKey(prodotto.getId());
+        if (existingProduct == null){
+            // Se il prodotto non esiste, esegui un'insert
+            String insertQuery = "INSERT INTO prodotti (id, nome, venditore, descrizione, categoria, prezzo, numerovenduti) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
+                preparedStatement.setString(1, prodotto.getId());
+                preparedStatement.setString(2, prodotto.getNome());
+                preparedStatement.setString(3, prodotto.getVenditore());
+                preparedStatement.setString(4, prodotto.getDescrizione());
+                preparedStatement.setString(5, prodotto.getCategoria());
+                preparedStatement.setDouble(6, prodotto.getPrezzo());
+                preparedStatement.setInt(7, 0);
+
+                preparedStatement.executeUpdate();
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else if (existingProduct != null) {
+            // Se la prodotto esiste, esegui un update
+            String updateQuery = "UPDATE prodotti SET nome = ?, venditore = ?, descrizione = ?, categoria = ?, prezzo = ? WHERE id = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+                preparedStatement.setString(1, prodotto.getNome());
+                preparedStatement.setString(2, prodotto.getVenditore());
+                preparedStatement.setString(3, prodotto.getDescrizione());
+                preparedStatement.setString(4, prodotto.getCategoria());
+                preparedStatement.setDouble(5, prodotto.getPrezzo());
+                preparedStatement.setString(6, prodotto.getId());
+
+                preparedStatement.executeUpdate();
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 
 

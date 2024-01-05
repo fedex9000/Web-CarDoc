@@ -3,8 +3,10 @@ package com.example.backendcardoc.Persistence;
 import com.example.backendcardoc.Persistence.DAO.ImmagineDao;
 import com.example.backendcardoc.Persistence.DAO.Postgres.ImmagineDaoPostgres;
 import com.example.backendcardoc.Persistence.DAO.Postgres.ProdottoDaoPostgres;
+import com.example.backendcardoc.Persistence.DAO.Postgres.RecensioneDaoPostgres;
 import com.example.backendcardoc.Persistence.DAO.Postgres.UtenteDaoPostgres;
 import com.example.backendcardoc.Persistence.DAO.ProdottoDao;
+import com.example.backendcardoc.Persistence.DAO.RecensioneDao;
 import com.example.backendcardoc.Persistence.DAO.UtenteDao;
 import com.example.backendcardoc.Persistence.Model.Prodotto;
 
@@ -47,4 +49,8 @@ public class DBManager {
         return new ProdottoDaoPostgres(getConnection());
     }
     public ImmagineDao getImmagineDao() { return new ImmagineDaoPostgres(getConnection()); }
+    public RecensioneDao getRecensioneDAO(){
+        return new RecensioneDaoPostgres(getConnection());
+    }
+
 }

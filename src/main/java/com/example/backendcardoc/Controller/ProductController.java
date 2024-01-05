@@ -1,8 +1,10 @@
 package com.example.backendcardoc.Controller;
 
 import com.example.backendcardoc.Persistence.Model.Prodotto;
+import com.example.backendcardoc.Persistence.Model.Recensione;
 import com.example.backendcardoc.Service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,11 @@ import java.util.List;
 public class ProductController {
     private final ProductService i;
 
+    @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void saveOrUpdateProduct(@RequestBody Prodotto prodotto) {
+        i.saveOrUpdateProdotto(prodotto);
+    }
 
     @GetMapping("/findAll")
     public ResponseEntity<List<Prodotto>> findAll(){
@@ -30,4 +37,5 @@ public class ProductController {
 
     @GetMapping("getProduct/{id}")
     ResponseEntity<Prodotto> getProduct(@PathVariable String id){return i.getProduct(id);}
+
 }

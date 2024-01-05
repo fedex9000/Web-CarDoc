@@ -46,7 +46,6 @@ public class UtenteDaoPostgres implements UtenteDao {
         String query = "select * from utenti where cf=?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
-            System.out.println("ciaoo");
             st.setString(1, cf);
             ResultSet rs = st.executeQuery();
             if (rs.next()) { return createNewEntity(rs); }

@@ -73,4 +73,5 @@ public class Prodotto {
     public void setVenditore(String venditore) {
         this.venditore = venditore;
     }
+
 }

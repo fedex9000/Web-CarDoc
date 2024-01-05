@@ -2,12 +2,17 @@ package com.example.backendcardoc.Service;
 
 import com.example.backendcardoc.Persistence.DBManager;
 import com.example.backendcardoc.Persistence.Model.Prodotto;
+import com.example.backendcardoc.Persistence.Model.Recensione;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class ProductService {
+
+    public void saveOrUpdateProdotto(Prodotto prodotto){
+        DBManager.getInstance().getProdottoDAO().saveOrUpdate(prodotto);
+    }
 
     public ResponseEntity<List<Prodotto>> getAllEntries() {
         List<Prodotto> prodotti = DBManager.getInstance().getProdottoDAO().findAll();
@@ -37,6 +42,12 @@ public class ProductService {
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(p);
     }
+
+
+
+
+
+
 
 
 }
