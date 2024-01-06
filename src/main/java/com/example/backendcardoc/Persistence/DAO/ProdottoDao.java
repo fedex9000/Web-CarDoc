@@ -15,5 +15,5 @@ public interface ProdottoDao {
     List<Prodotto> findSearchedProduct(String searchedWord);
 
     boolean saveOrUpdate(Prodotto prodotto); //salva se non esiste o aggiorna se esiste
-
+    void deleteProduct(Prodotto prodotto);
 }

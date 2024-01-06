@@ -9,4 +9,5 @@ public interface ImmagineDao {
 
     Immagine findByPrimaryKey(Integer id);
     Immagine findById_prodotto(String id_prodotto);
+    boolean save(Immagine image);
 }

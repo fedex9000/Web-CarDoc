@@ -101,6 +101,10 @@ public class ProdottoDaoPostgres implements ProdottoDao {
         Prodotto existingProduct = findByPrimaryKey(prodotto.getId());
         if (existingProduct == null){
             // Se il prodotto non esiste, esegui un'insert
+
+            double tmpPrice = prodotto.getPrezzo();
+            double price = Double.parseDouble(String.valueOf(tmpPrice));
+
             String insertQuery = "INSERT INTO prodotti (id, nome, venditore, descrizione, categoria, prezzo, numerovenduti) VALUES (?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
                 preparedStatement.setString(1, prodotto.getId());
@@ -108,7 +112,7 @@ public class ProdottoDaoPostgres implements ProdottoDao {
                 preparedStatement.setString(3, prodotto.getVenditore());
                 preparedStatement.setString(4, prodotto.getDescrizione());
                 preparedStatement.setString(5, prodotto.getCategoria());
-                preparedStatement.setDouble(6, prodotto.getPrezzo());
+                preparedStatement.setDouble(6, price);
                 preparedStatement.setInt(7, 0);
 
                 preparedStatement.executeUpdate();
@@ -134,6 +138,20 @@ public class ProdottoDaoPostgres implements ProdottoDao {
             }
         }
         return false;
+    }
+
+
+    @Override
+    public void deleteProduct(Prodotto prodotto) {
+        String query = "delete from prodotti where id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, prodotto.getId());
+            st.executeUpdate();
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

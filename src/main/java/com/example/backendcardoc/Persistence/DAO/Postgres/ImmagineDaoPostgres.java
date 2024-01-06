@@ -71,4 +71,41 @@ public class ImmagineDaoPostgres implements ImmagineDao {
         }
         return null;
     }
+
+    @Override
+    public boolean save(Immagine image) {
+        try {
+            int tmpID = getMaxImgId();
+            String insertQuery = "insert into immagini(id_prodotto, img, id) values(?,?,?)";
+            PreparedStatement st = connection.prepareStatement(insertQuery);
+            st.setString(1, image.getId_prodotto());
+            st.setString(2, image.getImg());
+            st.setInt(3, tmpID+1);
+
+            st.executeUpdate();
+            return true;
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+    public int getMaxImgId() {
+        String query = "SELECT MAX(id) AS maxId FROM immagini";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            ResultSet resultSet = st.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getInt("maxId");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
 }

@@ -9,6 +9,10 @@ import java.util.List;
 
 @Service
 public class ImagesService {
+
+    public void createImage(Immagine image) {
+        DBManager.getInstance().getImmagineDao().save(image);
+    }
     public ResponseEntity<Immagine> getById_prodotto(String id_prodotto) {
         Immagine immagine = DBManager.getInstance().getImmagineDao().findById_prodotto(id_prodotto);
         if (immagine == null) return ResponseEntity.notFound().build();

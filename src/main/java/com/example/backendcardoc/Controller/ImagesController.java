@@ -3,6 +3,7 @@ package com.example.backendcardoc.Controller;
 import com.example.backendcardoc.Persistence.Model.Immagine;
 import com.example.backendcardoc.Service.ImagesService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,13 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor //crea in automatico un'istanza di ImmobileService
 public class ImagesController {
     private final ImagesService i;
+
+
+    @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createImage(@RequestBody Immagine image) {
+        i.createImage(image);
+    }
 
 
     @GetMapping("findByProductID/{id}")

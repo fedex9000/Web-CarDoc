@@ -44,9 +44,13 @@ public class ProductService {
     }
 
 
-
-
-
+    public ResponseEntity<Object> deleteByID(String id){
+        Prodotto prodotto = DBManager.getInstance().getProdottoDAO().findByPrimaryKey(id);
+        if (prodotto == null)
+            return ResponseEntity.notFound().build();
+        DBManager.getInstance().getProdottoDAO().deleteProduct(prodotto);
+        return ResponseEntity.noContent().build();
+    }
 
 
 

@@ -38,4 +38,9 @@ public class ProductController {
     @GetMapping("getProduct/{id}")
     ResponseEntity<Prodotto> getProduct(@PathVariable String id){return i.getProduct(id);}
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Object> removeProduct(@PathVariable String id) {
+        return i.deleteByID(id);
+    }
 }
