@@ -65,4 +65,12 @@ export class ServiceService {
     return this.http.post<Prodotto>('http://localhost:8080/api/prodotti', body);
   }
 
+  removeProduct(id: string){
+    return this.http.delete('http://localhost:8080/api/prodotti/' + id);
+  }
+
+  createImage(body: {}) {
+    return this.http.post('http://localhost:8080/api/images', body)
+  }
+
 }

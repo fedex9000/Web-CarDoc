@@ -11,7 +11,7 @@
 <div class="background">
   <div class="firstRow">
     <div class="singleProductImage">
-      <img class="img" [src]="'data:image/png;base64,' + imagesSingleProduct" class="matCardImg">
+      <img class="img" [src]="imagesSingleProduct" class="matCardImg">
     </div>
 
     <mat-card class="productDescription">
@@ -58,7 +58,7 @@
           <a href="http://localhost:4200/prodotto/{{prod.id}}" style="text-decoration: none; color: black;">
             <mat-card class="cards">
               <div class="relatedImageContainer">
-                <img id="relatedProductImg" [src]="'data:image/png;base64,' + this.relatedProductimages[prod.id]"
+                <img id="relatedProductImg" [src]="this.relatedProductimages[prod.id]"
                      onerror="this.src='assets/no_images_found.png'">
               </div>
               <mat-card-footer>
@@ -72,6 +72,8 @@
       </mat-grid-list>
     </div>
   </div>
+
+  <app-footer></app-footer>
 
 </div>
 
@@ -95,5 +97,7 @@
   <mat-icon>add_circle</mat-icon>
 </button>
 
-<app-footer></app-footer>
+
+
 </body>
+

@@ -8,7 +8,7 @@
     </div>
 
     <form class="AddImmobileForm" [formGroup]="formAggiungiProdotto">
-      <input type="text" formControlName="id" id="id" placeholder="ID prodotto" required (change)="productExist()">
+      <input type="text" formControlName="id" id="id" placeholder="ID prodotto" required (input)="productExist()">
       <select id="type" formControlName="tipo" required [(ngModel)]="selectedCategory" (change)="onValueTypeSelected($event)">
         <option value="" selected disabled>-- Seleziona categoria --</option>
         <option value="ammortizzatori" selected>Ammortizzatori</option>
@@ -28,11 +28,13 @@
       <input type="text" id="seller" formControlName="venditore" placeholder="Venditore" required>
       <input type="number" id="price" formControlName="prezzo" placeholder="Prezzo (con la virgola)" required>
       <input type="file" id="image" formControlName="foto" accept="image/*" single (change)="onFileChange($event)" required>
+      <p>ATTENZIONE: per l'aggiunta/modifica dei prodotti inserire TUTTI i dati, per la rimozione SOLO l'id del prodotto da rimuovere!</p>
       <button type="submit" *ngIf="myproductSelection == false" (click)="onSubmit()">Aggiungi prodotto</button>
       <button type="submit" *ngIf="myproductSelection == true" (click)="onSubmit()">Modifica prodotto</button>
     </form>
     <button class="openNewPageButton" *ngIf="myproductSelection == true" (click)="openNewProductPage()" >Apri pagina prodotto</button>
-    <button class="deleteImmobileButton" *ngIf="myproductSelection == true" (click)="onSubmit()">Rimuovi prodotto</button>
+    <button class="deleteImmobileButton" *ngIf="myproductSelection == true" (click)="removeProduct()">Rimuovi prodotto</button>
   </div>
 </div>
+<app-footer></app-footer>
 </body>

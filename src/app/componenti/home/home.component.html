@@ -12,7 +12,7 @@
       <a href="http://localhost:4200/prodotto/{{prod.id}}" style="text-decoration: none; color: black;">
         <mat-card class="cards">
           <div class="imageContainer">
-            <img mat-card-image [src]="'data:image/png;base64,' + this.images[prod.id]" class="matCardImg" onerror="this.src='assets/no_images_found.png'">
+            <img mat-card-image [src]="this.images[prod.id]" class="matCardImg" onerror="this.src='assets/no_images_found.png'">
           </div>
           <mat-card-footer>
             <mat-card-title>{{prod.nome}}</mat-card-title>

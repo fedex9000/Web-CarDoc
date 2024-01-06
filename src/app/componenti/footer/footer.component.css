@@ -6,5 +6,36 @@
   align-items: center; /* Allineamento verticale di tutto ciò che c'è dentro */
   justify-content: center; /* Allineamento orizzontale di tutto ciò che c'è dentro */
   background-color: #132530;
-  padding: 0;
+  padding: 20px;
+}
+
+
+#leafletMap {
+  margin-left: 5px;
+  height: 200px;
+  width: 350px;
+  border: 1px #ccc solid;
+  border-radius: 20px;
+  margin-right: 50px;
+}
+
+#footer ul.footer-icons-row li {
+  display: inline-block;
+  margin-right: 40px; /* Spazio tra gli elementi */
+}
+
+#footer ul.footer-icons-row li:last-child {
+  margin-right: 0; /* Rimuove lo spazio a destra dall'ultimo elemento */
+}
+
+.info-class {
+  margin-left: 80px;
+  text-align: left;
+  color: #aabbc6;
+}
+
+.contatti {
+  margin-left: 80px;
+  text-align: left;
+  color: #aabbc6;
 }

@@ -46,6 +46,8 @@ export class ProfiloComponent implements OnInit{
   }
 
   sendToServer(): void {
+    let successMessage = "Dati aggiornati con successo";
+
     this.service.updateUtente(this.cfValue, {
       nome: this.nomeValue,
       cognome: this.cognomeValue,
@@ -65,7 +67,9 @@ export class ProfiloComponent implements OnInit{
       },
       error: () => this.dialog.open(ErrordialogComponent),
       complete: () => {
-        this.dialog.open(SuccessdialogComponent);
+        this.dialog.open(SuccessdialogComponent, {
+          data: { successMessage }
+        });
         this.isEditing = !this.isEditing;
       }
     });

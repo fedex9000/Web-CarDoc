@@ -53,11 +53,16 @@ mat-card-footer {
 }
 
 @media screen and (max-width: 768px) {
-
+/*
   .imageContainer {
     width: 370px;
     margin: 2px auto;
     height: 380px;
+  }
+
+ */
+  .body{
+    transform: scale(0.9);
   }
 
 }

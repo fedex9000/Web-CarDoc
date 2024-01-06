@@ -90,89 +90,11 @@ body {
 
 
 
-/* Elementi prima riga */
-.imageCarousel {
-  margin-top: 10px;
-  padding: 20px;
-  display: flex;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  justify-content: flex-start;
-  align-items: center;
-  height: 300px;
-  width: 100%;
-}
 
 
-.sellerInfos, .immobileCardInfos {
-  padding: 20px;
-  justify-self: center;
-  align-self: center;
-  text-align: center;
-  margin: 10px;
-  width: 30%;
-}
 
-.thick-divider {
-  margin-left: 10px;
-  margin-right: 10px;
-  width: 5px;
-  border-radius: 50px;
-  background-color: #ccc;
-}
 
-.sellerCard, .immobileCard {
-  justify-content: center;
-  height: 280px;
-  border: 2px #ccc solid;
-  border-radius: 20px;
-}
 
-.callButton, .sendMailButton {
-  background-color: #259be2;
-  color: #ffffff;
-  border: none;
-  font-size: 15px;
-  height: 40px;
-  width: 80%;
-  border-radius: 10px;
-
-}
-
-.callButton {
-  margin-top: 10px;
-}
-
-.sendMailButton {
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-.sendMailButton:hover, .callButton:hover {
-  border: 2px solid #0d47a1;
-  cursor: pointer;
-}
-
-/* Elementi seconda riga */
-.secondRowDivider {
-  margin-bottom: 20px;
-}
-
-.immobileGeneric {
-  width: 100%;
-  margin: 10px auto;
-  margin-left: 10px;
-}
-
-.sendUpdateAstaButton {
-  background-color: #259be2;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  height: 30px;
-  width: 50px;
-}
 
 /* Elementi terza riga */
 #leafletMap {
@@ -400,6 +322,8 @@ body {
 
 
 
+
+
 /* Mobile adjustments */
 @media screen and (max-width: 1435px) {
   .container {
@@ -410,17 +334,6 @@ body {
     align-items: center;
     justify-content: center;
     display: block;
-  }
-
-  .sellerInfos, .immobileCardInfos {
-    margin: 10px auto;
-    width: 95%;
-  }
-
-  .imageCarousel {
-    margin: 10px auto;
-    width: 90%;
-    border-radius: 20px;
   }
 
 
