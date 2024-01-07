@@ -57,3 +57,18 @@ section {
   width: 10%;
   cursor: pointer;
 }
+
+.fab-button-2 {
+  font-size: 20px; /* Regola la dimensione del font */
+  width: 25px; /* Regola la larghezza del pulsante */
+  height: 25px; /* Regola l'altezza del pulsante */
+  background-color: #132530;
+  margin-right: 15px;
+  margin-left: 5px;
+}
+
+.fab-button-2 mat-icon {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}

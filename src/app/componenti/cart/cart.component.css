@@ -1,0 +1,157 @@
+/* Stile della card */
+.card {
+  height: 60vh;
+  margin: 25px;
+  padding: 25px;
+}
+
+/* Centro all'interno della card */
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Immagine nel centro */
+.center img {
+  text-decoration: none;
+  color: inherit;
+  border: none;
+  outline: none;
+  height: 160px;
+  width: 250px;
+  margin: 20px 0px;
+}
+
+/* Stile della tabella nel carrello */
+.card-table {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: none;
+  word-wrap: break-word;
+  background: white;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+}
+
+/* Stile del prodotto nella tabella */
+.card-table .card-product {
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+/* Stile dei pulsanti nel centro */
+.center .btn {
+  font-size: 14px;
+  margin-top: 20px;
+  font-weight: 400;
+  padding: 12px 72px;
+  border-radius: 3px;
+}
+
+/* Stile dell'immagine del prodotto */
+.immagine-prodotto-img {
+  max-width: 175px;
+  max-height: 175px;
+}
+
+/* Stile delle colonne della tabella */
+.card-table th:last-child {
+  padding:20px;
+  max-width: 175px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 20px; /* Aggiunto margine sinistro */
+}
+
+/* Consente il wrapping del testo nella cella "Descrizione" */
+.card-table td {
+  padding: 15px;
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  white-space: nowrap;
+  white-space: normal;
+}
+
+.svuota-carrello {
+  background-color: #e60000; /* Colore rosso */
+  color: #ffffff; /* Testo bianco */
+  margin-left: 10px;
+}
+.btn-success{
+  background-color: forestgreen; /* Colore blu */
+  color: white; /* Testo arancione */
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.delete-button {
+  background-color: #e60000; /* Colore rosso */
+  color: #ffffff; /* Testo bianco */
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.total-block {
+  margin-left: 20px; /* Aggiunto margine sinistro per creare spazio tra i pulsanti e il totale */
+  font-size: 18px;
+}
+
+.bottone-azioni {
+  text-align: center;
+}
+
+.counter {
+  width: 150px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 3px;
+}
+.counter input {
+  width: 30px;
+  border: 0;
+  line-height: 15px;
+  font-size: 15px;
+  text-align: center;
+  background: #0052cc;
+  color: #fff;
+  appearance: none;
+  outline: 0;
+}
+.counter span {
+  display: block;
+  font-size: 15px;
+  padding: 0 10px;
+  cursor: pointer;
+  color: #0052cc;
+  user-select: none;
+  margin: 0 5px;
+}
+.delete-button{
+  width: 35px; /* Imposta la larghezza desiderata */
+  height: 35px; /* Imposta l'altezza desiderata */
+  background-color: red !important; /* Imposta il colore di sfondo a rosso */
+  color: white !important; /* Imposta il colore del testo a bianco */
+  margin-top: 10px;
+}
+
+.card-title {
+  font-family: sans-serif; /* Sostituisci 'Nome del tuo font' con il nome del font desiderato */
+  font-size: 24px; /* Imposta la dimensione del carattere desiderata */
+  font-weight: bold;
+}
+
+.btn {
+  font-size: 15px;  /* Imposta la dimensione del font desiderata per tutti i pulsanti */
+  padding: 5px;  /* Imposta il padding desiderato per i pulsanti */
+}
+

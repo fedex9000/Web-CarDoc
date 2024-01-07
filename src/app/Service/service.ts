@@ -76,4 +76,11 @@ export class ServiceService {
   addToCart(body: {}){
     return this.http.post('http://localhost:8080/api/prodotti/addToCart', body);
   }
+
+
+  getCartProduct(cf: string): Observable<Prodotto[]>{
+    return this.http.get<Prodotto[]>('http://localhost:8080/api/cart/findByCf/' + cf);
+  }
+
+
 }

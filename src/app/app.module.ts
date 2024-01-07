@@ -10,7 +10,7 @@ import {AdminCplComponent} from "./componenti/admin_panel/admin-cpl.component";
 import { ProdottoComponent } from './componenti/prodotto/prodotto.component';
 import { CategoryComponent } from './componenti/category/category.component';
 import { AddReviewComponent } from './componenti/add-review/add-review.component';
-
+import {CartComponent} from './componenti/cart/cart.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -32,6 +32,9 @@ import {AppRoutingModule} from "./app-routing.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FooterComponent } from './componenti/footer/footer.component';
+import { AcquistoComponent } from './componenti/acquisto/acquisto.component';
+import {MatStepperModule} from "@angular/material/stepper";
+
 
 
 @NgModule({
@@ -45,6 +48,8 @@ import { FooterComponent } from './componenti/footer/footer.component';
     CategoryComponent,
     AddReviewComponent,
     FooterComponent,
+    AcquistoComponent,
+    CartComponent,
 
   ],
   imports: [
@@ -71,6 +76,7 @@ import { FooterComponent } from './componenti/footer/footer.component';
     MatDialogModule,
     FontAwesomeModule,
     MatCheckboxModule,
+    MatStepperModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

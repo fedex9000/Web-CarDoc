@@ -1,0 +1,16 @@
+.acquistoDiv {
+  display: flex;
+  padding: 100px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+
+.example-input-wrapper {
+  margin-bottom: 16px;
+}
+
+label {
+  margin-right: 4px;
+}
