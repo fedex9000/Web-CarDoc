@@ -73,4 +73,7 @@ export class ServiceService {
     return this.http.post('http://localhost:8080/api/images', body)
   }
 
+  addToCart(body: {}){
+    return this.http.post('http://localhost:8080/api/prodotti/addToCart', body);
+  }
 }

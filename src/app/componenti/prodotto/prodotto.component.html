@@ -27,7 +27,7 @@
           <input id="quantityValue" type="text" value="1" disabled>
           <span class="up">+</span>
         </div>
-        <button id="addCartButton">Acquista</button>
+        <button id="addCartButton" (click)="addToCart()">Aggiungi al carrello </button>
         <mat-card-footer>Pagamento: Transazione sicura</mat-card-footer>
         <mat-card-footer>Spedizione: CarDoc</mat-card-footer>
         <mat-card-footer>Venditore: {{venditore}}</mat-card-footer>

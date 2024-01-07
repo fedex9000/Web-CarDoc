@@ -9,6 +9,7 @@ import {AuthService} from "../../auth/auth.service";
 import {ErrordialogComponent} from "../errordialog/errordialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AddReviewComponent} from "../add-review/add-review.component";
+import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 
 @Component({
   selector: 'app-prodotto',
@@ -171,5 +172,17 @@ export class ProdottoComponent implements OnInit{
       next: () => window.location.reload()
     })
   }
+
+  addToCart() {
+    const quantityInput = document.getElementById('quantityValue') as HTMLInputElement;
+    const quantityValue = quantityInput.value;
+
+    this.service.addToCart({
+      cf: localStorage.getItem("cf"),
+      idProdotto: this.stringID,
+      quantity: quantityValue,
+    }).subscribe();
+  }
+
 
 }
