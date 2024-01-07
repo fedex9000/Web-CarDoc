@@ -1,13 +1,7 @@
 package com.example.backendcardoc.Persistence;
 
-import com.example.backendcardoc.Persistence.DAO.ImmagineDao;
-import com.example.backendcardoc.Persistence.DAO.Postgres.ImmagineDaoPostgres;
-import com.example.backendcardoc.Persistence.DAO.Postgres.ProdottoDaoPostgres;
-import com.example.backendcardoc.Persistence.DAO.Postgres.RecensioneDaoPostgres;
-import com.example.backendcardoc.Persistence.DAO.Postgres.UtenteDaoPostgres;
-import com.example.backendcardoc.Persistence.DAO.ProdottoDao;
-import com.example.backendcardoc.Persistence.DAO.RecensioneDao;
-import com.example.backendcardoc.Persistence.DAO.UtenteDao;
+import com.example.backendcardoc.Persistence.DAO.*;
+import com.example.backendcardoc.Persistence.DAO.Postgres.*;
 import com.example.backendcardoc.Persistence.Model.Prodotto;
 
 import java.sql.Connection;
@@ -32,7 +26,7 @@ public class DBManager {
     public Connection getConnection() {
         if (conn == null) {
             try {
-                conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
+                conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "0905");
                 System.out.println("connection");
             }
             catch (SQLException e) {
@@ -52,5 +46,6 @@ public class DBManager {
     public RecensioneDao getRecensioneDAO(){
         return new RecensioneDaoPostgres(getConnection());
     }
+    public CartDao getCartDAO() { return new CartDaoPostgres(getConnection()); }
 
 }
