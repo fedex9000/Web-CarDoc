@@ -1,6 +1,7 @@
 package com.example.backendcardoc.Persistence.DAO.Postgres;
 
 import com.example.backendcardoc.Persistence.DAO.ProdottoDao;
+import com.example.backendcardoc.Persistence.Model.Cart;
 import com.example.backendcardoc.Persistence.Model.Prodotto;
 import com.example.backendcardoc.Persistence.Model.Recensione;
 import com.example.backendcardoc.Persistence.Model.Utente;
@@ -152,6 +153,19 @@ public class ProdottoDaoPostgres implements ProdottoDao {
         catch(SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void addToCart(Cart cart){
+            String insertQuery = "INSERT INTO carrello (id_prodotto, cf, quantity) VALUES (?, ?, ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
+                preparedStatement.setString(1, cart.getIdProdotto());
+                preparedStatement.setString(2, cart.getCf());
+                preparedStatement.setString(3, cart.getQuantity());
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
     }
 
 

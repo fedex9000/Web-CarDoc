@@ -1,7 +1,9 @@
 package com.example.backendcardoc.Controller;
 
+import com.example.backendcardoc.Persistence.Model.Cart;
 import com.example.backendcardoc.Persistence.Model.Prodotto;
 import com.example.backendcardoc.Persistence.Model.Recensione;
+import com.example.backendcardoc.Persistence.Model.Utente;
 import com.example.backendcardoc.Service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("http://localhost:4200") //utile per frontend in quanto Angular usa la porta 4200
@@ -43,4 +46,11 @@ public class ProductController {
     public ResponseEntity<Object> removeProduct(@PathVariable String id) {
         return i.deleteByID(id);
     }
+
+    @PostMapping("addToCart")
+    public ResponseEntity<Utente> addToCart(@RequestBody Cart cart) {
+        System.out.println(cart.getIdProdotto());
+        return i.addToCart(cart);
+    }
 }
+

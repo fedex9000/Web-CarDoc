@@ -1,5 +1,6 @@
 package com.example.backendcardoc.Persistence.DAO;
 
+import com.example.backendcardoc.Persistence.Model.Cart;
 import com.example.backendcardoc.Persistence.Model.Prodotto;
 import com.example.backendcardoc.Persistence.Model.Recensione;
 
@@ -16,4 +17,6 @@ public interface ProdottoDao {
 
     boolean saveOrUpdate(Prodotto prodotto); //salva se non esiste o aggiorna se esiste
     void deleteProduct(Prodotto prodotto);
+
+    void addToCart(Cart cart);
 }

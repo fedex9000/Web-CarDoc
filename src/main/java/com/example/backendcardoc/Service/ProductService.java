@@ -1,8 +1,9 @@
 package com.example.backendcardoc.Service;
 
 import com.example.backendcardoc.Persistence.DBManager;
+import com.example.backendcardoc.Persistence.Model.Cart;
 import com.example.backendcardoc.Persistence.Model.Prodotto;
-import com.example.backendcardoc.Persistence.Model.Recensione;
+import com.example.backendcardoc.Persistence.Model.Utente;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +51,11 @@ public class ProductService {
             return ResponseEntity.notFound().build();
         DBManager.getInstance().getProdottoDAO().deleteProduct(prodotto);
         return ResponseEntity.noContent().build();
+    }
+
+    public ResponseEntity<Utente> addToCart(Cart cart){
+        DBManager.getInstance().getProdottoDAO().addToCart(cart);
+        return null;
     }
 
 
