@@ -64,6 +64,18 @@ public class CartDaoPostgres implements CartDao {
         return null;
     }
 
+    @Override
+    public void removewithid_prodotto(String cf, String id_prodotto) {
+        String query = "DELETE FROM carrello WHERE cf = ? AND id_prodotto = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, cf);
+            st.setString(2, id_prodotto);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

@@ -19,4 +19,9 @@ public class CartService {
         return ResponseEntity.ok(prodotti);
     }
 
+    public ResponseEntity<Object> removewithid_prodotto(String cf, String id_prodotto){
+        DBManager.getInstance().getCartDAO().removewithid_prodotto(cf, id_prodotto);
+        return ResponseEntity.noContent().build();
+    }
+
 }

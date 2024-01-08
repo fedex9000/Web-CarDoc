@@ -157,15 +157,29 @@ public class ProdottoDaoPostgres implements ProdottoDao {
 
     @Override
     public void addToCart(Cart cart){
+        Prodotto p = findByPrimaryKey(cart.getIdProdotto());
+        if (p == null){
             String insertQuery = "INSERT INTO carrello (id_prodotto, cf, quantity) VALUES (?, ?, ?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
                 preparedStatement.setString(1, cart.getIdProdotto());
                 preparedStatement.setString(2, cart.getCf());
-                preparedStatement.setString(3, cart.getQuantity());
+                preparedStatement.setInt(3, cart.getQuantity());
                 preparedStatement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }else{
+
+            String updateQuery = "UPDATE carrello SET quantity = quantity + ? WHERE cf=? AND id_prodotto=?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+                preparedStatement.setInt(1, cart.getQuantity());
+                preparedStatement.setString(2, cart.getCf());
+                preparedStatement.setString(3, cart.getIdProdotto());
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

@@ -4,7 +4,7 @@ public class Cart {
     private String cf;
     private String idProdotto;
 
-    private String quantity;
+    private int quantity;
 
     public Cart(String cf, String idProdotto) {
         this.cf = cf;
@@ -27,11 +27,11 @@ public class Cart {
         this.idProdotto = idProdotto;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 }
