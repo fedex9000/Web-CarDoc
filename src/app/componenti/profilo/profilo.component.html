@@ -1,40 +1,65 @@
 <body>
 <div class="background">
-  <div class="blur-overlay"></div>
-  <div class="container">
-    <h1>Profilo utente</h1>
-    <div class="profile-info">
-      <div class="field">
-        <label for="nome">Nome:</label>
-        <input id="nome" type="text" [(ngModel)]="nomeValue" [disabled]="!isEditing">
-      </div>
-      <div class="field">
-        <label for="cognome">Cognome:</label>
-        <input id="cognome" type="text" [(ngModel)]="cognomeValue" [disabled]="!isEditing">
-      </div>
-      <div class="field">
-        <label for="telefono">Telefono:</label>
-        <input id="telefono" type="text" [(ngModel)]="telefonoValue" [disabled]="!isEditing">
-      </div>
-      <div class="field">
-        <label for="email">Email:</label>
-        <input id="email" type="text" [(ngModel)]="emailValue" [disabled]="!isEditing">
-      </div>
-      <div class="field">
-        <label for="password">Password:</label>
-        <div class="password-input-container">
-          <input id="password" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="passwordValue" [disabled]="!isEditing">
-          <mat-icon class="toggle-password-icon" (click)="togglePasswordVisibility()">{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+  <div class="firstRow">
+    <div class="container">
+      <h1>Profilo utente </h1>
+      <div class="profile-info">
+        <div class="field">
+          <label for="nome">Nome:</label>
+          <input id="nome" type="text" [(ngModel)]="nomeValue" [disabled]="!isEditing">
+        </div>
+        <div class="field">
+          <label for="cognome">Cognome:</label>
+          <input id="cognome" type="text" [(ngModel)]="cognomeValue" [disabled]="!isEditing">
+        </div>
+        <div class="field">
+          <label for="telefono">Telefono:</label>
+          <input id="telefono" type="text" [(ngModel)]="telefonoValue" [disabled]="!isEditing">
+        </div>
+        <div class="field">
+          <label for="email">Email:</label>
+          <input id="email" type="text" [(ngModel)]="emailValue" [disabled]="!isEditing">
+        </div>
+        <div class="field">
+          <label for="password">Password:</label>
+          <div class="password-input-container">
+            <input id="password" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="passwordValue" [disabled]="!isEditing">
+            <mat-icon class="toggle-password-icon" (click)="togglePasswordVisibility()">{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </div>
+        </div>
+        <div class="field" style="pointer-events: none;">
+          <label for="tipologia">Tipologia:</label>
+          <input id="tipologia" type="text" [(ngModel)]="tipologiaValue">
+        </div>
+        <div class="actions">
+          <button class="modifyContent" (click)="toggleEditing()">Modifica</button>
+          <button class="applyContent" (click)="sendToServer()" [disabled]="!isEditing">Applica</button>
         </div>
       </div>
-      <div class="field" style="pointer-events: none;">
-        <label for="tipologia">Tipologia:</label>
-        <input id="tipologia" type="text" [(ngModel)]="tipologiaValue">
-      </div>
+
     </div>
-    <div class="actions">
-      <button class="modifyContent" (click)="toggleEditing()">Modifica</button>
-      <button class="applyContent" (click)="sendToServer()" [disabled]="!isEditing">Applica</button>
+
+    <div class="container2" *ngIf="ordini.length > 0">
+      <h1>I miei Ordini </h1>
+      <table id="tabella">
+        <thead>
+        <tr>
+          <th>Numero Ordine</th>
+          <th>Quantita</th>
+          <th>Importo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let elemento of ordini">
+          <td>{{ elemento.numeroOrdine }}</td>
+          <td>{{ elemento.numeroVenduti }}</td>
+          <td>{{ elemento.prezzoTotale }}</td>
+          <td>
+            <button class="detail-button" (click)="viewDetailOrder(elemento.numeroOrdine)">Dettagli Ordine</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

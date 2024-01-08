@@ -5,6 +5,8 @@ import {Observable} from "rxjs";
 import {Prodotto} from "../Model/Prodotto";
 import {Image} from "../Model/Image";
 import {Recensione} from "../Model/Recensione";
+import {DettagliOrdine} from "../Model/DettagliOrdine";
+import {Ordini} from "../Model/Ordini";
 
 
 @Injectable({
@@ -89,6 +91,15 @@ export class ServiceService {
 
   removeAll(cf: string){
     return this.http.delete('http://localhost:8080/api/cart/' + cf);
+  }
+
+  getOrderById(cf: string): Observable<Ordini[]>{
+    console.log(cf)
+    return this.http.get<Ordini[]>('http://localhost:8080/api/ordini/getOrderById/' + cf);
+  }
+
+  getDetailOrderByNumber(body: {}):Observable<DettagliOrdine[]>{
+    return this.http.post<DettagliOrdine[]>('http://localhost:8080/api/ordini/getDetailOrderByNumber', body);
   }
 
 

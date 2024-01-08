@@ -24,7 +24,29 @@ export class CartComponent implements OnInit {
   constructor(private route: ActivatedRoute, private service: ServiceService, public dialog: MatDialog) {}
 
   ngOnInit() {
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const downButton = document.querySelector('.down') as HTMLElement;
+      const upButton = document.querySelector('.up') as HTMLElement;
+      const inputField = document.querySelector('#quantityValue') as HTMLInputElement;
+
+      // Aggiungi gestori di eventi per cliccare su "+" e "-"
+      downButton.addEventListener('click', () => {
+        console.log("xazzo");
+        const value = parseInt(inputField.value);
+        if (value > 1) {
+          inputField.value = (value - 1).toString();
+        }
+      });
+
+      upButton.addEventListener('click', () => {
+        const value = parseInt(inputField.value);
+        inputField.value = (value + 1).toString();
+      });
+    });
+
     this.loadCartData();
+    this.verifyPayment();
   }
 
 
@@ -56,16 +78,15 @@ export class CartComponent implements OnInit {
 
 
 
-  emptyCart() {
+  completaAcquisto(){
+    this.dialog.open(AcquistoComponent);
   }
 
-  completaAcquisto(){
-    this.dialog.open(AcquistoComponent).afterClosed().subscribe(() => {
-      if (localStorage.getItem("successPayment") === 'true'){
-        console.log("rimozione carrello database");
-        //rimuovi dal database il carrello
-      }
-    });
+  verifyPayment(){
+    if (localStorage.getItem("successPayment") === "true"){
+      this.removeAll(this.utente);
+    }
+    localStorage.removeItem("successPayment");
   }
 
 

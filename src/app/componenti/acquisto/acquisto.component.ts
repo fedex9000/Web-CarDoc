@@ -29,7 +29,6 @@ export class AcquistoComponent {
 
 
   isFormValid() {
-
     console.log('nameFormGroup:', this.isStepValid(this.nameFormGroup, 'name'));
     console.log('surnameFormGroup:', this.isStepValid(this.surnameFormGroup, 'surname'));
     console.log('countryFormGroup:', this.isStepValid(this.countryFormGroup, 'country'));
@@ -52,7 +51,7 @@ export class AcquistoComponent {
       this.isStepValid(this.paymentFormGroup, 'cvc')
     ){
       this.dialog.open(SuccessdialogComponent).afterClosed().subscribe(() => {
-        localStorage.setItem("successPayment", 'true');
+        localStorage.setItem("successPayment", "true");
         window.location.reload();
       });
     }else{
@@ -61,11 +60,15 @@ export class AcquistoComponent {
   }
 
   isStepValid(step: FormGroup, controlName: string): boolean {
+    return true;
+    /*
     let control = step.get(controlName);
     if (control && control.value){
       return this.validateField(controlName, control.value);
     }
     return false;
+
+     */
   }
 
   validateField(fieldName: string, value: any): boolean {

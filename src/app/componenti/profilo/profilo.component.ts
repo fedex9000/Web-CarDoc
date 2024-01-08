@@ -5,6 +5,8 @@ import {AuthService} from "../../auth/auth.service";
 import {ErrordialogComponent} from "../errordialog/errordialog.component";
 import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 import {ServiceService} from "../../Service/service";
+import {Ordini} from "../../Model/Ordini";
+import {DettagliOrdineComponent} from "../dettagli-ordine/dettagli-ordine.component";
 
 
 @Component({
@@ -15,6 +17,8 @@ import {ServiceService} from "../../Service/service";
 export class ProfiloComponent implements OnInit{
   isEditing: boolean = false;
   showPassword: boolean = false;
+  ordini: Ordini[] = [];
+  utente: any = localStorage.getItem("cf");
 
   nomeValue: string = '';
   cognomeValue: string = '';
@@ -23,6 +27,7 @@ export class ProfiloComponent implements OnInit{
   passwordValue: string = '';
   tipologiaValue: string = '';
   cfValue: string = '';
+  numeroOrdine: number = 0;
 
   constructor(private service: ServiceService, public dialog: MatDialog, private auth: AuthService) {}
 
@@ -35,6 +40,7 @@ export class ProfiloComponent implements OnInit{
     this.passwordValue = localStorage.getItem("password") || "";
     this.tipologiaValue = localStorage.getItem("tipologia") || "";
     this.cfValue = localStorage.getItem("cf") || "";
+    this.loadOrdini();
   }
 
   toggleEditing(): void {
@@ -43,6 +49,15 @@ export class ProfiloComponent implements OnInit{
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
+  }
+
+  loadOrdini(){
+    this.service.getOrderById(this.utente).subscribe({
+      next: (ordini) => {
+        this.ordini = ordini;
+      }
+    })
+
   }
 
   sendToServer(): void {
@@ -74,4 +89,12 @@ export class ProfiloComponent implements OnInit{
       }
     });
   }
+
+  viewDetailOrder(numeroOrdine: number){
+    this.numeroOrdine = numeroOrdine;
+    localStorage.setItem("ordineSelezionato", String(this.numeroOrdine));
+    this.dialog.open(DettagliOrdineComponent);
+
+  }
 }
+

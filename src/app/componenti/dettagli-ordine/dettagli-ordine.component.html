@@ -1,0 +1,23 @@
+<table id="custom-table">
+  <thead>
+  <tr>
+    <th></th>
+    <th>Numero Ordine</th>
+    <th>Prodotto</th>
+    <th>Quantità</th>
+    <th>Prezzo</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let elemento of dettagliOrdine">
+
+    <td>
+      <img id="immagineProdottoOrdine" [src]="this.images[elemento.idProdotto]" alt="Immagine Prodotto">
+    </td>
+    <td>{{ elemento.numeroOrdine }}</td> <!--carichiamo l'immagine attraverso l'utilizzo di un metodo al quale passiamo idProdotto-->
+    <td>{{ elemento.idProdotto }}</td>
+    <td>{{ elemento.quantita }}</td>
+    <td>{{ elemento.prezzo }}</td>
+  </tr>
+  </tbody>
+</table>

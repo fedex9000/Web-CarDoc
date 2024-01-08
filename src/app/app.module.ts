@@ -34,6 +34,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FooterComponent } from './componenti/footer/footer.component';
 import { AcquistoComponent } from './componenti/acquisto/acquisto.component';
 import {MatStepperModule} from "@angular/material/stepper";
+import { DettagliOrdineComponent } from './componenti/dettagli-ordine/dettagli-ordine.component';
 
 
 
@@ -50,6 +51,7 @@ import {MatStepperModule} from "@angular/material/stepper";
     FooterComponent,
     AcquistoComponent,
     CartComponent,
+    DettagliOrdineComponent,
 
   ],
   imports: [
