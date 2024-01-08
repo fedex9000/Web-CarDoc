@@ -25,8 +25,13 @@ public class CartController {
     @DeleteMapping("/{cf}/{id_prodotto}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Object> removeItem(@PathVariable String cf, @PathVariable String id_prodotto) {
-        System.out.println(cf + " " + id_prodotto);
         return i.removewithid_prodotto(cf, id_prodotto);
+    }
+
+    @DeleteMapping("/{cf}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Object> removeAll(@PathVariable String cf) {
+        return i.removeAll(cf);
     }
 
 }

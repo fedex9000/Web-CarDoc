@@ -78,4 +78,17 @@ public class CartDaoPostgres implements CartDao {
     }
 
 
+    @Override
+    public void removeAll(String cf) {
+        String query = "DELETE FROM carrello WHERE cf=?";
+        try{
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1,cf);
+            st.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
 }

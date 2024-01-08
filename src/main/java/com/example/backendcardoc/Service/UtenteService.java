@@ -50,7 +50,5 @@ public class UtenteService {
         }
     }
 
-    public void print(){
-        System.out.println("cazzo");
-    }
+
 }

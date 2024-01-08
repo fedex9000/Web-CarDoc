@@ -24,4 +24,9 @@ public class CartService {
         return ResponseEntity.noContent().build();
     }
 
+    public ResponseEntity<Object> removeAll(String cf){
+        DBManager.getInstance().getCartDAO().removeAll(cf);
+        return ResponseEntity.noContent().build();
+    }
+
 }

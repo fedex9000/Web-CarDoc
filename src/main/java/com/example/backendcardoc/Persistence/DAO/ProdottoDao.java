@@ -19,4 +19,7 @@ public interface ProdottoDao {
     void deleteProduct(Prodotto prodotto);
 
     void addToCart(Cart cart);
+
+    boolean findProductInCart(String cf, String idProdotto);
+
 }
