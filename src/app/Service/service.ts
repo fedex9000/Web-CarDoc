@@ -84,8 +84,11 @@ export class ServiceService {
 
 
   removeItem(cf: string, id_prodotto: string){
-    console.log(cf + id_prodotto)
     return this.http.delete('http://localhost:8080/api/cart/' + cf + '/' + id_prodotto);
+  }
+
+  removeAll(cf: string){
+    return this.http.delete('http://localhost:8080/api/cart/' + cf);
   }
 
 
