@@ -181,7 +181,11 @@ export class ProdottoComponent implements OnInit{
       cf: localStorage.getItem("cf"),
       idProdotto: this.stringID,
       quantity: quantityValue,
-    }).subscribe();
+    }).subscribe({
+      next: () => {
+        window.location.reload();
+      }
+    });
   }
 
 
