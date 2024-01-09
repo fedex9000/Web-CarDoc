@@ -90,5 +90,22 @@ public class CartDaoPostgres implements CartDao {
         }
     }
 
+    @Override
+    public String getProductQuantity(String cf, String id_prodotto){
+        String query = "select * from carrello where cf=? and id_prodotto=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, cf);
+            st.setString(2, id_prodotto);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getString("quantity");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }

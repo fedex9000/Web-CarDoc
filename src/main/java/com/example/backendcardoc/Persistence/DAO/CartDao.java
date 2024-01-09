@@ -12,4 +12,6 @@ public interface CartDao {
     void removewithid_prodotto(String cf, String id_prodotto);
 
     void removeAll(String cf);
+
+    String getProductQuantity(String cf, String id_prodotto);
 }

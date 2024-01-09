@@ -34,4 +34,10 @@ public class CartController {
         return i.removeAll(cf);
     }
 
+    @GetMapping("/getQuantity/{cf}/{id_prodotto}")
+    public ResponseEntity<String> getProductQuantity(@PathVariable String cf, @PathVariable String id_prodotto) {
+        return i.getProductQuantity(cf, id_prodotto);
+    }
+
+
 }
