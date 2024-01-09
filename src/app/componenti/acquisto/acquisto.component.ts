@@ -3,6 +3,9 @@ import {AbstractControl, FormBuilder, FormGroup} from '@angular/forms';
 import {MatDialog} from "@angular/material/dialog";
 import {ErrordialogComponent} from "../errordialog/errordialog.component";
 import {SuccessdialogComponent} from "../successdialog/successdialog.component";
+import {AuthService} from "../../auth/auth.service";
+import {ServiceService} from "../../Service/service";
+import {Prodotto} from "../../Model/Prodotto";
 
 
 @Component({
@@ -12,9 +15,17 @@ import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 })
 export class AcquistoComponent {
   duration: any =  1000;
-  success: boolean = false;
+  utente: any = localStorage.getItem("cf");
+  lastNumberOrder: number = 0;
+  cart: Prodotto[] = [];
 
-  constructor(private _formBuilder: FormBuilder, public dialog: MatDialog) {}
+
+  /* ordini */
+  totalQuantity: number = 0;
+  totalPrice: number = 0;
+
+
+  constructor(private _formBuilder: FormBuilder, public dialog: MatDialog, private service: ServiceService) {}
   nameFormGroup: FormGroup = this._formBuilder.group({name: ['']});
   surnameFormGroup: FormGroup = this._formBuilder.group({surname: ['']});
   countryFormGroup: FormGroup = this._formBuilder.group({country: ['']});
@@ -52,7 +63,8 @@ export class AcquistoComponent {
     ){
       this.dialog.open(SuccessdialogComponent).afterClosed().subscribe(() => {
         localStorage.setItem("successPayment", "true");
-        window.location.reload();
+        this.addProductOnOrder();
+        //window.location.reload();
       });
     }else{
       this.dialog.open(ErrordialogComponent);
@@ -100,4 +112,38 @@ export class AcquistoComponent {
     window.location.reload();
   }
 
+  addProductOnOrder(){
+    this.service.findLastNumberOrder(this.utente).subscribe({
+      next: (lastNumberOrder) => {
+        this.lastNumberOrder = lastNumberOrder;
+        console.log(this.lastNumberOrder);
+        this.service.getCartProduct(this.utente).subscribe({
+          next: (cart) =>{
+            this.cart = cart;
+            this.cart.forEach(prod => {
+              this.service.getProductQuantity(this.utente, prod.id).subscribe({
+                next: (quantity) =>{
+                  this.service.insertOrderDetail({
+                    cf: this.utente,
+                    idProdotto: prod.id,
+                    numeroOrdine: this.lastNumberOrder,
+                    quantita: quantity,
+                    prezzo: prod.prezzo * quantity
+                  });
+                this.totalPrice += prod.prezzo * quantity;
+                }
+              })
+              this.totalQuantity++;
+            })
+          }
+        })
+        this.service.insertOrder({
+          numeroOrdine: this.lastNumberOrder,
+          numeroVenduti: this.totalQuantity,
+          prezzoTotale: this.totalPrice,
+          cf: this.utente,
+        })
+      }
+    });
+  }
 }

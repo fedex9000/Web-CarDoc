@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
   cart: Prodotto[] = [];
   grandTotal: number = 0;
   images: { [key: string]: string } = {};
-  quantita: { [key: string]: string } = {};
+  quantita: { [key: string]: number } = {};
 
 
 

@@ -102,8 +102,19 @@ export class ServiceService {
   }
 
   getProductQuantity(cf: string, id_prodotto: string){
-    return this.http.get<string>('http://localhost:8080/api/cart/getQuantity/' + cf + '/' + id_prodotto);
+    return this.http.get<number>('http://localhost:8080/api/cart/getQuantity/' + cf + '/' + id_prodotto);
   }
 
+  findLastNumberOrder(cf: string){
+    return this.http.get<number>('http://localhost:8080/api/ordini/findLastNumberOrder/' + cf);
+  }
+
+  insertOrderDetail(body: {}){
+    return this.http.post('http://localhost:8080/api/ordini/insertOrderDetail', body);
+  }
+
+  insertOrder(body: {}){
+    return this.http.post('http://localhost:8080/api/ordini/insertOrder', body);
+  }
 
 }
