@@ -6,7 +6,8 @@ import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 import {AuthService} from "../../auth/auth.service";
 import {ServiceService} from "../../Service/service";
 import {Prodotto} from "../../Model/Prodotto";
-import {forkJoin, mergeMap} from "rxjs";
+import {forkJoin, mergeMap, Observable} from "rxjs";
+import {Carrello} from "../../Model/Carrello";
 
 
 @Component({
@@ -18,7 +19,7 @@ export class AcquistoComponent {
   duration: any =  1000;
   utente: any = localStorage.getItem("cf");
   lastNumberOrder: number = 0;
-  cart: Prodotto[] = [];
+  cart: Carrello[] = [];
 
 
   /* ordini */
@@ -65,7 +66,6 @@ export class AcquistoComponent {
       this.dialog.open(SuccessdialogComponent).afterClosed().subscribe(() => {
         localStorage.setItem("successPayment", "true");
         this.addProductOnOrder();
-        //window.location.reload();
       });
     }else{
       this.dialog.open(ErrordialogComponent);
@@ -118,42 +118,37 @@ export class AcquistoComponent {
       next: (lastNumberOrder) => {
         this.lastNumberOrder = lastNumberOrder;
         console.log(this.lastNumberOrder);
-        this.service.getCartProduct(this.utente).subscribe({
+
+        this.service.getCart(this.utente).subscribe({
           next: (cart) => {
+            let observables: Observable<any>[] = [];
             this.cart = cart;
-            const insertOrderDetailObservables = this.cart.map(prod => {
-              return this.service.getProductQuantity(this.utente, prod.id).pipe(
-                mergeMap((quantity) => {
-                  return this.service.insertOrderDetail({
-                    cf: this.utente,
-                    idProdotto: prod.id,
-                    numeroOrdine: this.lastNumberOrder,
-                    quantita: quantity,
-                    prezzo: prod.prezzo * quantity
-                  });
-                  this.totalPrice += prod.prezzo * quantity;
-                  this.totalQuantity ++;
-                })
-              );
+            console.log(this.cart);
+            this.cart.forEach(cartItem => {
+              this.totalPrice += cartItem.prezzo;
+              this.totalQuantity++;
+
+              console.log("dio: " + this.cart);
+
+
+              observables.push(this.service.insertOrderDetail({
+                cf: this.utente,
+                idProdotto: cartItem.idProdotto,
+                numeroOrdine: this.lastNumberOrder,
+                quantita: cartItem.quantity,
+                prezzo: cartItem.prezzo,
+              }));
             });
 
-            forkJoin(insertOrderDetailObservables).subscribe(() => {
-              console.log("quant: " + this.totalQuantity);
-              console.log("PRICE: " + this.totalPrice);
-              // All insertOrderDetail requests completed
+            // Combina tutti gli observable in modo da eseguire il codice successivo solo quando tutti sono completati
+            forkJoin(observables).subscribe(() => {
               this.service.insertOrder({
                 numeroOrdine: this.lastNumberOrder,
                 numeroVenduti: this.totalQuantity,
                 prezzoTotale: this.totalPrice,
                 cf: this.utente,
-              }).subscribe({
-                next: () => {
-
-                },
-                error: (error) => {
-                  // Error handling for insertOrder
-                  console.error(error);
-                }
+              }).subscribe(() => {
+                window.location.reload();
               });
             });
           }

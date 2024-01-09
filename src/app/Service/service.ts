@@ -7,6 +7,7 @@ import {Image} from "../Model/Image";
 import {Recensione} from "../Model/Recensione";
 import {DettagliOrdine} from "../Model/DettagliOrdine";
 import {Ordini} from "../Model/Ordini";
+import {Carrello} from "../Model/Carrello";
 
 
 @Injectable({
@@ -117,6 +118,11 @@ export class ServiceService {
   insertOrder(body: {}){
     console.log("insertOrder");
     return this.http.post('http://localhost:8080/api/ordini/insertOrder', body);
+  }
+
+  getCart(cf: string): Observable<Carrello[]>{
+    return this.http.get<Carrello[]>('http://localhost:8080/api/cart/getCart/' + cf);
+
   }
 
 }

@@ -46,14 +46,14 @@
         <tr>
           <th>Numero Ordine</th>
           <th>Quantita</th>
-          <th>Importo</th>
+          <th>Importo totale</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let elemento of ordini">
           <td>{{ elemento.numeroOrdine }}</td>
-          <td>{{ elemento.numeroVenduti }}</td>
-          <td>{{ elemento.prezzoTotale }}</td>
+          <td>Articoli: {{ elemento.numeroVenduti }}</td>
+          <td>{{ elemento.prezzoTotale }}€</td>
           <td>
             <button class="detail-button" (click)="viewDetailOrder(elemento.numeroOrdine)">Dettagli Ordine</button>
           </td>

@@ -57,6 +57,7 @@ export class DettagliOrdineComponent implements OnInit{
     }).subscribe({
       next: (dettagliOrdine) => {
         this.dettagliOrdine = dettagliOrdine;
+        console.log(this.dettagliOrdine);
         dettagliOrdine.forEach(dettagli => {
           this.service.findImageByProductID(dettagli.idProdotto).subscribe({
             next: (img) => {

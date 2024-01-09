@@ -175,7 +175,7 @@ export class ProdottoComponent implements OnInit{
 
   addToCart() {
     const quantityInput = document.getElementById('quantityValue') as HTMLInputElement;
-    const quantityValue = quantityInput.value;
+    const quantityValue = parseInt(quantityInput.value, 10);
     let utente = localStorage.getItem("cf");
     if (utente == null){
       utente = "null";
@@ -185,6 +185,7 @@ export class ProdottoComponent implements OnInit{
       cf: utente,
       idProdotto: this.stringID,
       quantity: quantityValue,
+      prezzo: quantityValue * this.prezzo,
     }).subscribe({
       next: () => {
         window.location.reload();
