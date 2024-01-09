@@ -36,6 +36,7 @@ public class LoginController {
 
         if (logged) {
             resp.sendRedirect("http://localhost:4200/home?sessionId=" + session.getId());
+            DBManager.getInstance().getUtenteDAO().recoveryNullCart(utente);
             return null;
         } else {
             String errorMessage = "Le credenziali fornite non sono valide";

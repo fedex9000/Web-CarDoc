@@ -14,4 +14,6 @@ public interface UtenteDao {
     boolean saveOrUpdate(Utente utente); // Salva un nuovo utente se non esiste, altrimenti lo aggiorna
 
     void delete(Utente utente); // Cancella un utente
+
+    void recoveryNullCart(Utente utente);
 }

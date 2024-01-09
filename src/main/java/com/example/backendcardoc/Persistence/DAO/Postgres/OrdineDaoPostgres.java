@@ -88,7 +88,7 @@ public class OrdineDaoPostgres implements OrdineDao {
 
     @Override
     public boolean insertDettagliOrdine(DettagliOrdine dettagliOrdine){
-        String insertQuery = "INSERT INTO dettagli_ordine(cf, id_prodotto, numero_ordine, quantita, prezzo) VALUES (?, ?, ?)";
+        String insertQuery = "INSERT INTO dettagli_ordine(cf, id_prodotto, numero_ordine, quantita, prezzo) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
             preparedStatement.setString(1, dettagliOrdine.getCf());
             preparedStatement.setString(2, dettagliOrdine.getIdProdotto());
@@ -107,7 +107,7 @@ public class OrdineDaoPostgres implements OrdineDao {
 
     @Override
     public void insertOrdine(Ordine ordine){
-        String insertQuery = "INSERT INTO ordine(numero_ordine, numero_venduti, prezzo_totale, cf) VALUES (?, ?, ?, ?)";
+        String insertQuery = "INSERT INTO ordini(numero_ordine, numero_venduti, prezzo_totale, cf) VALUES (?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
             preparedStatement.setInt(1, ordine.getNumeroOrdine());
             preparedStatement.setInt(2, ordine.getNumeroVenduti());

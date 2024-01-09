@@ -112,4 +112,17 @@ public class UtenteDaoPostgres implements UtenteDao {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void recoveryNullCart(Utente utente){
+        String updateQuery = "UPDATE carrello SET cf = ? WHERE cf = ?";
+        try {
+            PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
+            updateStatement.setString(1, utente.getCf());
+            updateStatement.setString(2, "null");
+            updateStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
