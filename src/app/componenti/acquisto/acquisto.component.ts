@@ -6,6 +6,7 @@ import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 import {AuthService} from "../../auth/auth.service";
 import {ServiceService} from "../../Service/service";
 import {Prodotto} from "../../Model/Prodotto";
+import {forkJoin, mergeMap} from "rxjs";
 
 
 @Component({
@@ -112,38 +113,53 @@ export class AcquistoComponent {
     window.location.reload();
   }
 
-  addProductOnOrder(){
+  addProductOnOrder() {
     this.service.findLastNumberOrder(this.utente).subscribe({
       next: (lastNumberOrder) => {
         this.lastNumberOrder = lastNumberOrder;
         console.log(this.lastNumberOrder);
         this.service.getCartProduct(this.utente).subscribe({
-          next: (cart) =>{
+          next: (cart) => {
             this.cart = cart;
-            this.cart.forEach(prod => {
-              this.service.getProductQuantity(this.utente, prod.id).subscribe({
-                next: (quantity) =>{
-                  this.service.insertOrderDetail({
+            const insertOrderDetailObservables = this.cart.map(prod => {
+              return this.service.getProductQuantity(this.utente, prod.id).pipe(
+                mergeMap((quantity) => {
+                  return this.service.insertOrderDetail({
                     cf: this.utente,
                     idProdotto: prod.id,
                     numeroOrdine: this.lastNumberOrder,
                     quantita: quantity,
                     prezzo: prod.prezzo * quantity
                   });
-                this.totalPrice += prod.prezzo * quantity;
+                  this.totalPrice += prod.prezzo * quantity;
+                  this.totalQuantity ++;
+                })
+              );
+            });
+
+            forkJoin(insertOrderDetailObservables).subscribe(() => {
+              console.log("quant: " + this.totalQuantity);
+              console.log("PRICE: " + this.totalPrice);
+              // All insertOrderDetail requests completed
+              this.service.insertOrder({
+                numeroOrdine: this.lastNumberOrder,
+                numeroVenduti: this.totalQuantity,
+                prezzoTotale: this.totalPrice,
+                cf: this.utente,
+              }).subscribe({
+                next: () => {
+
+                },
+                error: (error) => {
+                  // Error handling for insertOrder
+                  console.error(error);
                 }
-              })
-              this.totalQuantity++;
-            })
+              });
+            });
           }
-        })
-        this.service.insertOrder({
-          numeroOrdine: this.lastNumberOrder,
-          numeroVenduti: this.totalQuantity,
-          prezzoTotale: this.totalPrice,
-          cf: this.utente,
-        })
+        });
       }
     });
   }
+
 }

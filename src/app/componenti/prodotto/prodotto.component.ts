@@ -176,9 +176,13 @@ export class ProdottoComponent implements OnInit{
   addToCart() {
     const quantityInput = document.getElementById('quantityValue') as HTMLInputElement;
     const quantityValue = quantityInput.value;
+    let utente = localStorage.getItem("cf");
+    if (utente == null){
+      utente = "null";
+    }
 
     this.service.addToCart({
-      cf: localStorage.getItem("cf"),
+      cf: utente,
       idProdotto: this.stringID,
       quantity: quantityValue,
     }).subscribe({

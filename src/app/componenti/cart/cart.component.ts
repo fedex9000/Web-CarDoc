@@ -58,11 +58,17 @@ export class CartComponent implements OnInit {
     });
   }
 
-
   calculateTotalAmount() {
-      this.cart.forEach((item: Prodotto) => {
-        this.grandTotal += item.prezzo;
-      });
+    this.grandTotal = 0;
+
+    this.cart.forEach((item: Prodotto) => {
+      this.service.getProductQuantity(this.utente, item.id).subscribe({
+        next: (quantity) =>{
+          this.quantita[item.id] = quantity;
+          this.grandTotal += item.prezzo * quantity;
+        }
+      })
+    });
   }
 
 

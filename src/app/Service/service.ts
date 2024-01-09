@@ -110,10 +110,12 @@ export class ServiceService {
   }
 
   insertOrderDetail(body: {}){
+    console.log("insertOrderDetails");
     return this.http.post('http://localhost:8080/api/ordini/insertOrderDetail', body);
   }
 
   insertOrder(body: {}){
+    console.log("insertOrder");
     return this.http.post('http://localhost:8080/api/ordini/insertOrder', body);
   }
 
