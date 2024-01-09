@@ -1,7 +1,6 @@
 package com.example.backendcardoc.Persistence.DAO.Postgres;
 
 import com.example.backendcardoc.Persistence.DAO.CartDao;
-import com.example.backendcardoc.Persistence.Model.Cart;
 import com.example.backendcardoc.Persistence.Model.Prodotto;
 
 import java.sql.Connection;
@@ -91,7 +90,7 @@ public class CartDaoPostgres implements CartDao {
     }
 
     @Override
-    public String getProductQuantity(String cf, String id_prodotto){
+    public int getProductQuantity(String cf, String id_prodotto){
         String query = "select * from carrello where cf=? and id_prodotto=?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
@@ -99,12 +98,12 @@ public class CartDaoPostgres implements CartDao {
             st.setString(2, id_prodotto);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                return rs.getString("quantity");
+                return rs.getInt("quantity");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return 0;
     }
 
 

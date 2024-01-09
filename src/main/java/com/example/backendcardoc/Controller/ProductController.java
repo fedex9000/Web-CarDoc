@@ -48,7 +48,7 @@ public class ProductController {
     }
 
     @PostMapping("addToCart")
-    public ResponseEntity<Utente> addToCart(@RequestBody Cart cart) {
+    public ResponseEntity<Object> addToCart(@RequestBody Cart cart) {
         return i.addToCart(cart);
     }
 }

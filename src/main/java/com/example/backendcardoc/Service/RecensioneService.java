@@ -17,7 +17,6 @@ public class RecensioneService {
         if(recensione == null)
             return ResponseEntity.notFound().build(); //se non esiste restituisce il '404:file not found'
         return ResponseEntity.ok(recensione); //genera un entità di risposta positiva
-        // TODO: 19/03/23 controllo da fare: controllo sulla validità dell'ID
     }
 
     public ResponseEntity<List<Recensione>> getByProductID(String id) {

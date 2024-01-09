@@ -69,4 +69,54 @@ public class OrdineDaoPostgres implements OrdineDao {
         return null;
     }
 
+    @Override
+    public int findLastNumberOrder(String cf) {
+        int ultimoNumeroOrdine = 0;
+        String query = "SELECT MAX(numero_ordine) AS max_numero_ordine FROM ordini WHERE cf = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1,cf);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                ultimoNumeroOrdine = rs.getInt("max_numero_ordine");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ultimoNumeroOrdine + 1;
+    }
+
+    @Override
+    public boolean insertDettagliOrdine(DettagliOrdine dettagliOrdine){
+        String insertQuery = "INSERT INTO dettagli_ordine(cf, id_prodotto, numero_ordine, quantita, prezzo) VALUES (?, ?, ?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
+            preparedStatement.setString(1, dettagliOrdine.getCf());
+            preparedStatement.setString(2, dettagliOrdine.getIdProdotto());
+            preparedStatement.setInt(3, dettagliOrdine.getNumeroOrdine());
+            preparedStatement.setInt(4, dettagliOrdine.getQuantita());
+            preparedStatement.setDouble(5, dettagliOrdine.getPrezzo());
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
+    @Override
+    public void insertOrdine(Ordine ordine){
+        String insertQuery = "INSERT INTO ordine(numero_ordine, numero_venduti, prezzo_totale, cf) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
+            preparedStatement.setInt(1, ordine.getNumeroOrdine());
+            preparedStatement.setInt(2, ordine.getNumeroVenduti());
+            preparedStatement.setDouble(3, ordine.getPrezzoTotale());
+            preparedStatement.setString(4, ordine.getCf());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

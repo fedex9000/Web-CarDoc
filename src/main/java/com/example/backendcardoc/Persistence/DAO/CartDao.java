@@ -1,9 +1,7 @@
 package com.example.backendcardoc.Persistence.DAO;
 
-import com.example.backendcardoc.Persistence.Model.Cart;
 import com.example.backendcardoc.Persistence.Model.Prodotto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface CartDao {
@@ -13,5 +11,5 @@ public interface CartDao {
 
     void removeAll(String cf);
 
-    String getProductQuantity(String cf, String id_prodotto);
+    int getProductQuantity(String cf, String id_prodotto);
 }

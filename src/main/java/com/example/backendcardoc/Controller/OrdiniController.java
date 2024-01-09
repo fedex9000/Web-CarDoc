@@ -4,6 +4,7 @@ import com.example.backendcardoc.Persistence.Model.DettagliOrdine;
 import com.example.backendcardoc.Persistence.Model.Ordine;
 import com.example.backendcardoc.Service.OrdineService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,16 +16,32 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrdiniController {
     private final OrdineService o;
+
     @GetMapping("/getOrderById/{cf}")
     public ResponseEntity<List<Ordine>> getOrderById(@PathVariable String cf){
-        System.out.println("dio" + cf);
         return o.getOrderById(cf);
-
     }
 
     @PostMapping("getDetailOrderByNumber")
     public ResponseEntity<List<DettagliOrdine>> getDetailOrderByNumber(@RequestBody DettagliOrdine dettagliOrdine) {
-        System.out.println();
         return o.getDetailOrderByNumber(dettagliOrdine);
     }
+
+    @GetMapping("/findLastNumberOrder/{cf}")
+    public ResponseEntity<Integer> findLastNumberOrder(@PathVariable String cf){
+        return o.findLastNumberOrder(cf);
+    }
+
+    @PostMapping("/insertOrderDetail")
+    public ResponseEntity<Object> insertOrderDetail(@RequestBody DettagliOrdine dettagliOrdine){
+        System.out.println("suca marco, stai zitto");
+        return o.insertOrderDetail(dettagliOrdine);
+    }
+
+    @PostMapping("insertOrder")
+    public void insertOrder(@RequestBody Ordine ordine){
+        System.out.println("suca marco, stai zitto");
+        o.insertOrder(ordine);
+    }
+
 }

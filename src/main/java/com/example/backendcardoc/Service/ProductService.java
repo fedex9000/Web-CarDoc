@@ -53,7 +53,7 @@ public class ProductService {
         return ResponseEntity.noContent().build();
     }
 
-    public ResponseEntity<Utente> addToCart(Cart cart){
+    public ResponseEntity<Object> addToCart(Cart cart){
         DBManager.getInstance().getProdottoDAO().addToCart(cart);
         return null;
     }

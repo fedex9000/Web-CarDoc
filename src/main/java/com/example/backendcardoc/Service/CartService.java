@@ -29,8 +29,8 @@ public class CartService {
         return ResponseEntity.noContent().build();
     }
 
-    public ResponseEntity<String> getProductQuantity(String cf, String id_prodotto){
-        String quantity = DBManager.getInstance().getCartDAO().getProductQuantity(cf, id_prodotto);
+    public ResponseEntity<Integer> getProductQuantity(String cf, String id_prodotto){
+        int quantity = DBManager.getInstance().getCartDAO().getProductQuantity(cf, id_prodotto);
         return ResponseEntity.ok(quantity);
     }
 

@@ -24,4 +24,25 @@ public class OrdineService {
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(dettagliOrdines);
     }
+
+    public ResponseEntity<Integer> findLastNumberOrder(String cf) {
+        int lastNumeroVenduti = DBManager.getInstance().getOrderDao().findLastNumberOrder(cf);
+        if (lastNumeroVenduti == 0)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(lastNumeroVenduti);
+    }
+
+    public ResponseEntity<Object> insertOrderDetail(DettagliOrdine dettagliOrdine){
+        boolean value = DBManager.getInstance().getOrderDao().insertDettagliOrdine(dettagliOrdine);
+        if (!value)
+            return ResponseEntity.notFound().build();
+        System.out.println("cazzo");
+        return ResponseEntity.noContent().build();
+    }
+
+    public void insertOrder(Ordine ordine){
+        DBManager.getInstance().getOrderDao().insertOrdine(ordine);
+    }
+
+
 }
