@@ -39,5 +39,9 @@ public class CartController {
         return i.getProductQuantity(cf, id_prodotto);
     }
 
+    @GetMapping("getCart/{cf}")
+    public ResponseEntity<List<Cart>> getCart(@PathVariable String cf) {return i.getCartByCf(cf);}
+
+
 
 }

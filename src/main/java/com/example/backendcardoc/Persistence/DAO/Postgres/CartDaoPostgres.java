@@ -1,6 +1,7 @@
 package com.example.backendcardoc.Persistence.DAO.Postgres;
 
 import com.example.backendcardoc.Persistence.DAO.CartDao;
+import com.example.backendcardoc.Persistence.Model.Cart;
 import com.example.backendcardoc.Persistence.Model.Prodotto;
 
 import java.sql.Connection;
@@ -47,6 +48,7 @@ public class CartDaoPostgres implements CartDao {
         }
         return null;
     }
+
 
     public Prodotto findByPrimaryKey(String id) {
         String query = "select * from prodotti where id=?";
@@ -104,6 +106,29 @@ public class CartDaoPostgres implements CartDao {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public List<Cart> getCartByCf(String cf) {
+        List<Cart> cart = new ArrayList<>();
+        String query = "select * from carrello where cf=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1,cf);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()) {
+                String idProdotto = rs.getString("id_prodotto");
+                int quantita = rs.getInt("quantity");
+                Double prezzo = rs.getDouble("prezzo");
+                Cart c = new Cart(cf, idProdotto, quantita, prezzo);
+                cart.add(c);
+            }
+            return cart;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

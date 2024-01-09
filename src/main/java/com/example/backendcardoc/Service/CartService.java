@@ -34,4 +34,11 @@ public class CartService {
         return ResponseEntity.ok(quantity);
     }
 
+    public ResponseEntity<List<Cart>> getCartByCf(String cf) {
+        List<Cart> cart = DBManager.getInstance().getCartDAO().getCartByCf(cf);
+        if (cart == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(cart);
+    }
+
 }

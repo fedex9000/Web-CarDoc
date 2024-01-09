@@ -8,8 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class OrdineDaoPostgres implements OrdineDao {
     Connection connection;
@@ -20,7 +23,12 @@ public class OrdineDaoPostgres implements OrdineDao {
         Ordine o = new Ordine();
         o.setNumeroOrdine(rs.getInt("numero_ordine"));
         o.setNumeroVenduti(rs.getInt("numero_venduti"));
-        o.setPrezzoTotale(rs.getDouble("prezzo_totale"));
+
+        Double prezzoTotale = rs.getDouble("prezzo_totale");
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        String prezzoTotaleFormattato = decimalFormat.format(prezzoTotale);
+        prezzoTotaleFormattato = prezzoTotaleFormattato.replace(",", ".");
+        o.setPrezzoTotale(Double.parseDouble(prezzoTotaleFormattato));
         o.setCf(rs.getString("cf"));
         return o;
     }

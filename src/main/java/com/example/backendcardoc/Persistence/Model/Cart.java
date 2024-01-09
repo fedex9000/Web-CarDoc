@@ -6,9 +6,13 @@ public class Cart {
 
     private int quantity;
 
-    public Cart(String cf, String idProdotto) {
+    private double prezzo;
+
+    public Cart(String cf, String idProdotto, int quantita, Double prezzo) {
         this.cf = cf;
         this.idProdotto = idProdotto;
+        this.quantity = quantita;
+        this.prezzo = prezzo;
     }
 
     public String getCf() {
@@ -33,5 +37,13 @@ public class Cart {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public void setPrezzo(double prezzo) {
+        this.prezzo = prezzo;
+    }
+
+    public double getPrezzo() {
+        return prezzo;
     }
 }
