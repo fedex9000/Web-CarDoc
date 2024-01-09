@@ -6,4 +6,5 @@ export class Prodotto {
   categoria!: string;
   prezzo!: number;
   numeroVenduti!: number;
+  quantita!: string;
 }

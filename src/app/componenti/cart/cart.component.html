@@ -17,14 +17,14 @@
                 <th class="bottone-azioni">Azioni</th>
               </tr>
               <tbody>
-              <tr *ngFor="let prodotto of cart">
+              <tr *ngFor="let prodotto of cart; let i = index">
                 <td class="immagine-prodotto">
                   <a href="http://localhost:4200/prodotto/{{prodotto.id}}" style="text-decoration: none; color: black;">
                     <mat-card>
-                    <div class="imageContainer">
-                      <img mat-card-image [src]="this.images[prodotto.id]" class="matCardImg" onerror="this.src='assets/no_images_found.png'">
-                    </div>
-                  </mat-card>
+                      <div class="imageContainer">
+                        <img mat-card-image [src]="this.images[prodotto.id]" class="matCardImg" onerror="this.src='assets/no_images_found.png'">
+                      </div>
+                    </mat-card>
                   </a>
                 </td>
                 <td>{{ prodotto.nome }}</td>
@@ -32,9 +32,7 @@
                 <td>{{ prodotto.prezzo | currency:'EUR':'symbol':'1.2-2' }}</td>
                 <td>
                   <div class="counter">
-                    <span class="down">-</span>
-                    <input id="quantityValue" type="text" value="1" disabled>
-                    <span class="up">+</span>
+                    <input id="quantityValue" type="text" value="{{this.quantita[prodotto.id]}}" disabled>
                   </div>
                   <div class="example-button-container">
                     <button mat-fab aria-label="Delete icon" class="delete-button" (click)="removeItem(prodotto.id)">
@@ -65,19 +63,19 @@
     </ng-container>
 
 
-      <div class="cartVuoto">
-        <ng-container *ngIf="cart.length === 0">
+    <div class="cartVuoto">
+      <ng-container *ngIf="cart.length === 0">
         <div class="card">
           <h5 class="card-title">Carrello</h5>
         </div>
         <div class="center">
           <img src="assets/cartvuoto.jpg" alt="">
-          <h3>Carrello vuoto!</h3>
-          <h5>Aggiungi qualcosa al tuo carrello</h5>
+          <h3 id="carrello_vuoto">Carrello vuoto!</h3>
+          <h5 id="aggiungi">Aggiungi qualcosa al tuo carrello</h5>
           <button onClick="window.open('http://localhost:4200/home','_self')" class="compraOra">Compra ora</button>
         </div>
-        </ng-container>
-      </div>
+      </ng-container>
+    </div>
 
   </div>
 </div>
@@ -86,4 +84,3 @@
 
 <app-footer></app-footer>
 </body>
-

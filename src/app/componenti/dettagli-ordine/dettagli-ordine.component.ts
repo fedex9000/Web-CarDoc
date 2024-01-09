@@ -22,6 +22,31 @@ export class DettagliOrdineComponent implements OnInit{
 
 
   ngOnInit(): void {
+    console.log('OnInit executed');
+
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log('DOMContentLoaded executed');
+
+      const downButton = document.querySelector('.down') as HTMLElement;
+      const upButton = document.querySelector('.up') as HTMLElement;
+      const inputField = document.querySelector('#quantityValue') as HTMLInputElement;
+
+      console.log(downButton, upButton, inputField); // Verifica se gli elementi sono selezionati correttamente
+
+      downButton.addEventListener('click', () => {
+        console.log('Down button clicked');
+        const value = parseInt(inputField.value);
+        if (value > 1) {
+          inputField.value = (value - 1).toString();
+        }
+      });
+
+      upButton.addEventListener('click', () => {
+        console.log('Up button clicked');
+        const value = parseInt(inputField.value);
+        inputField.value = (value + 1).toString();
+      });
+    });
     this.loadDetailOrder()
   }
 

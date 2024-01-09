@@ -8,10 +8,11 @@ import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 import {AcquistoComponent} from "../acquisto/acquisto.component";
 import {Image} from "../../Model/Image";
 
+
 @Component({
   selector: 'app-cart',
   templateUrl: "./cart.component.html",
-  styleUrl: "./cart.component.css"
+  styleUrl: './cart.component.css'
 })
 
 export class CartComponent implements OnInit {
@@ -19,35 +20,18 @@ export class CartComponent implements OnInit {
   cart: Prodotto[] = [];
   grandTotal: number = 0;
   images: { [key: string]: string } = {};
+  quantita: { [key: string]: string } = {};
+
+
 
 
   constructor(private route: ActivatedRoute, private service: ServiceService, public dialog: MatDialog) {}
 
   ngOnInit() {
-
-    document.addEventListener('DOMContentLoaded', function () {
-      const downButton = document.querySelector('.down') as HTMLElement;
-      const upButton = document.querySelector('.up') as HTMLElement;
-      const inputField = document.querySelector('#quantityValue') as HTMLInputElement;
-
-      // Aggiungi gestori di eventi per cliccare su "+" e "-"
-      downButton.addEventListener('click', () => {
-        console.log("xazzo");
-        const value = parseInt(inputField.value);
-        if (value > 1) {
-          inputField.value = (value - 1).toString();
-        }
-      });
-
-      upButton.addEventListener('click', () => {
-        const value = parseInt(inputField.value);
-        inputField.value = (value + 1).toString();
-      });
-    });
-
     this.loadCartData();
     this.verifyPayment();
   }
+
 
 
   loadCartData() {
@@ -62,6 +46,11 @@ export class CartComponent implements OnInit {
                 this.images[prod.id] = base64String;
               }
             }
+          })
+          this.service.getProductQuantity(this.utente, prod.id).subscribe({
+            next: (quantity) =>{
+              this.quantita[prod.id] = quantity;
+          }
           })
         });
         this.calculateTotalAmount();
@@ -104,7 +93,6 @@ export class CartComponent implements OnInit {
   }
 
 
-
-
+  protected readonly length = length;
 }
 

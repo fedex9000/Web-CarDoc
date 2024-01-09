@@ -29,6 +29,7 @@
 .card-table {
   position: relative;
   display: flex;
+  margin-left: 300px;
   flex-direction: column;
   min-width: none;
   word-wrap: break-word;
@@ -84,12 +85,14 @@
   background-color: #e60000; /* Colore rosso */
   color: #ffffff; /* Testo bianco */
   margin-left: 10px;
+  border-radius: 15px
 }
-.btn-success{
+.procedi{
   background-color: forestgreen; /* Colore blu */
   color: white; /* Testo arancione */
   margin-left: 10px;
   font-size: 12px;
+  border-radius: 15px
 }
 
 .delete-button {
@@ -148,6 +151,7 @@
   font-family: sans-serif; /* Sostituisci 'Nome del tuo font' con il nome del font desiderato */
   font-size: 24px; /* Imposta la dimensione del carattere desiderata */
   font-weight: bold;
+  margin-top: 50px;
 }
 
 .btn {
@@ -193,13 +197,37 @@
 }
 
 .cartVuoto {
+  margin-top: 60px;
+  position: relative;
   display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  padding: 10px;
+  min-width: 325px;
+  max-height: 425px;
+  word-wrap: break-word;
+  background: #ffffff;
+  background-clip: border-box;
+  border-radius: 0.25rem;
+  overflow: hidden;
 }
 
 .compraOra {
   cursor: pointer;
+  width: 90px; /* Imposta la larghezza desiderata */
+  height: 40px; /* Imposta l'altezza desiderata */
+  background-color: #ff9900 !important;
+  color: white !important;
+  margin-top: 30px;
+  border-radius: 15px
 }
+
+#carrello_vuoto {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+#aggiungi {
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+}
+

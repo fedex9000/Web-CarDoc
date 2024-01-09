@@ -94,12 +94,15 @@ export class ServiceService {
   }
 
   getOrderById(cf: string): Observable<Ordini[]>{
-    console.log(cf)
     return this.http.get<Ordini[]>('http://localhost:8080/api/ordini/getOrderById/' + cf);
   }
 
   getDetailOrderByNumber(body: {}):Observable<DettagliOrdine[]>{
     return this.http.post<DettagliOrdine[]>('http://localhost:8080/api/ordini/getDetailOrderByNumber', body);
+  }
+
+  getProductQuantity(cf: string, id_prodotto: string){
+    return this.http.get<string>('http://localhost:8080/api/cart/getQuantity/' + cf + '/' + id_prodotto);
   }
 
 
