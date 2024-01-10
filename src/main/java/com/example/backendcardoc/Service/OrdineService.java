@@ -36,7 +36,6 @@ public class OrdineService {
         boolean value = DBManager.getInstance().getOrderDao().insertDettagliOrdine(dettagliOrdine);
         if (!value)
             return ResponseEntity.notFound().build();
-        System.out.println("cazzo");
         return ResponseEntity.noContent().build();
     }
 

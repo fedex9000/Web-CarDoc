@@ -39,7 +39,12 @@ public class OrdineDaoPostgres implements OrdineDao {
         d.setCf(rs.getString("cf"));
         d.setIdProdotto(rs.getString("id_prodotto"));
         d.setQuantita(rs.getInt("quantita"));
-        d.setPrezzo(rs.getDouble("prezzo"));
+
+        Double prezzoTotale = rs.getDouble("prezzo");
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        String prezzoTotaleFormattato = decimalFormat.format(prezzoTotale);
+        prezzoTotaleFormattato = prezzoTotaleFormattato.replace(",", ".");
+        d.setPrezzo(Double.parseDouble(prezzoTotaleFormattato));
         return d;
 
     }

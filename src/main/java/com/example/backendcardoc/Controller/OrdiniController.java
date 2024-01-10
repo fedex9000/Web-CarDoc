@@ -34,13 +34,11 @@ public class OrdiniController {
 
     @PostMapping("/insertOrderDetail")
     public ResponseEntity<Object> insertOrderDetail(@RequestBody DettagliOrdine dettagliOrdine){
-        System.out.println("suca marco, stai zitto");
         return o.insertOrderDetail(dettagliOrdine);
     }
 
     @PostMapping("insertOrder")
     public void insertOrder(@RequestBody Ordine ordine){
-        System.out.println("suca marco, stai zitto");
         o.insertOrder(ordine);
     }
 
