@@ -64,6 +64,7 @@ body {
   background-color: white;
   margin-left: 150px;
   margin-right: 150px;
+
 }
 
 .secondRow{
@@ -216,9 +217,11 @@ body {
   padding-top: 20px;
   padding-left: 10px;
   padding-right: 10px;
-  width: 100%;
+  width: 280px;
   border: 2px #ccc solid;
-  border-radius: 20px;}
+  border-radius: 20px;
+  height: 380px;
+}
 
 
 
@@ -274,18 +277,14 @@ body {
 /* CART BUTTON */
 
 #addCartButton {
-  padding: 10px 20px;
   font-size: 16px;
   background-color: #ff9900;
   color: #ffffff;
-  border: none;
+  border: 2px #ccc solid;
   border-radius: 15px;
   cursor: pointer;
-  margin-left: 60px;
-  margin-right: 100px;
-  margin-bottom: 20px;
-  width: 200px;
   transition: background-color 0.3s ease;
+  height: 40px;
 }
 
 .addCartCard{
@@ -330,29 +329,95 @@ body {
 
 
 
+@media screen and (max-width: 600px) {
 
-/* Mobile adjustments */
-@media screen and (max-width: 1435px) {
-  .container {
-    max-width: 90%;
-  }
-
-  .firstRow, .thirdRow, .secondRow {
+  .firstRow {
+    padding: 10px;
+    display: flex;
+    border: 2px solid #ccc;
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    background-color: white;
+    align-content: center;
     align-items: center;
-    justify-content: center;
-    display: block;
+    flex-direction: column; /* Imposta la direzione della flessione a colonna */
+    width: 300px;
+    max-height: 900px;
+    margin-left: 37px;
+    margin-bottom: 30px;
+  }
+
+  .matCardImg{
+    max-height: 150px;
+    max-width: 150px;
+    border: 2px #ccc solid;
+    border-radius: 20px;
+  }
+
+  .mat-card-title {
+    font-size: 16px;
+  }
+
+  #mat-card-content {
+    font-size: 14px;
+  }
+
+  .productDescription{
+    margin-left: 1px;
+    height: auto;
+  }
+
+  .addCartCard{
+    width: 275px;
+    margin-left: -105px;
+  }
+
+  .secondRow{
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    background-color: white;
+    position: relative;
+    margin-left: 37px;
+    margin-right: 150px;
+    margin-bottom: 30px;
+    width: 300px;
+    height: auto;
+  }
+
+  .thirdRow {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    background-color: white;
+    position: relative;
+    margin-left: 37px;
+    margin-right: 150px;
+    margin-bottom: 30px;
+    width: 300px;
+  }
+
+  .cards {
+    width: 220px;
   }
 
 
-
-  #leafletMap {
-    margin: 10px auto;
-    height: 250px;
-    width: 90%;
+  #relatedProductImgSmall{
+    max-height: 180px;
+    max-width: 180px;
+    border: 2px #ccc solid;
+    border-radius: 20px;
   }
 
-  .reviewsBox {
-    margin: 10px auto;
-    width: 90%;
+}
+
+@media screen and (min-width: 601px) and (max-width: 1500px) {
+
+  .background{
+    min-width: 1200px;
+  }
+  .firstRow, .secondRow, .thirdRow{
+    min-width: 1200px;
   }
 }

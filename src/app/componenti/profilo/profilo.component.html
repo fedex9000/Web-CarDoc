@@ -49,7 +49,7 @@
           <th>Importo totale</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="scrollTable">
         <tr *ngFor="let elemento of ordini">
           <td>{{ elemento.numeroOrdine }}</td>
           <td>Articoli: {{ elemento.numeroVenduti }}</td>

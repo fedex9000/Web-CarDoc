@@ -10,6 +10,7 @@ import {ErrordialogComponent} from "../errordialog/errordialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AddReviewComponent} from "../add-review/add-review.component";
 import {SuccessdialogComponent} from "../successdialog/successdialog.component";
+import {BreakpointObserver, BreakpointState} from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-prodotto',
@@ -17,6 +18,8 @@ import {SuccessdialogComponent} from "../successdialog/successdialog.component";
   styleUrl: './prodotto.component.css'
 })
 export class ProdottoComponent implements OnInit{
+
+  smallDevice: boolean = false;
 
   stringID: string = "";
   nome: string = "";
@@ -40,10 +43,18 @@ export class ProdottoComponent implements OnInit{
   faEnvelope = faEnvelope;
 
 
-  constructor(private route: ActivatedRoute, private service: ServiceService, public auth: AuthService, public dialog: MatDialog) {
+  constructor(private breakpointObserver: BreakpointObserver, private route: ActivatedRoute, private service: ServiceService, public auth: AuthService, public dialog: MatDialog) {
+    this.breakpointObserver.observe(["(max-width: 600px)"]).subscribe((result: BreakpointState) => {
+      if (result.matches) {
+        this.smallDevice = true;
+      } else {
+        this.smallDevice = false;
+      }
+    });
   }
 
   ngOnInit(): void {
+
     document.addEventListener('DOMContentLoaded', function () {
       const downButton = document.querySelector('.down') as HTMLElement;
       const upButton = document.querySelector('.up') as HTMLElement;

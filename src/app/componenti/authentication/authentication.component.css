@@ -2,34 +2,6 @@ section {
   display: table;
 }
 
-.example-label {
-  display: table-cell;
-  font-size: 14px;
-  margin-left: 8px;
-  min-width: 120px;
-}
-
-.example-button-row {
-  display: table-cell;
-  max-width: 600px;
-}
-
-.example-button-row .mat-mdc-button-base {
-  margin: 8px 8px 8px 0;
-}
-
-.example-flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-
-}
-
-.example-button-container {
-  display: flex;
-  justify-content: center;
-  width: 120px;
-}
 
 .authentication-container {
   width: 100%;
@@ -58,7 +30,7 @@ section {
   cursor: pointer;
 }
 
-.fab-button-2 {
+.cartIcon {
   font-size: 20px; /* Regola la dimensione del font */
   width: 25px; /* Regola la larghezza del pulsante */
   height: 25px; /* Regola l'altezza del pulsante */
@@ -67,8 +39,33 @@ section {
   margin-left: 5px;
 }
 
-.fab-button-2 mat-icon {
+.cartIcon mat-icon {
   display: flex;
   justify-content: center;
   width: 120px;
+  color: white;
+}
+
+
+@media screen and (max-width: 600px){
+
+  #logo {
+    width: 45%;
+    cursor: pointer;
+  }
+
+  .cartIcon {
+    margin-right: 2px;
+  }
+
+}
+
+@media screen and (min-width: 601px) and (max-width: 1500px) {
+  .authentication-container{
+    min-width: 1200px;
+  }
+
+  .logo-container{
+    min-width: 1200px;
+  }
 }

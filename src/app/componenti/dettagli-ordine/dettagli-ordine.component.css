@@ -37,3 +37,9 @@ th {
   width: 100px;
   height: auto;
 }
+
+.custom-table {
+  overflow-y: scroll;
+  height: 500px;
+  max-height: 500px;
+}

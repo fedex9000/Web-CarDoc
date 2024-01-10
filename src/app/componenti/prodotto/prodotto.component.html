@@ -1,11 +1,12 @@
 <head>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
 </head>
 
 <body>
 
 <app-category></app-category>
+
 
 
 <div class="background">
@@ -15,8 +16,8 @@
     </div>
 
     <mat-card class="productDescription">
-      <mat-card-title>{{nome}}</mat-card-title>
-      <mat-card-content>{{descrizione}}</mat-card-content>
+      <mat-card-title id="titleProduct">{{nome}}</mat-card-title>
+      <mat-card-content id="descriptionProduct">{{descrizione}}</mat-card-content>
     </mat-card>
 
     <div class="cart">
@@ -27,7 +28,8 @@
           <input id="quantityValue" type="text" value="1" disabled>
           <span class="up">+</span>
         </div>
-        <button id="addCartButton" (click)="addToCart()">Aggiungi al carrello </button>
+
+        <button id="addCartButton" (click)="addToCart()">Aggiungi al carrello</button>
         <mat-card-footer>Pagamento: Transazione sicura</mat-card-footer>
         <mat-card-footer>Spedizione: CarDoc</mat-card-footer>
         <mat-card-footer>Venditore: {{venditore}}</mat-card-footer>
@@ -50,28 +52,56 @@
   </div>
 
 
-  <div class="thirdRow">
-    <div class="relatedProductDiv">
-      <h1>Articoli correlati:</h1>
-      <mat-grid-list [cols]=5 gutterSize="25px" rowHeight="470px" class="relatedProductMat">
-        <mat-grid-tile *ngFor="let prod of prodottiCorrelati">
-          <a href="http://localhost:4200/prodotto/{{prod.id}}" style="text-decoration: none; color: black;">
-            <mat-card class="cards">
-              <div class="relatedImageContainer">
-                <img id="relatedProductImg" [src]="this.relatedProductimages[prod.id]"
-                     onerror="this.src='assets/no_images_found.png'">
-              </div>
-              <mat-card-footer>
-                <mat-card-title>{{prod.nome}}</mat-card-title>
-                <mat-card-subtitle>{{prod.venditore}}</mat-card-subtitle>
-                <mat-card-title>{{prod.prezzo}}€</mat-card-title>
-              </mat-card-footer>
-            </mat-card>
-          </a>
-        </mat-grid-tile>
-      </mat-grid-list>
+  <ng-template *ngIf="!smallDevice; then desktopView else mobileView"></ng-template>
+  <ng-template #desktopView>
+    <div class="thirdRow">
+      <div class="relatedProductDiv">
+        <h1>Articoli correlati:</h1>
+        <mat-grid-list [cols]=5 gutterSize="25px" rowHeight="470px" class="relatedProductMat">
+          <mat-grid-tile *ngFor="let prod of prodottiCorrelati">
+            <a href="http://localhost:4200/prodotto/{{prod.id}}" style="text-decoration: none; color: black;">
+              <mat-card class="cards">
+                <div class="relatedImageContainer">
+                  <img id="relatedProductImg" [src]="this.relatedProductimages[prod.id]"
+                       onerror="this.src='assets/no_images_found.png'">
+                </div>
+                <mat-card-footer>
+                  <mat-card-title>{{prod.nome}}</mat-card-title>
+                  <mat-card-subtitle>{{prod.venditore}}</mat-card-subtitle>
+                  <mat-card-title>{{prod.prezzo}}€</mat-card-title>
+                </mat-card-footer>
+              </mat-card>
+            </a>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
     </div>
-  </div>
+  </ng-template>
+
+  <ng-template #mobileView>
+    <div class="thirdRow">
+      <div class="relatedProductDiv">
+        <h1>Articoli correlati:</h1>
+        <mat-grid-list [cols]=1 gutterSize="25px" rowHeight="350px" class="relatedProductMat">
+          <mat-grid-tile *ngFor="let prod of prodottiCorrelati">
+            <a href="http://localhost:4200/prodotto/{{prod.id}}" style="text-decoration: none; color: black;">
+              <mat-card class="cards">
+                <div class="relatedImageContainer">
+                  <img id="relatedProductImgSmall" [src]="this.relatedProductimages[prod.id]"
+                       onerror="this.src='assets/no_images_found.png'">
+                </div>
+                <mat-card-footer>
+                  <mat-card-title>{{prod.nome}}</mat-card-title>
+                  <mat-card-subtitle>Venditore: {{prod.venditore}}, venduti: {{prod.numeroVenduti}}</mat-card-subtitle>
+                  <mat-card-title>{{prod.prezzo}}€</mat-card-title>
+                </mat-card-footer>
+              </mat-card>
+            </a>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </div>
+  </ng-template>
 
   <app-footer></app-footer>
 
@@ -96,7 +126,6 @@
 <button mat-fab class="fab-button-2" (click)="addReview()" title="Aggiungi recensione" *ngIf="this.auth.isLoggedIn">
   <mat-icon>add_circle</mat-icon>
 </button>
-
 
 
 </body>

@@ -55,23 +55,19 @@ export class HomeComponent implements OnInit{
     localStorage.removeItem("searchedWord");
   }
 
-  private mobileQuery: MediaQueryList;
 
   constructor(private breakpointObserver: BreakpointObserver, private mediaMatcher: MediaMatcher, private router: Router, private service: ServiceService) {
     // detect screen size changes
-    this.breakpointObserver.observe(["(max-width: 1450px)"]).subscribe((result: BreakpointState) => {
+    this.breakpointObserver.observe(["(max-width: 600px)"]).subscribe((result: BreakpointState) => {
       if (result.matches) {
         this.smallDevice = true;
       } else {
         this.smallDevice = false;
       }
     });
-    this.mobileQuery = mediaMatcher.matchMedia('(max-width: 600px)');
   }
 
-  Mobile(): boolean {
-    return this.mobileQuery.matches;
-  }
+
 
   setCategoryProduct(){
     this.selectedCategory = localStorage.getItem("categoria");

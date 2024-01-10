@@ -8,7 +8,7 @@
 /* Centro all'interno della card */
 .center {
   position: absolute;
-  top: 50%;
+  top: 47%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -20,8 +20,8 @@
   color: inherit;
   border: none;
   outline: none;
-  height: 160px;
-  width: 250px;
+  height: 215px;
+  width: 275px;
   margin: 20px 0px;
 }
 
@@ -40,9 +40,16 @@
 }
 
 /* Stile del prodotto nella tabella */
-.card-table .card-product {
+.card-table {
   margin-bottom: 20px;
   padding: 20px;
+}
+
+.card-product {
+  margin-bottom: 20px;
+  padding: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
 }
 
 /* Stile dei pulsanti nel centro */
@@ -62,8 +69,8 @@
 
 /* Stile delle colonne della tabella */
 .card-table th:last-child {
-  padding:20px;
-  max-width: 175px;
+  padding: 20px;
+  max-width: none;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -85,14 +92,15 @@
   background-color: #e60000; /* Colore rosso */
   color: #ffffff; /* Testo bianco */
   margin-left: 10px;
-  border-radius: 15px
+  border-radius: 15px;
 }
-.procedi{
+
+.procedi {
   background-color: forestgreen; /* Colore blu */
   color: white; /* Testo arancione */
   margin-left: 10px;
   font-size: 12px;
-  border-radius: 15px
+  border-radius: 15px;
 }
 
 .delete-button {
@@ -100,6 +108,10 @@
   color: #ffffff; /* Testo bianco */
   font-weight: bold;
   font-size: 12px;
+  width: 35px; /* Imposta la larghezza desiderata */
+  height: 35px; /* Imposta l'altezza desiderata */
+  margin-top: 10px;
+  border-radius: 15px;
 }
 
 .total-block {
@@ -119,6 +131,7 @@
   justify-content: center;
   margin-left: 3px;
 }
+
 .counter input {
   width: 30px;
   border: 0;
@@ -130,6 +143,7 @@
   appearance: none;
   outline: 0;
 }
+
 .counter span {
   display: block;
   font-size: 15px;
@@ -139,26 +153,18 @@
   user-select: none;
   margin: 0 5px;
 }
-.delete-button{
-  width: 35px; /* Imposta la larghezza desiderata */
-  height: 35px; /* Imposta l'altezza desiderata */
-  background-color: red !important; /* Imposta il colore di sfondo a rosso */
-  color: white !important; /* Imposta il colore del testo a bianco */
-  margin-top: 10px;
-}
 
 .card-title {
-  font-family: sans-serif; /* Sostituisci 'Nome del tuo font' con il nome del font desiderato */
-  font-size: 24px; /* Imposta la dimensione del carattere desiderata */
+  font-family: sans-serif;
+  font-size: 24px;
   font-weight: bold;
   margin-top: 50px;
 }
 
 .btn {
-  font-size: 15px;  /* Imposta la dimensione del font desiderata per tutti i pulsanti */
-  padding: 5px;  /* Imposta il padding desiderato per i pulsanti */
+  font-size: 15px;
+  padding: 5px;
 }
-
 
 .totalCartContainer {
   display: flex;
@@ -197,7 +203,7 @@
 }
 
 .cartVuoto {
-  margin-top: 60px;
+  margin-top: 20px;
   position: relative;
   display: flex;
   min-width: 325px;
@@ -209,18 +215,23 @@
   overflow: hidden;
 }
 
+#quantityValue {
+  border-radius: 15px;
+  margin-right: 3px;
+}
+
 .compraOra {
   cursor: pointer;
-  width: 90px; /* Imposta la larghezza desiderata */
-  height: 40px; /* Imposta l'altezza desiderata */
+  width: 90px;
+  height: 40px;
   background-color: #ff9900 !important;
   color: white !important;
   margin-top: 30px;
-  border-radius: 15px
+  border-radius: 15px;
 }
 
 #carrello_vuoto {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   color: black;
 }
@@ -231,7 +242,29 @@
   color: black;
 }
 
-#quantityValue{
-  border-radius: 15px;
-  margin-right: 3px;
+
+
+
+@media screen and (max-width: 1435px) {
+
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .totalCartContainer {
+    padding: 20px;
+  }
+
+  .card {
+    transform: scale(0.8); /* Rimpicciolisci la card */
+  }
+  .card-product {
+    transform: scale(0.8);
+  }
+
 }

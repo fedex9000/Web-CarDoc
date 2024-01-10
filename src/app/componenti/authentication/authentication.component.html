@@ -1,10 +1,10 @@
 <div class="authentication-container">
 
-  <button mat-fab class="fab-button-2 ml auto" title="Carrello" onClick="window.open('http://localhost:4200/carrello','_self')" style="text-decoration: none; color: black;">
+  <button mat-fab class="cartIcon" title="Carrello" onClick="window.open('http://localhost:4200/carrello','_self')" style="text-decoration: none; color: black;">
     <mat-icon>shopping_cart</mat-icon>
   </button>
 
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">

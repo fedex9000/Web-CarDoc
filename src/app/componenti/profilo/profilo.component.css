@@ -64,7 +64,7 @@ body {
 .background {
   position: relative;
   height: 100vh;
-  overflow: hidden;
+  overflow: scroll;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -95,13 +95,12 @@ body {
 }
 
 .container {
-  position: relative;
   z-index: 1;
   width: 325px;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   padding: 30px;
-  margin: 20px auto;
+  margin: 20px;
 }
 
 .profile-info {
@@ -158,18 +157,13 @@ input, select {
   color: #fff;
 }
 
-.firstRow{
-  align-items: center;
-  justify-content: center;
-  display: block;
-}
 
 .firstRow {
+  align-items: center;
+  justify-content: center;
   padding: 10px;
   display: flex;
   border: 2px solid #ccc;
-  margin: 10px;
-  overflow: hidden;
   border-radius: 20px;
   position: relative;
   background-color: white;
@@ -183,4 +177,55 @@ input, select {
 
 .container2{
   margin-left: 50px;
+  overflow-y: scroll;
+  max-height: 500px;
+
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 90%; /* Utilizzato percentuale per la larghezza per adattarsi a schermi più piccoli */
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  .background {
+    width: 375px;
+  }
+
+  .profile-info {
+    margin-top: 280px;
+    width: 85%;
+    padding: 20px;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+
+
+  .firstRow {
+    display: block;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    background-color: white;
+    margin: 0px;
+  }
+
+
+
+  .actions button {
+    margin-left: 5px; /* Ridotto il margine tra i pulsanti */
+    margin-right: 5px;
+    width: 40%; /* Distribuito uniformemente la larghezza dei pulsanti */
+  }
 }

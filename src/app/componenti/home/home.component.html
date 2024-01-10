@@ -2,13 +2,35 @@
 
 <app-category></app-category>
 
+<ng-template *ngIf="!smallDevice; then desktopView else mobileView"></ng-template>
+
 
 <!--PRODOTTI-->
-<ng-template *ngIf="!Mobile(); then desktopView else mobileView"></ng-template>
 
-<ng-template #desktopView>
-  <mat-grid-list [cols]="this.smallDevice ? 2 : 4" gutterSize="25px" rowHeight="470px" class="gridList">
-    <mat-grid-tile *ngFor="let prod of prodotti">
+
+  <ng-template #desktopView>
+    <mat-grid-list [cols]="this.smallDevice ? 2 : 4" gutterSize="25px" rowHeight="470px" class="gridList">
+      <mat-grid-tile class="grid" *ngFor="let prod of prodotti">
+        <a href="http://localhost:4200/prodotto/{{prod.id}}" style="text-decoration: none; color: black;">
+          <mat-card class="cards">
+            <div class="imageContainer">
+              <img mat-card-image [src]="this.images[prod.id]" class="matCardImg" onerror="this.src='assets/no_images_found.png'">
+            </div>
+            <mat-card-footer>
+              <mat-card-title>{{prod.nome}}</mat-card-title>
+              <mat-card-subtitle>Venditore: {{prod.venditore}}, venduti: {{prod.numeroVenduti}}</mat-card-subtitle>
+              <mat-card-title>{{prod.prezzo}}€</mat-card-title>
+            </mat-card-footer>
+          </mat-card>
+        </a>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </ng-template>
+
+
+<ng-template #mobileView>
+  <mat-grid-list [cols]="this.smallDevice ? 2 : 4" gutterSize="25px" rowHeight="300px" class="gridList">
+    <mat-grid-tile class="grid" *ngFor="let prod of prodotti">
       <a href="http://localhost:4200/prodotto/{{prod.id}}" style="text-decoration: none; color: black;">
         <mat-card class="cards">
           <div class="imageContainer">
@@ -25,9 +47,7 @@
   </mat-grid-list>
 </ng-template>
 
-<ng-template #mobileView>
 
-</ng-template>
 
 <app-footer></app-footer>
 </body>
