@@ -111,18 +111,19 @@ export class ServiceService {
   }
 
   insertOrderDetail(body: {}){
-    console.log("insertOrderDetails");
     return this.http.post('http://localhost:8080/api/ordini/insertOrderDetail', body);
   }
 
   insertOrder(body: {}){
-    console.log("insertOrder");
     return this.http.post('http://localhost:8080/api/ordini/insertOrder', body);
   }
 
   getCart(cf: string): Observable<Carrello[]>{
-    return this.http.get<Carrello[]>('http://localhost:8080/api/cart/getCart/' + cf);
+    return this.http.get<Carrello[]>('http://localhost:8080/api/cart/getCart/' + cf );
+  }
 
+  sendEmail(body: {}){
+    return this.http.post('http://localhost:8080/api/utenti/sendEmail', body);
   }
 
 }

@@ -55,7 +55,6 @@ export class ProfiloComponent implements OnInit{
     this.service.getOrderById(this.utente).subscribe({
       next: (ordini) => {
         this.ordini = ordini;
-        console.log(this.ordini);
       }
     })
 

@@ -47,6 +47,7 @@
           <th>Numero Ordine</th>
           <th>Quantita</th>
           <th>Importo totale</th>
+          <th>Data ordine</th>
         </tr>
         </thead>
         <tbody id="scrollTable">
@@ -54,6 +55,7 @@
           <td>{{ elemento.numeroOrdine }}</td>
           <td>Articoli: {{ elemento.numeroVenduti }}</td>
           <td>{{ elemento.prezzoTotale }}€</td>
+          <td>{{ elemento.data }}</td>
           <td>
             <button class="detail-button" (click)="viewDetailOrder(elemento.numeroOrdine)">Dettagli Ordine</button>
           </td>

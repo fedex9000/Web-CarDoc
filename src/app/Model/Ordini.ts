@@ -3,4 +3,5 @@ export class Ordini {
   numeroVenduti!: number;
   prezzoTotale!:number;
   cf!: string;
+  data!: string;
 }

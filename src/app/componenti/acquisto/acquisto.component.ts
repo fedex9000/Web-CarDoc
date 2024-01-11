@@ -117,19 +117,14 @@ export class AcquistoComponent {
     this.service.findLastNumberOrder(this.utente).subscribe({
       next: (lastNumberOrder) => {
         this.lastNumberOrder = lastNumberOrder;
-        console.log(this.lastNumberOrder);
 
         this.service.getCart(this.utente).subscribe({
           next: (cart) => {
             let observables: Observable<any>[] = [];
             this.cart = cart;
-            console.log(this.cart);
             this.cart.forEach(cartItem => {
               this.totalPrice += cartItem.prezzo;
               this.totalQuantity++;
-
-              console.log("dio: " + this.cart);
-
 
               observables.push(this.service.insertOrderDetail({
                 cf: this.utente,

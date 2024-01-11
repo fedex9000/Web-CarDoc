@@ -11,6 +11,7 @@ import { ProdottoComponent } from './componenti/prodotto/prodotto.component';
 import { CategoryComponent } from './componenti/category/category.component';
 import { AddReviewComponent } from './componenti/add-review/add-review.component';
 import {CartComponent} from './componenti/cart/cart.component';
+import { PasswordRecoveryComponent } from './componenti/password-recovery/password-recovery.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -52,6 +53,7 @@ import { DettagliOrdineComponent } from './componenti/dettagli-ordine/dettagli-o
     AcquistoComponent,
     CartComponent,
     DettagliOrdineComponent,
+    PasswordRecoveryComponent,
 
   ],
   imports: [

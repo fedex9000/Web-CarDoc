@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ServiceService} from "../../Service/service";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {BreakpointObserver, BreakpointState} from "@angular/cdk/layout";
 
 
 @Component({
@@ -10,8 +11,16 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 })
 export class CategoryComponent implements OnInit{
   formRicerca: FormGroup = new FormGroup({});
-  constructor(private service: ServiceService) {
+  smallDevice: boolean = false;
 
+  constructor(private breakpointObserver: BreakpointObserver) {
+    this.breakpointObserver.observe(["(max-width: 600px)"]).subscribe((result: BreakpointState) => {
+      if (result.matches) {
+        this.smallDevice = true;
+      } else {
+        this.smallDevice = false;
+      }
+    });
   }
 
   ngOnInit(): void {

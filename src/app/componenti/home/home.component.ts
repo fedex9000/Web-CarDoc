@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit{
   smallDevice: boolean = false;
   selectedCategory: any = "";
   searchedWord: any = "";
+  noProductFound: boolean = false;
 
   ngOnInit(): void {
     this.setCategoryProduct();
@@ -29,24 +30,21 @@ export class HomeComponent implements OnInit{
     if (this.selectedCategory != null) {
       this.service.getCategoryProduct(this.selectedCategory).subscribe({
         next: (prodotti) => {
-          console.log("categoria selezionata");
           this.prodotti = prodotti;
         },
       });
     } else if (this.searchedWord != null) {
       this.service.getSearchedProduct(this.searchedWord).subscribe({
         next: (prodotti) => {
-          console.log("parola cercata");
           this.prodotti = prodotti;
           if (this.prodotti.length == 0){
-            console.log("Nessun prodotto trovato");
+            this.noProductFound = true;
           }
         },
       });
     } else {
       this.service.getProdotti().subscribe({
         next: (prodotti) => {
-          console.log("prodotti normali");
           this.prodotti = prodotti;
         },
       });

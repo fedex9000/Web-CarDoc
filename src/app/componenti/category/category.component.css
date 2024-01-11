@@ -84,6 +84,22 @@
   .text {
     font-size: 14px;
   }
+
+  .category-container{
+    display: grid;
+    background-color: #132530;
+    text-align: left;
+  }
+  .TotalContainermobileCategory{
+    background-color: #132530;
+    height: 22px;
+  }
+  .buttonCategory{
+    color: white;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+
 }
 
 

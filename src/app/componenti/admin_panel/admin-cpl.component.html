@@ -7,7 +7,7 @@
       <hr flex style="margin-bottom: 25px;"/>
     </div>
 
-    <form class="AddImmobileForm" [formGroup]="formAggiungiProdotto">
+    <form class="AddProductForm" [formGroup]="formAggiungiProdotto">
       <input type="text" formControlName="id" id="id" placeholder="ID prodotto" required (input)="productExist()">
       <select id="type" formControlName="tipo" required [(ngModel)]="selectedCategory" (change)="onValueTypeSelected($event)">
         <option value="" selected disabled>-- Seleziona categoria --</option>
@@ -33,7 +33,7 @@
       <button type="submit" *ngIf="myproductSelection == true" (click)="onSubmit()">Modifica prodotto</button>
     </form>
     <button class="openNewPageButton" *ngIf="myproductSelection == true" (click)="openNewProductPage()" >Apri pagina prodotto</button>
-    <button class="deleteImmobileButton" *ngIf="myproductSelection == true" (click)="removeProduct()">Rimuovi prodotto</button>
+    <button class="deleteProductButton" *ngIf="myproductSelection == true" (click)="removeProduct()">Rimuovi prodotto</button>
   </div>
 </div>
 <app-footer></app-footer>

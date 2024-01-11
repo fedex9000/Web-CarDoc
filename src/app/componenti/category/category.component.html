@@ -1,9 +1,3 @@
-
-
-
-
-
-
 <form [formGroup]="formRicerca" (ngSubmit)="onSearch()">
   <div class="ricercaContainer">
     <mat-form-field class="searchBar">
@@ -15,46 +9,107 @@
 </form>
 
 
-<div class="category-container">
+<ng-template *ngIf="!smallDevice; then desktopView else mobileView"></ng-template>
+
+<ng-template #desktopView>
+
+  <div class="category-container">
 
   <span class="image-with-text" (click)="selectedCategoryChange('ammortizzatori')" onClick="window.open('http://localhost:4200/home','_self')">
     <img src='.\assets\immagini\icone\ammortizzatori.png'>
     <span class="text">Ammortizzatori</span>
   </span>
 
-  <span class="image-with-text" (click)="selectedCategoryChange('freni')" onClick="window.open('http://localhost:4200/home','_self')">
+    <span class="image-with-text" (click)="selectedCategoryChange('freni')" onClick="window.open('http://localhost:4200/home','_self')">
     <img src='.\assets\immagini\icone\freni.png'>
     <span class="text">Freni</span>
   </span>
 
-  <span class="image-with-text" (click)="selectedCategoryChange('filtri')" onClick="window.open('http://localhost:4200/home','_self')">
+    <span class="image-with-text" (click)="selectedCategoryChange('filtri')" onClick="window.open('http://localhost:4200/home','_self')">
     <img src='.\assets\immagini\icone\filtro.png'>
     <span class="text">Filtri</span>
   </span>
 
-  <span class="image-with-text" (click)="selectedCategoryChange('illuminazione')" onClick="window.open('http://localhost:4200/home','_self')">
+    <span class="image-with-text" (click)="selectedCategoryChange('illuminazione')" onClick="window.open('http://localhost:4200/home','_self')">
     <img src='.\assets\immagini\icone\illuminazione.png'>
     <span class="text">Illuminazioni</span>
   </span>
 
-  <span class="image-with-text" (click)="selectedCategoryChange('oli')" onClick="window.open('http://localhost:4200/home','_self')">
+    <span class="image-with-text" (click)="selectedCategoryChange('oli')" onClick="window.open('http://localhost:4200/home','_self')">
     <img src='.\assets\immagini\icone\olieliquidi.png'>
     <span class="text">Oli e liquidi</span>
   </span>
 
-  <span class="image-with-text" (click)="selectedCategoryChange('pneumatici')" onClick="window.open('http://localhost:4200/home','_self')">
+    <span class="image-with-text" (click)="selectedCategoryChange('pneumatici')" onClick="window.open('http://localhost:4200/home','_self')">
     <img src='.\assets\immagini\icone\pneumatici.png'>
     <span class="text">Pneumatici</span>
   </span>
 
-  <span class="image-with-text" (click)="selectedCategoryChange('pulizia')" onClick="window.open('http://localhost:4200/home','_self')">
+    <span class="image-with-text" (click)="selectedCategoryChange('pulizia')" onClick="window.open('http://localhost:4200/home','_self')">
     <img src='.\assets\immagini\icone\pulizia.png'>
     <span class="text">Pulizia auto</span>
   </span>
 
-  <span class="image-with-text" (click)="selectedCategoryChange('scarico')" onClick="window.open('http://localhost:4200/home','_self')">
+    <span class="image-with-text"  (click)="selectedCategoryChange('scarico')" onClick="window.open('http://localhost:4200/home','_self')">
     <img src='.\assets\immagini\icone\scarico.png'>
     <span class="text">Sistema di scarico</span>
   </span>
 
-</div>
+  </div>
+</ng-template>
+
+
+<ng-template #mobileView>
+
+  <div class="TotalContainermobileCategory">
+    <span class="buttonCategory" mat-button [matMenuTriggerFor]="menu">Categorie</span>
+    <mat-menu class="matMenu" #menu="matMenu">
+
+      <div class="category-container">
+
+      <span class="image-with-text" (click)="selectedCategoryChange('ammortizzatori')" onClick="window.open('http://localhost:4200/home','_self')">
+        <img src='.\assets\immagini\icone\ammortizzatori.png'>
+        <span class="text">Ammortizzatori</span>
+      </span>
+
+        <span class="image-with-text" (click)="selectedCategoryChange('freni')" onClick="window.open('http://localhost:4200/home','_self')">
+        <img src='.\assets\immagini\icone\freni.png'>
+        <span class="text">Freni</span>
+      </span>
+
+        <span class="image-with-text" (click)="selectedCategoryChange('filtri')" onClick="window.open('http://localhost:4200/home','_self')">
+        <img src='.\assets\immagini\icone\filtro.png'>
+        <span class="text">Filtri</span>
+      </span>
+
+        <span class="image-with-text" (click)="selectedCategoryChange('illuminazione')" onClick="window.open('http://localhost:4200/home','_self')">
+        <img src='.\assets\immagini\icone\illuminazione.png'>
+        <span class="text">Illuminazioni</span>
+      </span>
+
+        <span class="image-with-text" (click)="selectedCategoryChange('oli')" onClick="window.open('http://localhost:4200/home','_self')">
+        <img src='.\assets\immagini\icone\olieliquidi.png'>
+        <span class="text">Oli e liquidi</span>
+      </span>
+
+        <span class="image-with-text" (click)="selectedCategoryChange('pneumatici')" onClick="window.open('http://localhost:4200/home','_self')">
+        <img src='.\assets\immagini\icone\pneumatici.png'>
+        <span class="text">Pneumatici</span>
+      </span>
+
+        <span class="image-with-text" (click)="selectedCategoryChange('pulizia')" onClick="window.open('http://localhost:4200/home','_self')">
+        <img src='.\assets\immagini\icone\pulizia.png'>
+        <span class="text">Pulizia auto</span>
+      </span>
+
+        <span class="image-with-text"  (click)="selectedCategoryChange('scarico')" onClick="window.open('http://localhost:4200/home','_self')">
+        <img src='.\assets\immagini\icone\scarico.png'>
+        <span class="text">Sistema di scarico</span>
+      </span>
+
+      </div>
+    </mat-menu>
+  </div>
+
+
+</ng-template>

@@ -4,6 +4,7 @@ import {ServiceService} from "../Service/service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Utente} from "../Model/Utente";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -76,4 +77,8 @@ export class AuthService {
     localStorage.removeItem("cf");
     localStorage.removeItem("tipologia");
   }
+
+
+
+
 }
