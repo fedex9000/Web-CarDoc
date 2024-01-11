@@ -1,17 +1,18 @@
 package com.example.backendcardoc.Persistence.Model;
 
 public class Ordine {
-    private String cf;
+    private String cf, data;
     private int numeroOrdine, numeroVenduti;
     private double prezzoTotale;
 
     public Ordine(){}
 
-    public Ordine(String cf, int numeroOrdine, int numeroVenduti, double prezzoTotale){
+    public Ordine(String cf, int numeroOrdine, int numeroVenduti, double prezzoTotale, String data){
         this.cf = cf;
         this.numeroOrdine = numeroOrdine;
         this.numeroVenduti = numeroVenduti;
         this.prezzoTotale = prezzoTotale;
+        this.data = data;
     }
 
     public void setNumeroOrdine(int numeroOrdine) {
@@ -44,5 +45,13 @@ public class Ordine {
 
     public void setPrezzoTotale(double prezzoTotale) {
         this.prezzoTotale = prezzoTotale;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 }

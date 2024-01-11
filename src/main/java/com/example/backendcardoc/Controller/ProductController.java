@@ -16,7 +16,7 @@ import java.util.Map;
 @RestController
 @CrossOrigin("http://localhost:4200") //utile per frontend in quanto Angular usa la porta 4200
 @RequestMapping("/api/prodotti") //tutti i metodi avranno nell'URL questa path come path principale
-@RequiredArgsConstructor //crea in automatico un'istanza di ImmobileService
+@RequiredArgsConstructor //crea in automatico un'istanza di ProductService
 public class ProductController {
     private final ProductService i;
 

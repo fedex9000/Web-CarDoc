@@ -4,12 +4,10 @@ import com.example.backendcardoc.Persistence.DAO.OrdineDao;
 import com.example.backendcardoc.Persistence.Model.DettagliOrdine;
 import com.example.backendcardoc.Persistence.Model.Ordine;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -30,6 +28,7 @@ public class OrdineDaoPostgres implements OrdineDao {
         prezzoTotaleFormattato = prezzoTotaleFormattato.replace(",", ".");
         o.setPrezzoTotale(Double.parseDouble(prezzoTotaleFormattato));
         o.setCf(rs.getString("cf"));
+        o.setData(rs.getString("data"));
         return o;
     }
 
@@ -99,16 +98,29 @@ public class OrdineDaoPostgres implements OrdineDao {
         return ultimoNumeroOrdine + 1;
     }
 
+
     @Override
-    public boolean insertDettagliOrdine(DettagliOrdine dettagliOrdine){
+    public boolean insertDettagliOrdine(DettagliOrdine dettagliOrdine) {
         String insertQuery = "INSERT INTO dettagli_ordine(cf, id_prodotto, numero_ordine, quantita, prezzo) VALUES (?, ?, ?, ?, ?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
-            preparedStatement.setString(1, dettagliOrdine.getCf());
-            preparedStatement.setString(2, dettagliOrdine.getIdProdotto());
-            preparedStatement.setInt(3, dettagliOrdine.getNumeroOrdine());
-            preparedStatement.setInt(4, dettagliOrdine.getQuantita());
-            preparedStatement.setDouble(5, dettagliOrdine.getPrezzo());
-            preparedStatement.executeUpdate();
+        String updateQuery = "UPDATE prodotti SET numerovenduti = numerovenduti + ? WHERE id = ?";
+
+        try (PreparedStatement preparedStatementInsert = connection.prepareStatement(insertQuery);
+             PreparedStatement preparedStatementUpdate = connection.prepareStatement(updateQuery)) {
+            // Impostare i parametri per l'inserimento nella tabella "dettagli_ordine"
+            preparedStatementInsert.setString(1, dettagliOrdine.getCf());
+            preparedStatementInsert.setString(2, dettagliOrdine.getIdProdotto());
+            preparedStatementInsert.setInt(3, dettagliOrdine.getNumeroOrdine());
+            preparedStatementInsert.setInt(4, dettagliOrdine.getQuantita());
+            preparedStatementInsert.setDouble(5, dettagliOrdine.getPrezzo());
+            // Eseguire l'inserimento nella tabella "dettagli_ordine"
+            preparedStatementInsert.executeUpdate();
+
+            // Impostare i parametri per l'aggiornamento della tabella "prodotti"
+            preparedStatementUpdate.setInt(1, dettagliOrdine.getQuantita());
+            preparedStatementUpdate.setString(2, dettagliOrdine.getIdProdotto());
+            // Eseguire l'aggiornamento della tabella "prodotti"
+            preparedStatementUpdate.executeUpdate();
+
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -120,12 +132,15 @@ public class OrdineDaoPostgres implements OrdineDao {
 
     @Override
     public void insertOrdine(Ordine ordine){
-        String insertQuery = "INSERT INTO ordini(numero_ordine, numero_venduti, prezzo_totale, cf) VALUES (?, ?, ?, ?)";
+        String insertQuery = "INSERT INTO ordini(numero_ordine, numero_venduti, prezzo_totale, cf, data) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
             preparedStatement.setInt(1, ordine.getNumeroOrdine());
             preparedStatement.setInt(2, ordine.getNumeroVenduti());
             preparedStatement.setDouble(3, ordine.getPrezzoTotale());
             preparedStatement.setString(4, ordine.getCf());
+            LocalDate currentDate = LocalDate.now();
+            preparedStatement.setString(5, String.valueOf(currentDate));
+
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

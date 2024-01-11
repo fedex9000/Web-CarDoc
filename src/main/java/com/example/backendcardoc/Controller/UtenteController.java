@@ -48,4 +48,9 @@ public class UtenteController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @PostMapping("/sendEmail")
+    public void sendEmail(@RequestBody Utente utente) {
+        i.sendEmail(utente);
+    }
 }
