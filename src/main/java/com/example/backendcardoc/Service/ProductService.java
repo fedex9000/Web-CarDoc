@@ -3,7 +3,7 @@ package com.example.backendcardoc.Service;
 import com.example.backendcardoc.Persistence.DBManager;
 import com.example.backendcardoc.Persistence.Model.Cart;
 import com.example.backendcardoc.Persistence.Model.Prodotto;
-import com.example.backendcardoc.Persistence.Model.Utente;
+import com.example.backendcardoc.Persistence.Model.Wishlist;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +58,11 @@ public class ProductService {
         return null;
     }
 
+
+    public ResponseEntity<Object> addToWishlist(Wishlist wishlist){
+        DBManager.getInstance().getProdottoDAO().addToWishlist(wishlist);
+        return null;
+    }
 
 
 }

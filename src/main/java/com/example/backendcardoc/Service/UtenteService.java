@@ -61,8 +61,8 @@ public class UtenteService {
     }
 
     public ResponseEntity<Object> sendEmail(Utente utente){
-        final String username = "CarDoc.negozio1@gmail.com";
-        final String password = "bwxp tjdi lwcj lewl";
+        final String username = "CarDocMarketPlace@gmail.com";
+        final String password = "rgpt etjy pnnz fxsi";
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -80,7 +80,7 @@ public class UtenteService {
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("CarDoc.negozio1@gmail.com"));
+            message.setFrom(new InternetAddress("CarDocMarketPlace@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(utente.getEmail()));
             message.setSubject("Recupero password account");

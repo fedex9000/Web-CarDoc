@@ -1,10 +1,7 @@
 package com.example.backendcardoc.Persistence.DAO.Postgres;
 
 import com.example.backendcardoc.Persistence.DAO.ProdottoDao;
-import com.example.backendcardoc.Persistence.Model.Cart;
-import com.example.backendcardoc.Persistence.Model.Prodotto;
-import com.example.backendcardoc.Persistence.Model.Recensione;
-import com.example.backendcardoc.Persistence.Model.Utente;
+import com.example.backendcardoc.Persistence.Model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -187,6 +184,43 @@ public class ProdottoDaoPostgres implements ProdottoDao {
     @Override
     public boolean findProductInCart(String cf, String idProdotto){
         String query = "select * from carrello where cf=? and id_prodotto=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, cf);
+            st.setString(2, idProdotto);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+    @Override
+    public void addToWishlist(Wishlist wishlist) {
+        boolean cond = findProductInWishlist(wishlist.getCf(), wishlist.getIdProdotto());
+        if (!cond) {
+            String insertQuery = "INSERT INTO wishlist (id_prodotto, cf, prezzo) VALUES (?, ?, ?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
+                preparedStatement.setString(1, wishlist.getIdProdotto());
+                preparedStatement.setString(2, wishlist.getCf());
+                preparedStatement.setDouble(3, wishlist.getPrezzo());
+
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Non eseguire alcuna operazione se il prodotto è già nella wishlist
+        }
+    }
+
+    @Override
+    public boolean findProductInWishlist(String cf, String idProdotto){
+        String query = "select * from wishlist where cf=? and id_prodotto=?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
             st.setString(1, cf);

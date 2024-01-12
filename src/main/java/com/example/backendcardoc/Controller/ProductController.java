@@ -1,9 +1,6 @@
 package com.example.backendcardoc.Controller;
 
-import com.example.backendcardoc.Persistence.Model.Cart;
-import com.example.backendcardoc.Persistence.Model.Prodotto;
-import com.example.backendcardoc.Persistence.Model.Recensione;
-import com.example.backendcardoc.Persistence.Model.Utente;
+import com.example.backendcardoc.Persistence.Model.*;
 import com.example.backendcardoc.Service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -50,6 +47,11 @@ public class ProductController {
     @PostMapping("addToCart")
     public ResponseEntity<Object> addToCart(@RequestBody Cart cart) {
         return i.addToCart(cart);
+    }
+
+    @PostMapping("addToWishlist")
+    public ResponseEntity<Object> addToWishlist(@RequestBody Wishlist wishlist) {
+        return i.addToWishlist(wishlist);
     }
 }
 

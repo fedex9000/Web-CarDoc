@@ -49,6 +49,5 @@ public class DBManager {
     public CartDao getCartDAO() { return new CartDaoPostgres(getConnection()); }
 
     public OrdineDao getOrderDao() { return new OrdineDaoPostgres(getConnection());}
-
-
+    public WishlistDao getWishlistDAO() { return new WishlistDaoPostgres(getConnection()); }
 }

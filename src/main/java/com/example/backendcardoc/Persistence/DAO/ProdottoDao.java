@@ -3,6 +3,7 @@ package com.example.backendcardoc.Persistence.DAO;
 import com.example.backendcardoc.Persistence.Model.Cart;
 import com.example.backendcardoc.Persistence.Model.Prodotto;
 import com.example.backendcardoc.Persistence.Model.Recensione;
+import com.example.backendcardoc.Persistence.Model.Wishlist;
 
 import java.util.List;
 
@@ -22,4 +23,7 @@ public interface ProdottoDao {
 
     boolean findProductInCart(String cf, String idProdotto);
 
+    void addToWishlist(Wishlist wishlist);
+
+    boolean findProductInWishlist(String cf, String idProdotto);
 }
