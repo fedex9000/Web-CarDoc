@@ -1,11 +1,8 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {AuthService} from "../../auth/auth.service";
+import {Component, OnInit} from '@angular/core';
 import {ServiceService} from "../../Service/service";
 import {BreakpointObserver, BreakpointState, MediaMatcher} from "@angular/cdk/layout";
 import {Router} from "@angular/router";
 import {Prodotto} from "../../Model/Prodotto";
-import {CategoryComponent} from "../category/category.component";
-
 
 
 @Component({
@@ -54,7 +51,7 @@ export class HomeComponent implements OnInit{
   }
 
 
-  constructor(private breakpointObserver: BreakpointObserver, private mediaMatcher: MediaMatcher, private router: Router, private service: ServiceService) {
+  constructor(private breakpointObserver: BreakpointObserver, private service: ServiceService) {
     // detect screen size changes
     this.breakpointObserver.observe(["(max-width: 600px)"]).subscribe((result: BreakpointState) => {
       if (result.matches) {
@@ -68,7 +65,7 @@ export class HomeComponent implements OnInit{
 
 
   setCategoryProduct(){
-    this.selectedCategory = localStorage.getItem("categoria");
+      this.selectedCategory = localStorage.getItem("categoria");
   }
 
   getSearchedWord(){

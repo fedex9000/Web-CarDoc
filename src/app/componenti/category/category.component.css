@@ -24,8 +24,8 @@
 }
 
 .image-with-text img {
-  vertical-align: middle; /* Centra verticalmente l'immagine rispetto al testo */
-  margin-right: 0px; /* Aggiunge spaziatura tra l'immagine e il testo */
+  vertical-align: middle;
+  margin-right: 0px;
 }
 
 .text{
@@ -92,22 +92,27 @@
   }
   .TotalContainermobileCategory{
     background-color: #132530;
-    height: 22px;
+    height: auto;
   }
+
   .buttonCategory{
+    background-color: #ff9900;
+    border-radius: 20px;
     color: white;
     font-size: 14px;
     margin-left: 5px;
+    margin-bottom: 5px;
   }
 
 }
 
 
+
 @media screen and (min-width: 601px) and (max-width: 1500px) {
   .ricercaContainer{
-    min-width: 1200px;
+    min-width: 1490px;
   }
   .category-container{
-    min-width: 1400px;
+    min-width: 1490px;
   }
 }

@@ -80,7 +80,7 @@
   color: gold;
 }
 
-.valutazione label input:focus:not(:checked) ~ .icon:last-child {
+.valutazione label input:focus:not(:checked)  .icon:last-child {
   color: #000;
   text-shadow: 0 0 5px gold;
 }
@@ -94,4 +94,8 @@
 #pubblicaButton {
   background-color: #ff9900;
   border-radius: 20px;
+}
+
+#pubblicaButton:hover {
+  transform: scale(0.9);
 }

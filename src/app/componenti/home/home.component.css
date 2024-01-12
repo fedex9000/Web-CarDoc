@@ -1,5 +1,6 @@
 body {
   height: auto;
+  background-color: #EAEDED;
 }
 
 
@@ -53,10 +54,10 @@ mat-card-subtitle {
 #productNotFound {
   display: block;
   margin: auto;
-  width: 50%; /* o la larghezza desiderata */
-  max-width: 400px; /* imposta una larghezza massima se necessario */
-  max-height: 400px; /* imposta un'altezza massima se necessario */
-  padding: 20px; /* aggiungi spazio attorno all'immagine se necessario */
+  width: 50%;
+  max-width: 400px;
+  max-height: 400px;
+  padding: 20px;
 }
 
 
@@ -98,6 +99,12 @@ mat-card-subtitle {
     padding: 20px;
   }
 
+}
+
+@media screen and (min-width: 601px) and (max-width: 1500px) {
+  .mat-grid-list{
+    width: 1450px;
+  }
 }
 
 

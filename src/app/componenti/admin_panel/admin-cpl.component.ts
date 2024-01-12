@@ -1,10 +1,7 @@
-import {booleanAttribute, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import {ServiceService} from "../../Service/service";
-import {AuthService} from "../../auth/auth.service";
-import {Utente} from "../../Model/Utente";
 import {ErrordialogComponent} from "../errordialog/errordialog.component";
 import { NgxImageCompressService } from 'ngx-image-compress';
 import {SuccessdialogComponent} from "../successdialog/successdialog.component";

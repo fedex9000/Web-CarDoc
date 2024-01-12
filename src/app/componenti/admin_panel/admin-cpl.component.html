@@ -10,7 +10,7 @@
     <form class="AddProductForm" [formGroup]="formAggiungiProdotto">
       <input type="text" formControlName="id" id="id" placeholder="ID prodotto" required (input)="productExist()">
       <select id="type" formControlName="tipo" required [(ngModel)]="selectedCategory" (change)="onValueTypeSelected($event)">
-        <option value="" selected disabled>-- Seleziona categoria --</option>
+        <option value="" disabled selected>Seleziona una categoria</option>
         <option value="ammortizzatori" selected>Ammortizzatori</option>
         <option value="freni">Freni</option>
         <option value="filtri">Filtri</option>
@@ -21,7 +21,7 @@
         <option value="scarico">Sistema di scarico</option>
       </select>
 
-      <div class="name-fields">
+      <div>
         <input type="text" id="name" formControlName="nome" placeholder="Nome" required>
       </div>
       <textarea id="description" formControlName="descrizione" placeholder="Descrizione" required></textarea>

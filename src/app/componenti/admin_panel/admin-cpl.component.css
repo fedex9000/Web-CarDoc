@@ -11,9 +11,9 @@ body {
   position: relative;
   height: 100vh;
   overflow: hidden;
-  display: flex; /* Added */
-  justify-content: center; /* Added */
-  align-items: center; /* Added */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .background::before {

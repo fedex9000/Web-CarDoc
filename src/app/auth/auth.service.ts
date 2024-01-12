@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {ServiceService} from "../Service/service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {Utente} from "../Model/Utente";
 
 
@@ -14,7 +14,7 @@ export class AuthService {
   isLoggedIn: Boolean = false;
   selectedProduct: string = "";
 
-  constructor(private http: HttpClient, private service: ServiceService, private route: ActivatedRoute, private router: Router) {
+  constructor(private service: ServiceService, private route: ActivatedRoute) {
     this.checkLogin();
   }
 
@@ -30,14 +30,17 @@ export class AuthService {
         this.utenteCorrente = new Utente();
         this.utenteCorrente = data;
         this.isLoggedIn = true;
-        localStorage.setItem("nome", this.utenteCorrente.nome);
-        localStorage.setItem("cognome", this.utenteCorrente.cognome);
-        localStorage.setItem("telefono", this.utenteCorrente.telefono);
-        localStorage.setItem("tipologia", this.utenteCorrente.tipologia);
-        localStorage.setItem("email", this.utenteCorrente.email);
-        localStorage.setItem("password", this.utenteCorrente.password);
-        localStorage.setItem("cf", this.utenteCorrente.cf);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem("nome", this.utenteCorrente.nome);
+          localStorage.setItem("cognome", this.utenteCorrente.cognome);
+          localStorage.setItem("telefono", this.utenteCorrente.telefono);
+          localStorage.setItem("tipologia", this.utenteCorrente.tipologia);
+          localStorage.setItem("email", this.utenteCorrente.email);
+          localStorage.setItem("password", this.utenteCorrente.password);
+          localStorage.setItem("cf", this.utenteCorrente.cf);
+        }
         return true;
+
       },
       error: () => {
         const userFromLS = localStorage.getItem("cf");

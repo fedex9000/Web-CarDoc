@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {MatDialog} from "@angular/material/dialog";
 import {ErrordialogComponent} from "../errordialog/errordialog.component";
 import {SuccessdialogComponent} from "../successdialog/successdialog.component";
-import {AuthService} from "../../auth/auth.service";
 import {ServiceService} from "../../Service/service";
-import {Prodotto} from "../../Model/Prodotto";
-import {forkJoin, mergeMap, Observable} from "rxjs";
+import {forkJoin, Observable} from "rxjs";
 import {Carrello} from "../../Model/Carrello";
 
 
@@ -73,15 +71,11 @@ export class AcquistoComponent {
   }
 
   isStepValid(step: FormGroup, controlName: string): boolean {
-    return true;
-    /*
     let control = step.get(controlName);
     if (control && control.value){
       return this.validateField(controlName, control.value);
     }
     return false;
-
-     */
   }
 
   validateField(fieldName: string, value: any): boolean {

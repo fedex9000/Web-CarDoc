@@ -13,7 +13,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
-    const [street, city, county, postalcode] = this.originalAddress.split(';').map(component => component.trim());
+    const [] = this.originalAddress.split(';').map(component => component.trim());
     this.addressComponents = {
       street: 'V.le delle Scienze',
       city: 'Quattromiglia',
@@ -25,8 +25,8 @@ export class FooterComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      import('./leaflet-map').then((module) => {
-        module.initMap(this.addressComponents);
+      import('./leaflet-map').then((mapModule) => {
+        mapModule.initMap(this.addressComponents);
       });
     }
   }

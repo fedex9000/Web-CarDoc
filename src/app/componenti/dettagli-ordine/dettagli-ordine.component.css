@@ -1,19 +1,20 @@
 /* tabella*/
 
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
-  background-color: #f4f4f4;
+.custom-table{
+  height: 10px;
 }
+
+.tbody{
+  height: 10px;
+}
+
 
 table {
   border-collapse: collapse;
-  width: 100%;
   background-color: #fff;
+  width: auto;
   border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 th, td {
@@ -40,6 +41,6 @@ th {
 
 .custom-table {
   overflow-y: scroll;
-  height: 500px;
+  height: auto;
   max-height: 500px;
 }

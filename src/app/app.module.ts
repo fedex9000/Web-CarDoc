@@ -12,6 +12,8 @@ import { CategoryComponent } from './componenti/category/category.component';
 import { AddReviewComponent } from './componenti/add-review/add-review.component';
 import {CartComponent} from './componenti/cart/cart.component';
 import { PasswordRecoveryComponent } from './componenti/password-recovery/password-recovery.component';
+import { DettagliOrdineComponent } from './componenti/dettagli-ordine/dettagli-ordine.component';
+import { WishlistComponent } from './componenti/wishlist/wishlist.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -35,7 +37,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { FooterComponent } from './componenti/footer/footer.component';
 import { AcquistoComponent } from './componenti/acquisto/acquisto.component';
 import {MatStepperModule} from "@angular/material/stepper";
-import { DettagliOrdineComponent } from './componenti/dettagli-ordine/dettagli-ordine.component';
 
 
 
@@ -54,6 +55,7 @@ import { DettagliOrdineComponent } from './componenti/dettagli-ordine/dettagli-o
     CartComponent,
     DettagliOrdineComponent,
     PasswordRecoveryComponent,
+    WishlistComponent,
 
   ],
   imports: [

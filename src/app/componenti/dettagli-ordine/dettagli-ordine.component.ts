@@ -12,36 +12,15 @@ import {AuthService} from "../../auth/auth.service";
 export class DettagliOrdineComponent implements OnInit{
   dettagliOrdine: DettagliOrdine[] = [];
   utente: any = localStorage.getItem("cf");
-  odineSelezionato: any = localStorage.getItem("ordineSelezionato");
   images: { [key: string]: string } = {};
 
 
 
 
-  constructor(private service: ServiceService, public dialog: MatDialog, private auth: AuthService) {}
+  constructor(private service: ServiceService, public dialog: MatDialog) {}
 
 
   ngOnInit(): void {
-
-    document.addEventListener('DOMContentLoaded', function () {
-
-      const downButton = document.querySelector('.down') as HTMLElement;
-      const upButton = document.querySelector('.up') as HTMLElement;
-      const inputField = document.querySelector('#quantityValue') as HTMLInputElement;
-
-
-      downButton.addEventListener('click', () => {
-        const value = parseInt(inputField.value);
-        if (value > 1) {
-          inputField.value = (value - 1).toString();
-        }
-      });
-
-      upButton.addEventListener('click', () => {
-        const value = parseInt(inputField.value);
-        inputField.value = (value + 1).toString();
-      });
-    });
     this.loadDetailOrder()
   }
 

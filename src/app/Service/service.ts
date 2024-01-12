@@ -8,6 +8,7 @@ import {Recensione} from "../Model/Recensione";
 import {DettagliOrdine} from "../Model/DettagliOrdine";
 import {Ordini} from "../Model/Ordini";
 import {Carrello} from "../Model/Carrello";
+import {Wishlist} from "../Model/Wishlist";
 
 
 @Injectable({
@@ -86,11 +87,11 @@ export class ServiceService {
   }
 
 
-  removeItem(cf: string, id_prodotto: string){
+  removeItemForCart(cf: string, id_prodotto: string){
     return this.http.delete('http://localhost:8080/api/cart/' + cf + '/' + id_prodotto);
   }
 
-  removeAll(cf: string){
+  removeAllForCart(cf: string){
     return this.http.delete('http://localhost:8080/api/cart/' + cf);
   }
 
@@ -124,6 +125,23 @@ export class ServiceService {
 
   sendEmail(body: {}){
     return this.http.post('http://localhost:8080/api/utenti/sendEmail', body);
+  }
+
+  getWishlistProduct(cf: string): Observable<Prodotto[]>{
+    return this.http.get<Prodotto[]>('http://localhost:8080/api/wishlist/findByCf/' + cf);
+  }
+
+
+  removeItemForWishlist(cf: string, id_prodotto: string){
+    return this.http.delete('http://localhost:8080/api/wishlist/' + cf + '/' + id_prodotto);
+  }
+
+  removeAllForWishlist(cf: string){
+    return this.http.delete('http://localhost:8080/api/wishlist/' + cf);
+  }
+
+  addToWishlist(body: {}){
+    return this.http.post('http://localhost:8080/api/prodotti/addToWishlist', body);
   }
 
 }

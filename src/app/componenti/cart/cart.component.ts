@@ -24,7 +24,6 @@ export class CartComponent implements OnInit {
 
 
 
-
   constructor(private route: ActivatedRoute, private service: ServiceService, public dialog: MatDialog) {}
 
   ngOnInit() {
@@ -50,7 +49,7 @@ export class CartComponent implements OnInit {
           this.service.getProductQuantity(this.utente, prod.id).subscribe({
             next: (quantity) =>{
               this.quantita[prod.id] = quantity;
-          }
+            }
           })
         });
         this.calculateTotalAmount();
@@ -86,14 +85,14 @@ export class CartComponent implements OnInit {
 
 
   removeItem(id_prodotto: string) {
-    this.service.removeItem(this.utente, id_prodotto).subscribe({
+    this.service.removeItemForCart(this.utente, id_prodotto).subscribe({
       next: () => window.location.reload()
     })
   }
 
 
   removeAll(cf: string){
-    this.service.removeAll(cf).subscribe({
+    this.service.removeAllForCart(cf).subscribe({
       next: () => window.location.reload()
     })
   }
@@ -101,4 +100,3 @@ export class CartComponent implements OnInit {
 
   protected readonly length = length;
 }
-

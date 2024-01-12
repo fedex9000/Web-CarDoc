@@ -46,6 +46,22 @@ section {
   color: white;
 }
 
+.fab-button-3 {
+  font-size: 20px; /* Regola la dimensione del font */
+  width: 25px; /* Regola la larghezza del pulsante */
+  height: 25px; /* Regola l'altezza del pulsante */
+  background-color: #132530;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
+.fab-button-3 mat-icon {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+  color: red;
+}
+
 
 @media screen and (max-width: 600px){
 
@@ -62,10 +78,10 @@ section {
 
 @media screen and (min-width: 601px) and (max-width: 1500px) {
   .authentication-container{
-    min-width: 1200px;
+    min-width: 1490px;
   }
 
   .logo-container{
-    min-width: 1200px;
+    min-width: 1490px;
   }
 }

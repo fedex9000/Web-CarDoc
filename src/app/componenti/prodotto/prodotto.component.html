@@ -3,7 +3,7 @@
   <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
 </head>
 
-<body>
+
 
 <app-category></app-category>
 
@@ -27,6 +27,9 @@
           <span class="down">-</span>
           <input id="quantityValue" type="text" value="1" disabled>
           <span class="up">+</span>
+          <button mat-fab class="fab-button-3 ml auto" title="Wishlist" (click)="addToWishlist()">
+            <mat-icon>favorite</mat-icon>
+          </button>
         </div>
 
         <button id="addCartButton" (click)="addToCart()">Aggiungi al carrello</button>
@@ -40,7 +43,7 @@
 
   <div class="secondRow">
     <div class="reviewsBox">
-      <p class="noReviewsFound" *ngIf="recensioni.length == 0">Non sono presenti recensioni per questo annuncio.</p>
+      <p class="noReviewsFound" *ngIf="recensioni.length == 0">Non sono presenti recensioni per questo prodotto.</p>
       <div class="reviews" *ngFor="let recensione of recensioni; index as i">
         <p>Scritta da: {{recensione.utente}}</p>
         <p>Recensione: {{recensione.contenuto}}</p>
@@ -82,7 +85,7 @@
     <div class="thirdRow">
       <div class="relatedProductDiv">
         <h1>Articoli correlati:</h1>
-        <mat-grid-list [cols]=1 gutterSize="25px" rowHeight="350px" class="relatedProductMat">
+        <mat-grid-list [cols]=1 gutterSize="25px" rowHeight="380px" class="relatedProductMat">
           <mat-grid-tile *ngFor="let prod of prodottiCorrelati">
             <a href="http://localhost:4200/prodotto/{{prod.id}}" style="text-decoration: none; color: black;">
               <mat-card class="cards">
@@ -103,7 +106,9 @@
     </div>
   </ng-template>
 
-  <app-footer></app-footer>
+  <div class="footerDiv">
+    <app-footer></app-footer>
+  </div>
 
 </div>
 
@@ -126,7 +131,4 @@
 <button mat-fab class="fab-button-2" (click)="addReview()" title="Aggiungi recensione" *ngIf="this.auth.isLoggedIn">
   <mat-icon>add_circle</mat-icon>
 </button>
-
-
-</body>
 

@@ -4,7 +4,7 @@
   <br>
   <label>Valutazione: </label>
   <br>
-  <form class="valutazione" #valutazione>
+  <form class="valutazione">
     <label>
       <input type="radio" name="stars" value="1" />
       <span class="icon">★</span>
@@ -39,6 +39,6 @@
 
 
   <div class="closeAlertButton" mat-dialog-actions>
-    <button mat-button mat-dialog-close (click)="addReview()">Pubblica</button>
+    <button id="pubblicaButton" mat-button mat-dialog-close (click)="addReview()">Pubblica</button>
   </div>
 </div>

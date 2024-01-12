@@ -9,7 +9,6 @@ import {AuthService} from "../../auth/auth.service";
 import {ErrordialogComponent} from "../errordialog/errordialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AddReviewComponent} from "../add-review/add-review.component";
-import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 import {BreakpointObserver, BreakpointState} from "@angular/cdk/layout";
 
 @Component({
@@ -197,6 +196,24 @@ export class ProdottoComponent implements OnInit{
       idProdotto: this.stringID,
       quantity: quantityValue,
       prezzo: quantityValue * this.prezzo,
+    }).subscribe({
+      next: () => {
+        window.location.reload();
+      }
+    });
+  }
+
+
+  addToWishlist() {
+    let utente = localStorage.getItem("cf");
+    if (utente == null){
+      utente = "null";
+    }
+
+    this.service.addToWishlist({
+      cf: utente,
+      idProdotto: this.stringID,
+      prezzo: this.prezzo,
     }).subscribe({
       next: () => {
         window.location.reload();

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatButton } from '@angular/material/button';
 import {AuthService} from "../../auth/auth.service";
 import {ErrordialogComponent} from "../errordialog/errordialog.component";
 import {SuccessdialogComponent} from "../successdialog/successdialog.component";
@@ -51,15 +50,6 @@ export class ProfiloComponent implements OnInit{
     this.showPassword = !this.showPassword;
   }
 
-  loadOrdini(){
-    this.service.getOrderById(this.utente).subscribe({
-      next: (ordini) => {
-        this.ordini = ordini;
-      }
-    })
-
-  }
-
   sendToServer(): void {
     let successMessage = "Dati aggiornati con successo";
 
@@ -90,11 +80,19 @@ export class ProfiloComponent implements OnInit{
     });
   }
 
+  loadOrdini(){
+    this.service.getOrderById(this.utente).subscribe({
+      next: (ordini) => {
+        this.ordini = ordini;
+      }
+    })
+  }
+
+
   viewDetailOrder(numeroOrdine: number){
     this.numeroOrdine = numeroOrdine;
     localStorage.setItem("ordineSelezionato", String(this.numeroOrdine));
     this.dialog.open(DettagliOrdineComponent);
-
   }
 }
 

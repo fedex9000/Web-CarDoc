@@ -11,7 +11,6 @@ export class AddReviewComponent implements AfterViewInit{
   @ViewChild('descriptionInput') descriptionInput?: ElementRef;
   @ViewChild('myCheckbox') checkbox?: ElementRef;
   selectedStars: any;
-  isChecked: boolean = false;
 
   constructor(
     private auth: AuthService,
@@ -31,10 +30,8 @@ export class AddReviewComponent implements AfterViewInit{
   }
 
   addReview(): void {
-    // Get the value of the textarea
     const descriptionValue = this.descriptionInput?.nativeElement.value;
 
-    // Get the value of the selected stars
     const starsNumber = parseInt(this.selectedStars, 10);
 
     this.service.setRecensione({
