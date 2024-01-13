@@ -165,7 +165,7 @@ export class ProdottoComponent implements OnInit{
         break;
 
       case 'mail':
-        const subject = encodeURIComponent(`Check out this property: ${this.nome}`);
+        const subject = encodeURIComponent(`Check out this product: ${this.nome}`);
         const body = encodeURIComponent(`${this.descrizione}\nPrice: ${this.prezzo}€\n\n${shareUrl}`);
         const mailtoUrl = `mailto:?subject=${subject}&body=${body}`;
         window.location.href = mailtoUrl;

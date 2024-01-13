@@ -9,6 +9,11 @@
   padding: 20px;
 }
 
+.img {
+  height: 46px;
+  width: 46px;
+}
+
 
 #leafletMap {
   z-index: 1;
@@ -67,6 +72,11 @@
 
   #footer {
     margin-right: 25px;
+  }
+
+  .img {
+    height: 40px;
+    width: 40px;
   }
 
 }
