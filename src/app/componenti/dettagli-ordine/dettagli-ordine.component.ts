@@ -10,7 +10,7 @@ import {AuthService} from "../../auth/auth.service";
   styleUrl: './dettagli-ordine.component.css'
 })
 export class DettagliOrdineComponent implements OnInit{
-  dettagliOrdine: DettagliOrdine[] = [];
+  dettagli_Ordine: DettagliOrdine[] = [];
   utente: any = localStorage.getItem("cf");
   images: { [key: string]: string } = {};
 
@@ -20,9 +20,9 @@ export class DettagliOrdineComponent implements OnInit{
   constructor(private service: ServiceService, public dialog: MatDialog) {}
 
 
-  ngOnInit(): void {
+ ngOnInit() {
     this.loadDetailOrder()
-  }
+ }
 
   loadDetailOrder(){
     this.service.getDetailOrderByNumber({
@@ -30,7 +30,7 @@ export class DettagliOrdineComponent implements OnInit{
       numeroOrdine: localStorage.getItem("ordineSelezionato"),
     }).subscribe({
       next: (dettagliOrdine) => {
-        this.dettagliOrdine = dettagliOrdine;
+        this.dettagli_Ordine = dettagliOrdine;
         dettagliOrdine.forEach(dettagli => {
           this.service.findImageByProductID(dettagli.idProdotto).subscribe({
             next: (img) => {
