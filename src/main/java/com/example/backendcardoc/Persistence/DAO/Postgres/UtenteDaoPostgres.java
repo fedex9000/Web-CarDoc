@@ -103,7 +103,7 @@ public class UtenteDaoPostgres implements UtenteDao {
     @Override
     public void delete(Utente utente) {
         if (findByPrimaryKey(utente.getCf()) == null) return;
-        String query = "delete from utenti where id = ?";
+        String query = "delete from utenti where cf = ?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
             st.setString(1, utente.getCf());
