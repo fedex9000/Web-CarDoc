@@ -107,6 +107,10 @@ export class AcquistoComponent {
     window.location.reload();
   }
 
+
+
+
+
   addProductOnOrder() {
     this.service.findLastNumberOrder(this.utente).subscribe({
       next: (lastNumberOrder) => {
