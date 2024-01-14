@@ -31,6 +31,11 @@ export class ServiceService {
     return this.http.get<Utente>('http://localhost:8080/api/utenti/' + cf );
   }
 
+  removeUtente(cf: string){
+    console.log("cazzo");
+    return this.http.delete('http://localhost:8080/api/utenti/' + cf);
+  }
+
   getProdotti(): Observable<Prodotto[]>{
     return this.http.get<Prodotto[]>('http://localhost:8080/api/prodotti/findAll');
   }

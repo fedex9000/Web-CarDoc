@@ -10,10 +10,12 @@ body {
 .background {
   position: relative;
   height: 100vh;
+  width: auto;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  align-content: center;
 }
 
 .background::before {
@@ -44,81 +46,116 @@ body {
   position: relative;
   z-index: 1;
   max-width: 500px;
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
   padding: 30px;
   margin: 20px auto;
+  margin-top: -180px;
 }
 
-.AddProductForm {
+
+.RemoveUserContainer {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center; /* Center elements vertically */
 }
 
-.AddProductForm input,
-.AddProductForm textarea,
-.AddProductForm select {
+
+.RemoveUserForm {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  align-content: center;
-  display: block;
-  width: 100%;
+  position: relative;
+}
+
+.RemoveUserForm {
+  margin-top: 10px; /* Add margin to separate from the previous form */
+}
+
+
+.RemoveUserForm input,
+.RemoveUserForm select {
+  flex: 1;
   padding: 10px;
-  max-width: 100%;
-  min-width: 100%;
-  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  margin-bottom: 10px;
 }
 
-.AddProductForm textarea {
-  min-height: 60px;
-  max-height: 100px;
-}
 
-.AddProductForm button, .openNewPageButton, .deleteProductButton {
-  margin-top: 10px;
-  display: block;
-  width: 100%;
+.RemoveUserForm button {
+  flex: 1;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #ff9900;
   color: #fff;
   border: none;
   border-radius: 3px;
   cursor: pointer;
 }
 
-.deleteProductButton {
-  background-color: #b30000
+.RemoveUserForm button {
+  height: 36px;
+  margin-left: 10px;
 }
 
-.AddProductForm select {
-  color: #757575;
-}
 
-.address-fields {
-  display: flex;
-  flex-direction: column;
 
-}
-
-.address-row {
-  padding-top: 10px;
-  display: flex;
-  gap: 10%;
-  max-width: 31.23%;
-}
-
-.loginTitle {
+.success-message,
+.error-message {
+  margin-top: 260px;
+  border-radius: 5px;
+  position: absolute;
+  height: 45px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.success-message {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+.error-message {
+  background-color: #e74c3c;
+  color: #fff;
 }
 
 
 
-@media (max-width: 480px) {
-  .container {
-    padding: 15px;
+
+@media (max-width: 600px) {
+  .RemoveUserForm input,
+  .RemoveUserForm select,
+  .RemoveUserForm button {
+    width: 100%;
   }
+
+  .RemoveUserForm button {
+    height: 36px;
+    margin-left: 10px;
+    max-width: 80px;
+  }
+
+  .container {
+    width: 90%;
+  }
+
+  .success-message,
+  .error-message{
+    padding: 30px;
+    margin: 20px;
+    margin-top: 100px;
+  }
+}
+
+
+@media screen and (min-width: 601px) and (max-width: 1500px) {
+  .background{
+    min-width: 1490px;
+  }
+
 }

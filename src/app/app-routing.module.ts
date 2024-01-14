@@ -9,6 +9,7 @@ import {AcquistoComponent} from "./componenti/acquisto/acquisto.component";
 import {CartComponent} from "./componenti/cart/cart.component";
 import {PasswordRecoveryComponent} from "./componenti/password-recovery/password-recovery.component";
 import {WishlistComponent} from "./componenti/wishlist/wishlist.component";
+import {AggiungiProdottoComponent} from "./componenti/aggiungi-prodotto/aggiungi-prodotto.component";
 
 
 const routes: Routes = [
@@ -22,6 +23,8 @@ const routes: Routes = [
       {path: 'acquisto', component:  AcquistoComponent},
       { path: 'password-recovery', component: PasswordRecoveryComponent},
       {path: 'wishlist', component: WishlistComponent},
+      {path: 'aggiungi-prodotto', component:  AggiungiProdottoComponent},
+
 
     ]},
 ];
