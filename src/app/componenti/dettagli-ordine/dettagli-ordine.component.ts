@@ -3,6 +3,8 @@ import {DettagliOrdine} from "../../Model/DettagliOrdine";
 import {ServiceService} from "../../Service/service";
 import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "../../auth/auth.service";
+import {Utente} from "../../Model/Utente";
+
 
 @Component({
   selector: 'app-dettagli-ordine',
@@ -10,19 +12,20 @@ import {AuthService} from "../../auth/auth.service";
   styleUrl: './dettagli-ordine.component.css'
 })
 export class DettagliOrdineComponent implements OnInit{
-  dettagli_Ordine: DettagliOrdine[] = [];
+  dettagliOrdine: DettagliOrdine[] = [];
   utente: any = localStorage.getItem("cf");
   images: { [key: string]: string } = {};
-
+  infoUtente: Utente | undefined;
 
 
 
   constructor(private service: ServiceService, public dialog: MatDialog) {}
 
 
- ngOnInit() {
+  ngOnInit() {
     this.loadDetailOrder()
- }
+    this.findDetailUtenteByCf()
+  }
 
   loadDetailOrder(){
     this.service.getDetailOrderByNumber({
@@ -30,7 +33,7 @@ export class DettagliOrdineComponent implements OnInit{
       numeroOrdine: localStorage.getItem("ordineSelezionato"),
     }).subscribe({
       next: (dettagliOrdine) => {
-        this.dettagli_Ordine = dettagliOrdine;
+        this.dettagliOrdine = dettagliOrdine;
         dettagliOrdine.forEach(dettagli => {
           this.service.findImageByProductID(dettagli.idProdotto).subscribe({
             next: (img) => {
@@ -43,8 +46,16 @@ export class DettagliOrdineComponent implements OnInit{
         });
       }
     })
+  }
 
+  findDetailUtenteByCf(){
+    this.service.findDetailUtenteByCf(this.utente).subscribe({
+      next:(utente) =>{
+        this.infoUtente = utente;
+      }
+    })
   }
 
 
+  protected readonly localStorage = localStorage;
 }

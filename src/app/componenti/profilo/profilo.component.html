@@ -57,7 +57,7 @@
           <td>{{ elemento.prezzoTotale }}€</td>
           <td>{{ elemento.data }}</td>
           <td>
-            <button class="detail-button" (click)="viewDetailOrder(elemento.numeroOrdine)">Dettagli Ordine</button>
+            <button class="detail-button" (click)="viewDetailOrder(elemento.numeroOrdine, elemento.data)">Dettagli Ordine</button>
           </td>
         </tr>
         </tbody>

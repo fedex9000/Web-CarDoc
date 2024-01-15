@@ -89,10 +89,11 @@ export class ProfiloComponent implements OnInit{
   }
 
 
-  viewDetailOrder(numeroOrdine: number){
+  viewDetailOrder(numeroOrdine: number, data:string){
     this.numeroOrdine = numeroOrdine;
     localStorage.setItem("ordineSelezionato", String(this.numeroOrdine));
-    this.dialog.open(DettagliOrdineComponent);
+    localStorage.setItem("dataOrdine",data);
+    window.open('http://localhost:4200/dettagliOrdine','_self')
   }
 }
 

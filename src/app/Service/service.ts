@@ -149,4 +149,8 @@ export class ServiceService {
     return this.http.post('http://localhost:8080/api/prodotti/addToWishlist', body);
   }
 
+  findDetailUtenteByCf(cf: string){
+    return this.http.get<Utente>('http://localhost:8080/api/utenti/' + cf);
+  }
+
 }
