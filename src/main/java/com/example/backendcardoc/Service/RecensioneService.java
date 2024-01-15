@@ -12,12 +12,6 @@ public class RecensioneService {
         DBManager.getInstance().getRecensioneDAO().saveOrUpdate(recensione);
     }
 
-    public ResponseEntity<Recensione> getByID(int id){
-        Recensione recensione = DBManager.getInstance().getRecensioneDAO().findByPrimaryKey(id);
-        if(recensione == null)
-            return ResponseEntity.notFound().build(); //se non esiste restituisce il '404:file not found'
-        return ResponseEntity.ok(recensione); //genera un entità di risposta positiva
-    }
 
     public ResponseEntity<List<Recensione>> getByProductID(String id) {
         List<Recensione> recensioni = DBManager.getInstance().getRecensioneDAO().findByProduct(id);
@@ -34,18 +28,4 @@ public class RecensioneService {
         return ResponseEntity.noContent().build();
     }
 
-    public ResponseEntity<Recensione> updateRecensione(int id, Recensione recensione){
-        Recensione recensione1 = DBManager.getInstance().getRecensioneDAO().findByPrimaryKey(id);
-        if(recensione == null)
-            return ResponseEntity.notFound().build();
-        else {
-            recensione1.setContenuto(recensione.getContenuto());
-            recensione1.setRating(recensione.getRating());
-            recensione1.setUtente(recensione.getUtente());
-            recensione1.setProdotto(recensione.getProdotto());
-            if (DBManager.getInstance().getRecensioneDAO().saveOrUpdate(recensione1))
-                return ResponseEntity.ok(recensione1);
-            else return ResponseEntity.internalServerError().build();
-        }
-    }
 }

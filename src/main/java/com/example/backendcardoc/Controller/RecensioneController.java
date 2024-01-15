@@ -24,11 +24,6 @@ public class RecensioneController {
         r.saveOrUpdateRecensione(recensione);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Recensione> findByID(@PathVariable int id) {
-        return r.getByID(id);
-    }
-
     @GetMapping("/findByProduct/{id}")
     public ResponseEntity<List<Recensione>> findByProductID(@PathVariable String id) {
         return r.getByProductID(id);

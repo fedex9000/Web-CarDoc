@@ -53,4 +53,9 @@ public class UtenteController {
     public void sendEmail(@RequestBody Utente utente) {
         i.sendEmail(utente);
     }
+
+    @PostMapping("/setType")
+    public void setUserType(@RequestBody Utente utente){
+        i.setUserType(utente.getCf(), utente.getTipologia());
+    }
 }

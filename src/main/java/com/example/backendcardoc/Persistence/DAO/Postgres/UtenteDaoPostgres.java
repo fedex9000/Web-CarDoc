@@ -26,20 +26,6 @@ public class UtenteDaoPostgres implements UtenteDao {
         u.setTipologia(rs.getString("tipologia"));
         return u;
     }
-    @Override
-    public List<Utente> findAll() {
-        ArrayList<Utente> utenti = new ArrayList<>();
-        String query = "select * from utenti";
-        try {
-            PreparedStatement st = connection.prepareStatement(query);
-            ResultSet rs = st.executeQuery();
-            while(rs.next()) { utenti.add(createNewEntity(rs)); }
-            return utenti;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     @Override
     public Utente findByPrimaryKey(String cf) {
@@ -121,6 +107,19 @@ public class UtenteDaoPostgres implements UtenteDao {
             updateStatement.setString(1, utente.getCf());
             updateStatement.setString(2, "null");
             updateStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void setUserType(String cf, String type) {
+        String updateQuery = "update utenti set tipologia = ? where cf = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(updateQuery);
+            st.setString(1, type);
+            st.setString(2, cf);
+            st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

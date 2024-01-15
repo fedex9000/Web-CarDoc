@@ -19,9 +19,4 @@ public class ImagesService {
         return ResponseEntity.ok(immagine);
     }
 
-    public ResponseEntity<Immagine> getById(Integer id) {
-        Immagine immagine = DBManager.getInstance().getImmagineDao().findByPrimaryKey(id);
-        if(immagine == null) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(immagine);
-    }
 }

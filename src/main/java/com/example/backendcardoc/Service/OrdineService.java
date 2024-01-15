@@ -25,6 +25,7 @@ public class OrdineService {
         return ResponseEntity.ok(dettagliOrdines);
     }
 
+
     public ResponseEntity<Integer> findLastNumberOrder(String cf) {
         int lastNumeroVenduti = DBManager.getInstance().getOrderDao().findLastNumberOrder(cf);
         if (lastNumeroVenduti == 0)

@@ -5,7 +5,6 @@ import com.example.backendcardoc.Persistence.Model.Utente;
 import java.util.List;
 
 public interface UtenteDao {
-    List<Utente> findAll(); // Restituisce una lista di utenti
 
     Utente findByPrimaryKey(String cf); // Restituisce un utente dato il codice fiscale (id)
 
@@ -16,4 +15,6 @@ public interface UtenteDao {
     void delete(Utente utente); // Cancella un utente
 
     void recoveryNullCart(Utente utente);
+
+    void setUserType(String cf, String type);
 }

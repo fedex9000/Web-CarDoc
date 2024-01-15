@@ -27,25 +27,7 @@ public class RecensioneDaoPostgres implements RecensioneDao {
         r.setRating(rs.getShort("rating"));
         return r;
     }
-/*
-    @Override
-    public List<Recensione> findAll() {
-        ArrayList<Recensione> recensioni = new ArrayList<>();
-        String query = "select * from recensioni";
-        try {
-            PreparedStatement st = connection.prepareStatement(query);
-            ResultSet rs = st.executeQuery();
-            while(rs.next()) { recensioni.add(createNewRecensione(rs)); }
-            return recensioni;
-        }
-        catch (SQLException e) {
-            // TODO: Delete stacktrace and add proper sql exception
-            e.printStackTrace();
-        }
-        return null;
-    }
 
- */
 
     @Override
     public Recensione findByPrimaryKey(int id) {

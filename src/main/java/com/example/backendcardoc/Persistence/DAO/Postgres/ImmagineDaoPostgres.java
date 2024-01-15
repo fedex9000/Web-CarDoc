@@ -27,22 +27,6 @@ public class ImmagineDaoPostgres implements ImmagineDao {
     }
 
     @Override
-    public List<Immagine> findAll() {
-        ArrayList<Immagine> immagine = new ArrayList<>();
-        String query = "select * from immagini";
-        try {
-            PreparedStatement st = connection.prepareStatement(query);
-            ResultSet rs = st.executeQuery();
-            while(rs.next()) { immagine.add(createNewImage(rs)); }
-            return immagine;
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
     public Immagine findByPrimaryKey(Integer id) {
         String query = "select * from immagini where id=?";
         try {

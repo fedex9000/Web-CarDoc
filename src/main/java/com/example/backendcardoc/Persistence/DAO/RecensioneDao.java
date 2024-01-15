@@ -5,7 +5,6 @@ import com.example.backendcardoc.Persistence.Model.Recensione;
 import java.util.List;
 
 public interface RecensioneDao {
-    //List<Recensione> findAll(); //restituisce una lista di tutti gli annunci
 
     Recensione findByPrimaryKey(int id); //restituisce un annuncio data la chiave primaria
 

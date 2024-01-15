@@ -27,8 +27,4 @@ public class ImagesController {
         return i.getById_prodotto(id);
     }
 
-    @GetMapping("findImageByCategory/{category}")
-    public ResponseEntity<Immagine> findImageByCategory(@PathVariable String id) {
-        return i.getById_prodotto(id);
-    }
 }
