@@ -5,7 +5,6 @@ import {ErrordialogComponent} from "../errordialog/errordialog.component";
 import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 import {ServiceService} from "../../Service/service";
 import {Ordini} from "../../Model/Ordini";
-import {DettagliOrdineComponent} from "../dettagli-ordine/dettagli-ordine.component";
 
 
 @Component({
@@ -31,7 +30,6 @@ export class ProfiloComponent implements OnInit{
   constructor(private service: ServiceService, public dialog: MatDialog, private auth: AuthService) {}
 
   ngOnInit(): void {
-    if(!this.auth.isLoggedIn) window.open("http://localhost:4200/home", "_self")
     this.nomeValue = localStorage.getItem("nome") || "";
     this.cognomeValue = localStorage.getItem("cognome") || "";
     this.telefonoValue = localStorage.getItem("telefono") || "";

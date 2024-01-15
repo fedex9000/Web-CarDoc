@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import {ServiceService} from "../../Service/service";
+import {MatDialog} from "@angular/material/dialog";
 import {ErrordialogComponent} from "../errordialog/errordialog.component";
-import { NgxImageCompressService } from 'ngx-image-compress';
 import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 @Component({
   selector: 'app-admin-cpl',
@@ -12,21 +11,30 @@ import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 })
 export class AdminCplComponent implements OnInit{
   public RimuoviUserForm: FormGroup = new FormGroup({});
+  public TipologyUserForm: FormGroup = new FormGroup({});
+
   showSuccessMessage: boolean = false;
   showErrorMessage: boolean = false;
 
 
-  constructor(private service: ServiceService) {
+  constructor(private service: ServiceService, public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.RimuoviUserForm = new FormGroup({
       cf: new FormControl()
     })
+    this.TipologyUserForm =  new FormGroup({
+      cf: new FormControl(),
+      tipologia: new FormControl()
+    })
   }
 
   onRemoveUserFormSubmit(){
     let cf = this.RimuoviUserForm.value.cf;
+    if (cf == null || cf == "null"){
+      return;
+    }
     this.service.getUtente(cf).subscribe({
       next: (utente) => {
         if (utente != null){
@@ -41,7 +49,31 @@ export class AdminCplComponent implements OnInit{
         this.showErrorMessage = true;
       }
     })
-
   }
+
+  setUserType(){
+    let cf = this.TipologyUserForm.value.cf;
+    let tipologia = this.TipologyUserForm.value.tipologia.toLowerCase();
+    this.service.getUtente(cf).subscribe({
+      next: (utente)=>{
+        if (utente != null && (tipologia == "admin" || tipologia == "utente")){
+          this.service.setUserType({
+            nome: utente.nome,
+            cognome: utente.cognome,
+            cf: utente.cf,
+            telefono: utente.telefono,
+            email: utente.email,
+            password: utente.password,
+            tipologia: tipologia,
+          }).subscribe()
+          this.dialog.open(SuccessdialogComponent);
+          this.TipologyUserForm.reset();
+        }else{
+          this.dialog.open(ErrordialogComponent);
+        }
+      }
+    })
+  }
+
 
 }

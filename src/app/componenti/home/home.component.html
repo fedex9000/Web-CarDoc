@@ -4,6 +4,26 @@
 
 
 
+<div class="filtriRicercaContainer">
+  <p id="risultati"><strong style="color: #333;">Risultati: {{prodotti.length}}</strong></p>
+  <form class="formFiltri" [formGroup]="formFiltri">
+    <div class="filtriContainer">
+      <select id="sort" class="orderSelect" formControlName="sort" [(ngModel)]="tipoSortValue" (change)="tipoSortValueChange($event)" required>
+        <option value="" selected disabled>Seleziona tipo di ordinamento</option>
+        <option class="optionEntry" value="crescente">Prezzo: crescente</option>
+        <option class="optionEntry" value="decrescente">Prezzo: descrescente</option>
+        <option class="optionEntry" value="A-Z">Alfabetico: A-Z</option>
+        <option class="optionEntry" value="Z-A">Alfabetico: Z-A</option>
+        <option class="optionEntry" value="maxVenduti">Più venduti</option>
+        <option class="optionEntry" value="minVenduti">Meno venduti</option>
+      </select>
+    </div>
+  </form>
+</div>
+
+
+
+
 <!--PRODOTTI-->
 <ng-container *ngIf="noProductFound; else productsFound">
   <img id="productNotFound" src="assets/product_not_found.png" alt="No product found">

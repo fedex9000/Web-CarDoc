@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {DettagliOrdine} from "../../Model/DettagliOrdine";
 import {ServiceService} from "../../Service/service";
 import {MatDialog} from "@angular/material/dialog";
-import {AuthService} from "../../auth/auth.service";
 import {Utente} from "../../Model/Utente";
 
 
@@ -16,6 +15,7 @@ export class DettagliOrdineComponent implements OnInit{
   utente: any = localStorage.getItem("cf");
   images: { [key: string]: string } = {};
   infoUtente: Utente | undefined;
+  dataOrdine: any = localStorage.getItem("dataOrdine");
 
 
 
@@ -56,6 +56,4 @@ export class DettagliOrdineComponent implements OnInit{
     })
   }
 
-
-  protected readonly localStorage = localStorage;
 }

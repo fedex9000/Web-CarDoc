@@ -32,7 +32,6 @@ export class ServiceService {
   }
 
   removeUtente(cf: string){
-    console.log("cazzo");
     return this.http.delete('http://localhost:8080/api/utenti/' + cf);
   }
 
@@ -151,6 +150,10 @@ export class ServiceService {
 
   findDetailUtenteByCf(cf: string){
     return this.http.get<Utente>('http://localhost:8080/api/utenti/' + cf);
+  }
+
+  setUserType(body: {}) {
+    return this.http.post('http://localhost:8080/api/utenti/setType', body);
   }
 
 }

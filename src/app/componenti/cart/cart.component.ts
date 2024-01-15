@@ -7,6 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 import {AcquistoComponent} from "../acquisto/acquisto.component";
 import {Image} from "../../Model/Image";
+import {ErrordialogComponent} from "../errordialog/errordialog.component";
 
 
 @Component({
@@ -73,7 +74,11 @@ export class CartComponent implements OnInit {
 
 
   completaAcquisto(){
-    this.dialog.open(AcquistoComponent);
+    if (this.utente == null || this.utente == undefined){
+      this.dialog.open(ErrordialogComponent);
+    }else{
+      this.dialog.open(AcquistoComponent);
+    }
   }
 
   verifyPayment(){

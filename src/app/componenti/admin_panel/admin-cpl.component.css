@@ -55,7 +55,7 @@ body {
 }
 
 
-.RemoveUserContainer {
+.RemoveUserContainer, .TipologiaUserForm {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -63,7 +63,7 @@ body {
 }
 
 
-.RemoveUserForm {
+.RemoveUserForm, .TipologiaUserForm {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -76,7 +76,7 @@ body {
 
 
 .RemoveUserForm input,
-.RemoveUserForm select {
+.RemoveUserForm select, .TipologiaUserForm input, .TipologiaUserForm select {
   flex: 1;
   padding: 10px;
   border: 1px solid #ccc;
@@ -85,7 +85,7 @@ body {
 }
 
 
-.RemoveUserForm button {
+.RemoveUserForm button{
   flex: 1;
   padding: 10px;
   background-color: #ff9900;
@@ -93,11 +93,19 @@ body {
   border: none;
   border-radius: 3px;
   cursor: pointer;
-}
-
-.RemoveUserForm button {
   height: 36px;
   margin-left: 10px;
+}
+
+.TipologiaUserForm button {
+  flex: 1;
+  padding: 10px;
+  background-color: #ff9900;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  height: 36px;
 }
 
 
@@ -139,6 +147,13 @@ body {
     margin-left: 10px;
     max-width: 80px;
   }
+
+  .TipologiaUserForm button {
+    margin-top: -9px;
+    margin-left: 10px;
+  }
+
+
 
   .container {
     width: 90%;
