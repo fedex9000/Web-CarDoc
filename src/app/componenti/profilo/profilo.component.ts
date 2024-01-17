@@ -4,6 +4,7 @@ import {ErrordialogComponent} from "../errordialog/errordialog.component";
 import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 import {ServiceService} from "../../Service/service";
 import {Ordini} from "../../Model/Ordini";
+import {BreakpointObserver, BreakpointState} from "@angular/cdk/layout";
 
 
 @Component({
@@ -26,7 +27,19 @@ export class ProfiloComponent implements OnInit{
   cfValue: string = '';
   numeroOrdine: number = 0;
 
-  constructor(private service: ServiceService, public dialog: MatDialog) {}
+  smallDevice: boolean = false;
+
+
+  constructor(private service: ServiceService, public dialog: MatDialog, private breakpointObserver: BreakpointObserver) {
+    // detect screen size changes
+    this.breakpointObserver.observe(["(max-width: 600px)"]).subscribe((result: BreakpointState) => {
+      if (result.matches) {
+        this.smallDevice = true;
+      } else {
+        this.smallDevice = false;
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.nomeValue = localStorage.getItem("nome") || "";
@@ -90,5 +103,6 @@ export class ProfiloComponent implements OnInit{
     localStorage.setItem("dataOrdine",data);
     window.open('http://localhost:4200/dettagliOrdine','_self')
   }
+
 }
 

@@ -256,15 +256,16 @@
   background-color: #e68a00;
 }
 
+.immaginecartvuoto {
+  min-height: 200px;
+  min-width: 230px;
+}
+
 
 
 
 
 @media screen and (max-width: 600px) {
-
-  .totalCartContainer {
-    padding: 20px;
-  }
 
   .container {
     display: flex;

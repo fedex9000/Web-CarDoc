@@ -1,6 +1,6 @@
 <body>
 <div class="background">
-  <div class="firstRow">
+  <div class="firstRow" [ngStyle]="{'display': ordini.length >0 && smallDevice ? 'block' : 'content'}">
     <div class="container">
       <h1>Profilo utente </h1>
       <div class="profile-info">
