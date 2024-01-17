@@ -21,7 +21,7 @@
           <span class="down">-</span>
           <input id="quantityValue" type="text" value="1" disabled>
           <span class="up">+</span>
-          <button mat-fab class="fab-button-3 ml auto" title="Wishlist" (click)="addToWishlist()">
+          <button mat-fab class="fab-button-3 ml auto" *ngIf="this.auth.isLoggedIn" title="Wishlist" (click)="addToWishlist()">
             <mat-icon>favorite</mat-icon>
           </button>
         </div>

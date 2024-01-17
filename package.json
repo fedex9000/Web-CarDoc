@@ -31,6 +31,7 @@
     "express": "^4.18.2",
     "firebase": "^10.7.1",
     "leaflet": "^1.9.4",
+    "leaflet.awesome-markers": "^2.0.5",
     "ngx-image-compress": "^15.1.6",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

@@ -3,14 +3,14 @@
 }
 
 body {
-  margin: 0;
+  margin: auto;
   font-family: Arial, sans-serif;
 }
 
 .background {
   position: relative;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,4 +125,10 @@ body {
   .container {
     padding: 15px;
   }
+
+  .container {
+    margin-top: 140px;
+  }
+
+;
 }

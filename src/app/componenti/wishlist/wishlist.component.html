@@ -20,7 +20,7 @@
                 <tr *ngFor="let prodotto of wishlist; let i = index">
                   <td class="immagine-prodotto">
                     <a href="http://localhost:4200/prodotto/{{prodotto.id}}" style="text-decoration: none; color: black;">
-                      <mat-card>
+                      <mat-card class="immagine">
                         <div>
                           <img mat-card-image [src]="this.images[prodotto.id]" class="matCardImg" onerror="this.src='assets/no_images_found.png'">
                         </div>
@@ -32,7 +32,7 @@
                   <td>{{ prodotto.prezzo | currency:'EUR':'symbol':'1.2-2' }}</td>
                   <td>
                     <div>
-                      <button mat-fab aria-label="Delete icon" class="delete-button" (click)="removeItem(prodotto.id)">
+                      <button mat-fab class="delete-button" (click)="removeItem(prodotto.id)">
                         <mat-icon>delete</mat-icon>
                       </button>
                     </div>
@@ -43,7 +43,7 @@
                 <tr>
                   <td colspan="6"></td>
                   <td>
-                    <button class="btn btn-danger svuota-wishlist" (click)="removeAll(utente)">Svuota Wishlist</button>
+                    <button class="btn svuota-wishlist" (click)="removeAll(utente)">Svuota Wishlist</button>
                   </td>
                 </tr>
                 </tfoot>
@@ -60,8 +60,8 @@
             <h5 class="card-title">Wishlist</h5>
           </div>
           <div class="center">
-            <img src="assets/wishlistvuota.jpg" alt="">
-            <h3 id="wishlist_vuota">Wishlist vuota!</h3>
+            <img class="immaginewishlistvuota"src="assets/wishlistvuota.jpg" alt="">
+            <h3 id="wishlist_vuota" *ngif="wishlist.length != 0">Wishlist vuota!</h3>
             <h5 id="aggiungi">Aggiungi qualcosa al tua wishlist</h5>
             <button onClick="window.open('http://localhost:4200/home','_self')" class="aggiungiOra">Aggiungi ora</button>
           </div>

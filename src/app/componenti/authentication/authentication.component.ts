@@ -1,7 +1,6 @@
-import {Component, Inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from "../../auth/auth.service";
 
-import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-authentication',

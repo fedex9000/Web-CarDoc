@@ -152,6 +152,11 @@ input, select {
   color: #fff;
 }
 
+
+.modifyContent:hover, .applyContent:hover{
+  cursor: pointer;
+}
+
 .applyContent{
   background-color: #b30000;
   color: #fff;

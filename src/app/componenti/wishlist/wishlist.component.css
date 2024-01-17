@@ -85,8 +85,8 @@
 }
 
 .immagine-prodotto-img {
-  max-width: 175px;
-  max-height: 175px;
+  max-width: 125px;
+  max-height: 125px;
 }
 
 .matCardImg {
@@ -107,16 +107,24 @@
   border-radius: 15px;
 }
 
-.btn {
-  font-size: 15px;
-  padding: 5px;
-}
-
 .svuota-wishlist {
+  width: 120px;
+  height: 30px;
   background-color: #e60000;
   color: #ffffff;
   margin-left: 10px;
   border-radius: 15px;
+  cursor: pointer;
+}
+
+.svuota-wishlist:hover,
+.delete-button:hover {
+  background-color: #bf0000
+}
+
+.btn {
+  font-size: 15px;
+  padding: 5px;
 }
 
 .wishlistVuota {
@@ -151,8 +159,8 @@
   color: inherit;
   border: none;
   outline: none;
-  height: 215px;
-  width: 275px;
+  height: 175px;
+  width: 175px;
   margin: 20px 0px;
 }
 
@@ -171,8 +179,8 @@
 }
 
 .immagine-prodotto {
-  max-width: 125px;
-  max-height: 125px;
+  max-width: 85px;
+  max-height: 85px;
 }
 
 #aggiungi {
@@ -183,12 +191,21 @@
 
 .aggiungiOra {
   cursor: pointer;
-  width: 90px;
-  height: 40px;
-  background-color: #ff9900 !important;
-  color: white !important;
+  width: 95px;
+  height: 30px;
+  background-color: #ff9900;
+  color: white;
   margin-top: 30px;
   border-radius: 15px;
+}
+
+.aggiungiOra:hover {
+  background-color: #e68a00;
+}
+
+.immaginewishlistvuota{
+  min-width: 250px;
+  min-height: 200px;
 }
 
 
@@ -201,12 +218,19 @@
 
 @media screen and (max-width: 600px) {
 
+  .container {
+    display: flex;
+    justify-content: center;
+    max-width: 700px;
+  }
+
   .card-table {
-    width: 90%;
+    width: 100%;
     margin-top: 20px;
     position: relative;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
 
   .card-table th:last-child {
@@ -221,10 +245,11 @@
 
   .card-title {
     font-size: 20px;
-    margin-left: 80px;
+    margin-left: 0;
   }
+
   .card-product {
-    transform: scale(0.8);
+    transform: scale(0.9);
   }
 
   .immagine-prodotto-img {
@@ -233,10 +258,15 @@
     margin: auto;
   }
 
+  .immagine{
+    width: 100px;
+  }
+
   .card {
     height: auto;
     margin: 15px;
     padding: 15px;
+    overflow: hidden;
   }
 
   .center {
@@ -249,9 +279,26 @@
   }
 
   .aggiungiOra {
-    width: 70px;
+    width: 100px;
     height: 30px;
     margin-top: 20px;
+  }
+
+  .wishlistVuota {
+    display: flex;
+    justify-content: center;
+    max-width: 800px;
+    max-height: 800px;
+    overflow-y: auto;
+  }
+
+  .immaginewishlistvuota{
+    min-height: 100px;
+    min-width: 100px;
+  }
+
+  .center{
+    max-height: 120%;
   }
 
 }

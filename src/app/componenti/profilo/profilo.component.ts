@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {AuthService} from "../../auth/auth.service";
 import {ErrordialogComponent} from "../errordialog/errordialog.component";
 import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 import {ServiceService} from "../../Service/service";
@@ -27,7 +26,7 @@ export class ProfiloComponent implements OnInit{
   cfValue: string = '';
   numeroOrdine: number = 0;
 
-  constructor(private service: ServiceService, public dialog: MatDialog, private auth: AuthService) {}
+  constructor(private service: ServiceService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.nomeValue = localStorage.getItem("nome") || "";
@@ -70,9 +69,7 @@ export class ProfiloComponent implements OnInit{
       },
       error: () => this.dialog.open(ErrordialogComponent),
       complete: () => {
-        this.dialog.open(SuccessdialogComponent, {
-          data: { successMessage }
-        });
+        this.dialog.open(SuccessdialogComponent);
         this.isEditing = !this.isEditing;
       }
     });

@@ -27,8 +27,8 @@
       <thead>
       <tr>
         <th></th>
-        <th>Numero Ordine</th>
-        <th>Prodotto</th>
+        <th>Nome prodotto</th>
+        <th>Codice prodotto</th>
         <th>Quantità</th>
         <th>Prezzo</th>
         <th>Azioni</th> <!-- Nuova colonna per il bottone -->
@@ -39,7 +39,7 @@
         <td>
           <img id="immagineProdottoOrdine" [src]="this.images[elemento.idProdotto]" alt="Immagine Prodotto">
         </td>
-        <td>{{ elemento.numeroOrdine }}</td>
+        <td>{{ elemento.nomeProdotto }}</td>
         <td>{{ elemento.idProdotto }}</td>
         <td>x{{ elemento.quantita }}</td>
         <td>{{ elemento.prezzo }}€</td>

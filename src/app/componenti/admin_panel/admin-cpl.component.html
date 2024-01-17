@@ -17,7 +17,7 @@
 
     <h2 style="text-align: center;">Cambia tipologia</h2>
     <div class="TipologiaUtenteContainer">
-      <form class="TipologiaUserForm" [formGroup]="TipologyUserForm" (ngSubmit)="setUserType()">
+      <form class="TipologiaUserForm" [formGroup]="TypeUserForm" (ngSubmit)="setUserType()">
         <input type="text" formControlName="cf" placeholder="Codice fiscale Utente" required>
         <input type="text" formControlName="tipologia" placeholder="Tipologia Utente" required>
         <button type="submit">Applica</button>

@@ -15,6 +15,7 @@ import { PasswordRecoveryComponent } from './componenti/password-recovery/passwo
 import { DettagliOrdineComponent } from './componenti/dettagli-ordine/dettagli-ordine.component';
 import { WishlistComponent } from './componenti/wishlist/wishlist.component';
 import { AggiungiProdottoComponent } from './componenti/aggiungi-prodotto/aggiungi-prodotto.component';
+import { ErrorcartComponent } from './componenti/errorcart/errorcart.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -58,6 +59,7 @@ import {MatStepperModule} from "@angular/material/stepper";
     PasswordRecoveryComponent,
     WishlistComponent,
     AggiungiProdottoComponent,
+    ErrorcartComponent,
 
   ],
   imports: [

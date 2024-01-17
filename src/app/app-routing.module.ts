@@ -22,7 +22,7 @@ const routes: Routes = [
       {path: 'prodotto/:id', component:  ProdottoComponent},
       {path: 'carrello', component:  CartComponent},
       {path: 'acquisto', component:  AcquistoComponent},
-      { path: 'password-recovery', component: PasswordRecoveryComponent},
+      {path: 'password-recovery', component: PasswordRecoveryComponent},
       {path: 'wishlist', component: WishlistComponent},
       {path: 'aggiungi-prodotto', component:  AggiungiProdottoComponent},
       {path: 'dettagliOrdine', component: DettagliOrdineComponent},

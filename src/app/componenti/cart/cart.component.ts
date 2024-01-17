@@ -1,13 +1,11 @@
-import {AfterViewInit, Component, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import { Prodotto } from "../../Model/Prodotto";
 import { ServiceService } from "../../Service/service";
 import { ActivatedRoute } from "@angular/router";
-import {Observable} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
-import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 import {AcquistoComponent} from "../acquisto/acquisto.component";
-import {Image} from "../../Model/Image";
 import {ErrordialogComponent} from "../errordialog/errordialog.component";
+import {ErrorcartComponent} from "../errorcart/errorcart.component";
 
 
 @Component({
@@ -75,7 +73,7 @@ export class CartComponent implements OnInit {
 
   completaAcquisto(){
     if (this.utente == null || this.utente == undefined){
-      this.dialog.open(ErrordialogComponent);
+      this.dialog.open(ErrorcartComponent);
     }else{
       this.dialog.open(AcquistoComponent);
     }

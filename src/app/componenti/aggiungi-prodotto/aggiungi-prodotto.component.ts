@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ServiceService} from "../../Service/service";
 import {MatDialog} from "@angular/material/dialog";
@@ -11,7 +11,7 @@ import {SuccessdialogComponent} from "../successdialog/successdialog.component";
   templateUrl: './aggiungi-prodotto.component.html',
   styleUrl: './aggiungi-prodotto.component.css'
 })
-export class AggiungiProdottoComponent {
+export class AggiungiProdottoComponent implements OnInit{
 
   public formAggiungiProdotto: FormGroup = new FormGroup({});
 
@@ -33,6 +33,7 @@ export class AggiungiProdottoComponent {
       prezzo: new FormControl(),
       foto: new FormControl(),
     });
+
   }
 
 

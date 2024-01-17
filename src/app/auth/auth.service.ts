@@ -1,4 +1,3 @@
-import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {ServiceService} from "../Service/service";
 import {ActivatedRoute} from "@angular/router";

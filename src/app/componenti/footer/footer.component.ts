@@ -7,26 +7,24 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit, AfterViewInit {
-  originalAddress: String = "";
-  addressComponents: any;
+  address: any;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
-    const [] = this.originalAddress.split(';').map(component => component.trim());
-    this.addressComponents = {
+    this.address = {
       street: 'V.le delle Scienze',
       city: 'Quattromiglia',
       county: 'CS',
       postalcode: 87036
     };
-    this.addressComponents.street = this.addressComponents.street.split(" ").join("+");
+    this.address.street = this.address.street.split(" ").join("+");
   }
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       import('./leaflet-map').then((mapModule) => {
-        mapModule.initMap(this.addressComponents);
+        mapModule.initMap(this.address);
       });
     }
   }

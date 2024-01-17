@@ -123,6 +123,16 @@
   margin-right: 3px;
 }
 
+.total-block {
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+.btn {
+  font-size: 15px;
+  padding: 5px;
+}
+
 .delete-button {
   background-color: #e60000;
   color: #ffffff;
@@ -134,29 +144,32 @@
   border-radius: 15px;
 }
 
-.total-block {
-  margin-left: 20px;
-  font-size: 18px;
-}
-
-.btn {
-  font-size: 15px;
-  padding: 5px;
-}
-
 .svuota-carrello {
+  height: 30px;
   background-color: #e60000;
   color: #ffffff;
   margin-left: 10px;
   border-radius: 15px;
+  cursor: pointer;
+}
+
+.delete-button:hover,
+.svuota-carrello:hover {
+  background-color: #bf0000;
 }
 
 .procedi {
-  background-color: forestgreen;
+  width: 150px;
+  height: 30px;
+  background-color: #4caf50;
   color: white;
   margin-left: 10px;
-  font-size: 12px;
   border-radius: 15px;
+  cursor: pointer;
+}
+
+.procedi:hover {
+  background-color: #388e3c;
 }
 
 .cartVuoto {
@@ -176,11 +189,6 @@
   height: 60vh;
   margin: 25px;
   padding: 25px;
-}
-
-.card-title {
-  font-size: 20px;
-  margin-left: 80px;
 }
 
 .center {
@@ -215,13 +223,17 @@
   color: black;
 }
 
-.immagine {
-  max-height: 150px;
-  max-width: 150px;
+.immagine-prodotto {
+  max-height: 85px;
+  max-width: 85px;
 }
 .immagine-prodotto-img {
-  max-width: 175px;
-  max-height: 175px;
+  max-width: 125px;
+  max-height: 125px;
+}
+
+.immagine {
+  width: 65px;
 }
 
 #aggiungi {
@@ -233,16 +245,16 @@
 .compraOra {
   cursor: pointer;
   width: 90px;
-  height: 40px;
-  background-color: #ff9900 !important;
-  color: white !important;
+  height: 30px;
+  background-color: #ff9900;
+  color: white;
   margin-top: 30px;
   border-radius: 15px;
 }
 
-
-
-
+.compraOra:hover {
+  background-color: #e68a00;
+}
 
 
 
@@ -257,14 +269,16 @@
   .container {
     display: flex;
     justify-content: center;
+    max-width: 700px;
   }
 
   .card-table {
-    width: 90%;
+    width: 100%;
     margin-top: 20px;
     position: relative;
     display: flex;
     flex-direction: column;
+    overflow: hidden; /* Aggiunto per evitare il taglio */
   }
 
   .card-table th:last-child {
@@ -278,18 +292,19 @@
   }
 
   .card-product {
-    transform: scale(0.8);
+    transform: scale(0.9);
   }
 
   .card {
     height: auto;
     margin: 15px;
     padding: 15px;
+    overflow: hidden;
   }
 
   .card-title {
     font-size: 20px;
-    margin-left: 80px;
+    margin-left: 0;
   }
 
   .center {
@@ -306,10 +321,33 @@
     height: 100px;
     margin: auto;
   }
+  .immagine{
+    width: 80px;
+  }
 
   .compraOra {
-    width: 70px;
+    width: 90px;
     height: 30px;
     margin-top: 20px;
   }
+
+  .cartVuoto {
+    display: flex;
+    justify-content: center;
+    max-width: 800px;
+    max-height: 800px;
+    overflow-y: auto;
+
+  }
+
+  .immaginecartvuoto{
+    max-height: 100px;
+    max-width: 100px;
+  }
+
+  .center{
+    max-height: 120%;
+  }
+
+
 }

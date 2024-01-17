@@ -35,7 +35,7 @@
                       <input id="quantityValue" type="text" value="{{this.quantita[prodotto.id]}}" disabled>
                     </div>
                     <div>
-                      <button mat-fab aria-label="Delete icon" class="delete-button" (click)="removeItem(prodotto.id)">
+                      <button mat-fab class="delete-button" (click)="removeItem(prodotto.id)">
                         <mat-icon>delete</mat-icon>
                       </button>
                     </div>
@@ -43,16 +43,16 @@
                 </tr>
                 </tbody>
                 <tfoot>
-                <tr>
+                <tr class="bottoni">
                   <td colspan="3"></td>
                   <td class="total-block">
                     <strong>Totale: {{ grandTotal | currency:'EUR':'symbol':'1.2-2' }}</strong>
                   </td>
                   <td>
-                    <button class="btn btn-danger svuota-carrello" (click)="removeAll(utente)">Svuota Carrello</button>
+                    <button class="btn svuota-carrello" (click)="removeAll(utente)">Svuota Carrello</button>
                   </td>
                   <td>
-                    <button class="btn btn-success procedi" (click)="completaAcquisto()">Procedi con l'ordine</button>
+                    <button class="btn procedi" (click)="completaAcquisto()">Procedi con l'ordine</button>
                   </td>
                 </tr>
                 </tfoot>
@@ -66,10 +66,10 @@
       <div class="cartVuoto">
         <ng-container *ngIf="cart.length === 0">
           <div class="card">
-            <h5 class="card-title">Carrello</h5>
+            <h5 class="card-title" *ngif="cart.length != 0">Carrello</h5>
           </div>
           <div class="center">
-            <img src="assets/cartvuoto.jpg" alt="">
+            <img class="immaginecartvuoto" src="assets/cartvuoto.jpg" alt="">
             <h3 id="carrello_vuoto">Carrello vuoto!</h3>
             <h5 id="aggiungi">Aggiungi qualcosa al tuo carrello</h5>
             <button onClick="window.open('http://localhost:4200/home','_self')" class="compraOra">Compra ora</button>

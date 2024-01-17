@@ -11,7 +11,7 @@ import {SuccessdialogComponent} from "../successdialog/successdialog.component";
 })
 export class AdminCplComponent implements OnInit{
   public RimuoviUserForm: FormGroup = new FormGroup({});
-  public TipologyUserForm: FormGroup = new FormGroup({});
+  public TypeUserForm: FormGroup = new FormGroup({});
 
   showSuccessMessage: boolean = false;
   showErrorMessage: boolean = false;
@@ -24,7 +24,7 @@ export class AdminCplComponent implements OnInit{
     this.RimuoviUserForm = new FormGroup({
       cf: new FormControl()
     })
-    this.TipologyUserForm =  new FormGroup({
+    this.TypeUserForm =  new FormGroup({
       cf: new FormControl(),
       tipologia: new FormControl()
     })
@@ -52,8 +52,8 @@ export class AdminCplComponent implements OnInit{
   }
 
   setUserType(){
-    let cf = this.TipologyUserForm.value.cf;
-    let tipologia = this.TipologyUserForm.value.tipologia.toLowerCase();
+    let cf = this.TypeUserForm.value.cf;
+    let tipologia = this.TypeUserForm.value.tipologia.toLowerCase();
     this.service.getUtente(cf).subscribe({
       next: (utente)=>{
         if (utente != null && (tipologia == "admin" || tipologia == "utente")){
@@ -67,7 +67,7 @@ export class AdminCplComponent implements OnInit{
             tipologia: tipologia,
           }).subscribe()
           this.dialog.open(SuccessdialogComponent);
-          this.TipologyUserForm.reset();
+          this.TypeUserForm.reset();
         }else{
           this.dialog.open(ErrordialogComponent);
         }
