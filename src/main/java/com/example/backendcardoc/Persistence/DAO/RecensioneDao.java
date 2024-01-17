@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RecensioneDao {
 
-    Recensione findByPrimaryKey(int id); //restituisce un annuncio data la chiave primaria
+    Recensione findByPrimaryKey(int id); //restituisce una recensione data la chiave primaria
 
     List<Recensione> findByProduct(String idProdotto); // Restituisce tutte le recensioni dato l'ID del prodotto
 

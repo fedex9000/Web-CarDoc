@@ -44,7 +44,6 @@ public class WishlistDaoPostgres implements WishlistDao{
             return products;
         }
         catch (SQLException e) {
-            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }
         return null;

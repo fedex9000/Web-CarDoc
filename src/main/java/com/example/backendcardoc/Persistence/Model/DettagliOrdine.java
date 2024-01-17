@@ -1,18 +1,19 @@
 package com.example.backendcardoc.Persistence.Model;
 
 public class DettagliOrdine {
-    String cf, idProdotto;
+    String cf, idProdotto, nomeProdotto;
     int numeroOrdine, quantita;
     double prezzo;
 
     public DettagliOrdine(){}
 
-    public DettagliOrdine(String cf, String idProdotto, int numeroOrdine, int quantita, int prezzo){
+    public DettagliOrdine(String cf, String idProdotto, int numeroOrdine, int quantita, int prezzo, String nomeProdotto){
         this.cf = cf;
         this.idProdotto = idProdotto;
         this.numeroOrdine = numeroOrdine;
         this.quantita = quantita;
         this.prezzo = prezzo;
+        this.nomeProdotto = nomeProdotto;
     }
 
     public int getNumeroOrdine() {
@@ -53,5 +54,13 @@ public class DettagliOrdine {
 
     public double getPrezzo() {
         return prezzo;
+    }
+
+    public String getNomeProdotto() {
+        return nomeProdotto;
+    }
+
+    public void setNomeProdotto(String nomeProdotto) {
+        this.nomeProdotto = nomeProdotto;
     }
 }

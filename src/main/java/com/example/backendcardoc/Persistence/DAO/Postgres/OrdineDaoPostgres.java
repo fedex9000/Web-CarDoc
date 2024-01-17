@@ -38,6 +38,7 @@ public class OrdineDaoPostgres implements OrdineDao {
         d.setCf(rs.getString("cf"));
         d.setIdProdotto(rs.getString("id_prodotto"));
         d.setQuantita(rs.getInt("quantita"));
+        d.setNomeProdotto(rs.getString("nomeProdotto"));
 
         Double prezzoTotale = rs.getDouble("prezzo");
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
@@ -101,24 +102,35 @@ public class OrdineDaoPostgres implements OrdineDao {
 
     @Override
     public boolean insertDettagliOrdine(DettagliOrdine dettagliOrdine) {
-        String insertQuery = "INSERT INTO dettagli_ordine(cf, id_prodotto, numero_ordine, quantita, prezzo) VALUES (?, ?, ?, ?, ?)";
+        String insertQuery = "INSERT INTO dettagli_ordine(cf, id_prodotto, numero_ordine, quantita, prezzo, nomeProdotto) VALUES (?, ?, ?, ?, ?,?)";
+        String selectProductNameQuery = "SELECT nome FROM prodotti WHERE id = ?";
         String updateQuery = "UPDATE prodotti SET numerovenduti = numerovenduti + ? WHERE id = ?";
 
+
         try (PreparedStatement preparedStatementInsert = connection.prepareStatement(insertQuery);
-             PreparedStatement preparedStatementUpdate = connection.prepareStatement(updateQuery)) {
-            // Impostare i parametri per l'inserimento nella tabella "dettagli_ordine"
+             PreparedStatement preparedStatementUpdate = connection.prepareStatement(updateQuery);
+             PreparedStatement preparedStatementSelect = connection.prepareStatement(selectProductNameQuery)) {
+
             preparedStatementInsert.setString(1, dettagliOrdine.getCf());
             preparedStatementInsert.setString(2, dettagliOrdine.getIdProdotto());
             preparedStatementInsert.setInt(3, dettagliOrdine.getNumeroOrdine());
             preparedStatementInsert.setInt(4, dettagliOrdine.getQuantita());
             preparedStatementInsert.setDouble(5, dettagliOrdine.getPrezzo());
-            // Eseguire l'inserimento nella tabella "dettagli_ordine"
+
+            // Eseguiamo la query di selezione per ottenere il nome del prodotto
+            preparedStatementSelect.setString(1, dettagliOrdine.getIdProdotto());
+            ResultSet resultSet = preparedStatementSelect.executeQuery();
+
+            if (resultSet.next()) {
+                String nomeProdotto = resultSet.getString("nome");
+                preparedStatementInsert.setString(6, nomeProdotto);
+            }
+
             preparedStatementInsert.executeUpdate();
 
-            // Impostare i parametri per l'aggiornamento della tabella "prodotti"
             preparedStatementUpdate.setInt(1, dettagliOrdine.getQuantita());
             preparedStatementUpdate.setString(2, dettagliOrdine.getIdProdotto());
-            // Eseguire l'aggiornamento della tabella "prodotti"
+
             preparedStatementUpdate.executeUpdate();
 
             return true;
@@ -126,6 +138,7 @@ public class OrdineDaoPostgres implements OrdineDao {
             e.printStackTrace();
             return false;
         }
+
     }
 
 

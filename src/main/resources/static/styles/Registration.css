@@ -5,7 +5,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-image: url("../img/background.jpg");
+    background-image: url("../immagini/ferrari.jpeg");
     background-size: cover;
     background-position: center;
     display: flex;
@@ -14,7 +14,7 @@ body {
     height: 100vh;
     overflow: hidden;
     padding: 10px;
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(2px);
 }
 
 .container {
@@ -62,7 +62,7 @@ body {
 
 .error-message {
     background-color:rgba(255, 255, 255, 0.681);
-    border: 2px solid #f9900;
+    border: 2px solid #ff9900;
     border-radius: 5px;
     padding: 20px;
     text-align: center;
@@ -79,7 +79,7 @@ body {
     margin-bottom: 20px;
     width: 48px;
     height: 48px;
-    background-image: url("../img/error-logo.png");
+    background-image: url("../immagini/error.png");
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -103,7 +103,7 @@ body {
     margin-bottom: 20px;
     width: 48px;
     height: 48px;
-    background-image: url("../img/success-logo.png");
+    background-image: url("../immagini/success.png");
     background-repeat: no-repeat;
     background-size: contain;
 }

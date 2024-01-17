@@ -114,7 +114,6 @@ public class RecensioneDaoPostgres implements RecensioneDao {
             st.executeUpdate();
         }
         catch(SQLException e) {
-            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }
     }

@@ -43,7 +43,6 @@ public class CartDaoPostgres implements CartDao {
             return products;
         }
         catch (SQLException e) {
-            // TODO: Delete stacktrace and add proper sql exception
             e.printStackTrace();
         }
         return null;
